@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.ckwz.dao.CkwzMainDao">
+    
+	<sql id="ckwzMainColumns">
+		a.id AS "id",
+		a.type AS "type",
+		a.personname AS "personname",
+		a.amount AS "amount",
+		a.updatetime AS "updatetime",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="ckwzMainJoins">
+	</sql>
+    
+	<select id="get" resultType="CkwzMain">
+		SELECT 
+			<include refid="ckwzMainColumns"/>
+		FROM ckwz_main a
+		<include refid="ckwzMainJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CkwzMain">
+		SELECT 
+			<include refid="ckwzMainColumns"/>
+		FROM ckwz_main a
+		<include refid="ckwzMainJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="type != null and type != ''">
+				AND a.type LIKE 
+					<if test="dbName == 'oracle'">'%'||#{type}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{type}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{type},'%')</if>
+			</if>
+			<if test="personname != null and personname != ''">
+				AND a.personname = #{personname}
+			</if>
+			<if test="beginUpdatetime != null and endUpdatetime != null and beginUpdatetime != '' and endUpdatetime != ''">
+				AND a.updatetime BETWEEN #{beginUpdatetime} AND #{endUpdatetime}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CkwzMain">
+		SELECT 
+			<include refid="ckwzMainColumns"/>
+		FROM ckwz_main a
+		<include refid="ckwzMainJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO ckwz_main(
+			id,
+			type,
+			personname,
+			amount,
+			updatetime,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{type},
+			#{personname},
+			#{amount},
+			#{updatetime},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE ckwz_main SET 	
+			type = #{type},
+			personname = #{personname},
+			amount = #{amount},
+			updatetime = #{updatetime},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE ckwz_main SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
