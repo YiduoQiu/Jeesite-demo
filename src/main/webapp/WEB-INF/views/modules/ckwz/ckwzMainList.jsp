@@ -25,18 +25,18 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>物资分类：</label>
+			<li><label>品名：</label>
+				<form:input path="productname" htmlEscape="false" maxlength="100" class="input-medium"/>
+			</li>
+			<li><label>类型：</label>
 				<form:input path="type" htmlEscape="false" maxlength="64" class="input-medium"/>
 			</li>
-			<li><label>物资创建人：</label>
-				<form:input path="personname" htmlEscape="false" maxlength="64" class="input-medium"/>
-			</li>
-			<li><label>更新日期：</label>
-				<input name="beginUpdatetime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${ckwzMain.beginUpdatetime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+			<li><label>创建时间：</label>
+				<input name="beginInDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${ckwzMain.beginInDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> - 
-				<input name="endUpdatetime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${ckwzMain.endUpdatetime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+				<input name="endInDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${ckwzMain.endInDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
@@ -47,9 +47,10 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>物资分类</th>
-				<th>物资创建人</th>
-				<th>更新日期</th>
+				<th>品名</th>
+				<th>类型</th>
+				<th>创建时间</th>
+				<th>更新时间</th>
 				<th>备注信息</th>
 				<shiro:hasPermission name="ckwz:ckwzMain:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
@@ -58,13 +59,16 @@
 		<c:forEach items="${page.list}" var="ckwzMain">
 			<tr>
 				<td><a href="${ctx}/ckwz/ckwzMain/form?id=${ckwzMain.id}">
-					${ckwzMain.type}
+					${ckwzMain.productname}
 				</a></td>
 				<td>
-					${ckwzMain.personname}
+					${ckwzMain.type}
 				</td>
 				<td>
-					<fmt:formatDate value="${ckwzMain.updatetime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${ckwzMain.inDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+				</td>
+				<td>
+					<fmt:formatDate value="${ckwzMain.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<td>
 					${ckwzMain.remarks}

@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.ckwz.service.CkwzMainService;
 /**
  * 仓库物资管理Controller
  * @author qyd
- * @version 2018-06-19
+ * @version 2018-06-22
  */
 @Controller
 @RequestMapping(value = "${adminPath}/ckwz/ckwzMain")

@@ -5,7 +5,7 @@ package com.thinkgem.jeesite.modules.ckwz.dao;
 
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
-import com.thinkgem.jeesite.modules.ckwz.entity.CkwzMain;
+import com.thinkgem.jeesite.modules.ckwz.entity.CkwzChild2;
 
 /**
  * 仓库物资管理DAO接口
@@ -13,6 +13,6 @@ import com.thinkgem.jeesite.modules.ckwz.entity.CkwzMain;
  * @version 2018-06-22
  */
 @MyBatisDao
-public interface CkwzMainDao extends CrudDao<CkwzMain> {
+public interface CkwzChild2Dao extends CrudDao<CkwzChild2> {
 	
 }

@@ -1,49 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thinkgem.jeesite.modules.ckwz.dao.CkwzChildDao">
+<mapper namespace="com.thinkgem.jeesite.modules.ckwz.dao.CkwzChild1Dao">
     
-	<sql id="ckwzChildColumns">
+	<sql id="ckwzChild1Columns">
 		a.id AS "id",
-		a.test_data_main_id AS "testDataMainId",
+		a.test_data_main_id AS "testDataMain.id",
 		a.location AS "location",
+		a.addtime AS "addtime",
+		a.amount AS "amount",
+		a.updateperson AS "updateperson",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS "delFlag",
-		a.in_tinme AS "inTinme",
-		a.amount AS "amount",
-		a.name AS "name"
+		a.del_flag AS "delFlag"
 	</sql>
 	
-	<sql id="ckwzChildJoins">
+	<sql id="ckwzChild1Joins">
 		LEFT JOIN ckwz_main b ON b.id = a.test_data_main_id
 	</sql>
     
-	<select id="get" resultType="CkwzChild">
+	<select id="get" resultType="CkwzChild1">
 		SELECT 
-			<include refid="ckwzChildColumns"/>
-		FROM ckwz_child a
-		<include refid="ckwzChildJoins"/>
+			<include refid="ckwzChild1Columns"/>
+		FROM ckwz_child1 a
+		<include refid="ckwzChild1Joins"/>
 		WHERE a.id = #{id}
 	</select>
 	
-	<select id="findList" resultType="CkwzChild">
+	<select id="findList" resultType="CkwzChild1">
 		SELECT 
-			<include refid="ckwzChildColumns"/>
-		FROM ckwz_child a
-		<include refid="ckwzChildJoins"/>
+			<include refid="ckwzChild1Columns"/>
+		FROM ckwz_child1 a
+		<include refid="ckwzChild1Joins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="testDataMainId != null and testDataMainId != ''">
-				AND a.test_data_main_id = #{testDataMainId}
-			</if>
-			<if test="name != null and name != ''">
-				AND a.name LIKE 
-					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			<if test="testDataMain != null and testDataMain.id != null and testDataMain.id != ''">
+				AND a.test_data_main_id = #{testDataMain.id}
 			</if>
 		</where>
 		<choose>
@@ -56,11 +50,11 @@
 		</choose>
 	</select>
 	
-	<select id="findAllList" resultType="CkwzChild">
+	<select id="findAllList" resultType="CkwzChild1">
 		SELECT 
-			<include refid="ckwzChildColumns"/>
-		FROM ckwz_child a
-		<include refid="ckwzChildJoins"/>
+			<include refid="ckwzChild1Columns"/>
+		FROM ckwz_child1 a
+		<include refid="ckwzChild1Joins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 		</where>		
@@ -75,56 +69,57 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO ckwz_child(
+		INSERT INTO ckwz_child1(
 			id,
 			test_data_main_id,
 			location,
+			addtime,
+			amount,
+			updateperson,
 			create_by,
 			create_date,
 			update_by,
 			update_date,
 			remarks,
-			del_flag,
-			in_tinme,
-			amount,
-			name
+			del_flag
 		) VALUES (
 			#{id},
-			#{testDataMainId},
+			#{testDataMain.id},
 			#{location},
+			#{addtime},
+			#{amount},
+			#{updateperson},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag},
-			#{inTinme},
-			#{amount},
-			#{name}
+			#{delFlag}
 		)
 	</insert>
 	
 	<update id="update">
-		UPDATE ckwz_child SET 	
+		UPDATE ckwz_child1 SET 	
+			test_data_main_id = #{testDataMain.id},
 			location = #{location},
+			addtime = #{addtime},
+			amount = #{amount},
+			updateperson = #{updateperson},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
-			remarks = #{remarks},
-			in_tinme = #{inTinme},
-			amount = #{amount},
-			name = #{name}
+			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
-		UPDATE ckwz_child SET 
+		UPDATE ckwz_child1 SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		<choose>
 			<when test="id !=null and id != ''">
 				WHERE id = #{id}
 			</when>
 			<otherwise>
-				WHERE test_data_main_id = #{testDataMainId}
+				WHERE test_data_main_id = #{testDataMain.id}
 			</otherwise>
 		</choose>
 	</update>

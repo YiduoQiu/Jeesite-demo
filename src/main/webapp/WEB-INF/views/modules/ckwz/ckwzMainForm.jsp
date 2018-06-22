@@ -65,28 +65,34 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">物资分类：</label>
+			<label class="control-label">品名：</label>
 			<div class="controls">
-				<form:input path="type" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+				<form:input path="productname" htmlEscape="false" maxlength="100" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">物资创建人：</label>
-			<div class="controls">
-				<form:input path="personname" htmlEscape="false" maxlength="64" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">数量（总计）：</label>
+			<label class="control-label">数量：</label>
 			<div class="controls">
 				<form:input path="amount" htmlEscape="false" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">更新日期：</label>
+			<label class="control-label">类型：</label>
 			<div class="controls">
-				<input name="updatetime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${ckwzMain.updatetime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+				<form:input path="type" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">创建者：</label>
+			<div class="controls">
+				<form:input path="createperson" htmlEscape="false" maxlength="100" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">创建时间：</label>
+			<div class="controls">
+				<input name="inDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+					value="<fmt:formatDate value="${ckwzMain.inDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 			</div>
 		</div>
@@ -97,60 +103,120 @@
 			</div>
 		</div>
 			<div class="control-group">
-				<label class="control-label">业务数据子表：</label>
+				<label class="control-label">入库：</label>
 				<div class="controls">
 					<table id="contentTable" class="table table-striped table-bordered table-condensed">
 						<thead>
 							<tr>
 								<th class="hide"></th>
 								<th>库位</th>
-								<th>备注信息</th>
 								<th>入库时间</th>
 								<th>数量</th>
 								<th>经手人</th>
+								<th>备注信息</th>
 								<shiro:hasPermission name="ckwz:ckwzMain:edit"><th width="10">&nbsp;</th></shiro:hasPermission>
 							</tr>
 						</thead>
-						<tbody id="ckwzChildList">
+						<tbody id="ckwzChild1List">
 						</tbody>
 						<shiro:hasPermission name="ckwz:ckwzMain:edit"><tfoot>
-							<tr><td colspan="7"><a href="javascript:" onclick="addRow('#ckwzChildList', ckwzChildRowIdx, ckwzChildTpl);ckwzChildRowIdx = ckwzChildRowIdx + 1;" class="btn">新增</a></td></tr>
+							<tr><td colspan="7"><a href="javascript:" onclick="addRow('#ckwzChild1List', ckwzChild1RowIdx, ckwzChild1Tpl);ckwzChild1RowIdx = ckwzChild1RowIdx + 1;" class="btn">新增</a></td></tr>
 						</tfoot></shiro:hasPermission>
 					</table>
-					<script type="text/template" id="ckwzChildTpl">//<!--
-						<tr id="ckwzChildList{{idx}}">
+					<script type="text/template" id="ckwzChild1Tpl">//<!--
+						<tr id="ckwzChild1List{{idx}}">
 							<td class="hide">
-								<input id="ckwzChildList{{idx}}_id" name="ckwzChildList[{{idx}}].id" type="hidden" value="{{row.id}}"/>
-								<input id="ckwzChildList{{idx}}_delFlag" name="ckwzChildList[{{idx}}].delFlag" type="hidden" value="0"/>
+								<input id="ckwzChild1List{{idx}}_id" name="ckwzChild1List[{{idx}}].id" type="hidden" value="{{row.id}}"/>
+								<input id="ckwzChild1List{{idx}}_delFlag" name="ckwzChild1List[{{idx}}].delFlag" type="hidden" value="0"/>
 							</td>
 							<td>
-								<input id="ckwzChildList{{idx}}_location" name="ckwzChildList[{{idx}}].location" type="text" value="{{row.location}}" maxlength="200" class="input-small "/>
+								<input id="ckwzChild1List{{idx}}_location" name="ckwzChild1List[{{idx}}].location" type="text" value="{{row.location}}" maxlength="100" class="input-small "/>
 							</td>
 							<td>
-								<textarea id="ckwzChildList{{idx}}_remarks" name="ckwzChildList[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
+								<input id="ckwzChild1List{{idx}}_addtime" name="ckwzChild1List[{{idx}}].addtime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+									value="{{row.addtime}}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
 							</td>
 							<td>
-								<input id="ckwzChildList{{idx}}_inTinme" name="ckwzChildList[{{idx}}].inTinme" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-									value="{{row.inTinme}}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+								<input id="ckwzChild1List{{idx}}_amount" name="ckwzChild1List[{{idx}}].amount" type="text" value="{{row.amount}}" maxlength="64" class="input-small "/>
 							</td>
 							<td>
-								<input id="ckwzChildList{{idx}}_amount" name="ckwzChildList[{{idx}}].amount" type="text" value="{{row.amount}}" class="input-small "/>
+								<input id="ckwzChild1List{{idx}}_updateperson" name="ckwzChild1List[{{idx}}].updateperson" type="text" value="{{row.updateperson}}" maxlength="100" class="input-small "/>
 							</td>
 							<td>
-								<input id="ckwzChildList{{idx}}_name" name="ckwzChildList[{{idx}}].name" type="text" value="{{row.name}}" maxlength="100" class="input-small "/>
+								<textarea id="ckwzChild1List{{idx}}_remarks" name="ckwzChild1List[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
 							</td>
 							<shiro:hasPermission name="ckwz:ckwzMain:edit"><td class="text-center" width="10">
-								{{#delBtn}}<span class="close" onclick="delRow(this, '#ckwzChildList{{idx}}')" title="删除">&times;</span>{{/delBtn}}
+								{{#delBtn}}<span class="close" onclick="delRow(this, '#ckwzChild1List{{idx}}')" title="删除">&times;</span>{{/delBtn}}
 							</td></shiro:hasPermission>
 						</tr>//-->
 					</script>
 					<script type="text/javascript">
-						var ckwzChildRowIdx = 0, ckwzChildTpl = $("#ckwzChildTpl").html().replace(/(\/\/\<!\-\-)|(\/\/\-\->)/g,"");
+						var ckwzChild1RowIdx = 0, ckwzChild1Tpl = $("#ckwzChild1Tpl").html().replace(/(\/\/\<!\-\-)|(\/\/\-\->)/g,"");
 						$(document).ready(function() {
-							var data = ${fns:toJson(ckwzMain.ckwzChildList)};
+							var data = ${fns:toJson(ckwzMain.ckwzChild1List)};
 							for (var i=0; i<data.length; i++){
-								addRow('#ckwzChildList', ckwzChildRowIdx, ckwzChildTpl, data[i]);
-								ckwzChildRowIdx = ckwzChildRowIdx + 1;
+								addRow('#ckwzChild1List', ckwzChild1RowIdx, ckwzChild1Tpl, data[i]);
+								ckwzChild1RowIdx = ckwzChild1RowIdx + 1;
+							}
+						});
+					</script>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">出库：</label>
+				<div class="controls">
+					<table id="contentTable" class="table table-striped table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th class="hide"></th>
+								<th>出库时间</th>
+								<th>库位</th>
+								<th>数量</th>
+								<th>经手人</th>
+								<th>备注信息</th>
+								<shiro:hasPermission name="ckwz:ckwzMain:edit"><th width="10">&nbsp;</th></shiro:hasPermission>
+							</tr>
+						</thead>
+						<tbody id="ckwzChild2List">
+						</tbody>
+						<shiro:hasPermission name="ckwz:ckwzMain:edit"><tfoot>
+							<tr><td colspan="7"><a href="javascript:" onclick="addRow('#ckwzChild2List', ckwzChild2RowIdx, ckwzChild2Tpl);ckwzChild2RowIdx = ckwzChild2RowIdx + 1;" class="btn">新增</a></td></tr>
+						</tfoot></shiro:hasPermission>
+					</table>
+					<script type="text/template" id="ckwzChild2Tpl">//<!--
+						<tr id="ckwzChild2List{{idx}}">
+							<td class="hide">
+								<input id="ckwzChild2List{{idx}}_id" name="ckwzChild2List[{{idx}}].id" type="hidden" value="{{row.id}}"/>
+								<input id="ckwzChild2List{{idx}}_delFlag" name="ckwzChild2List[{{idx}}].delFlag" type="hidden" value="0"/>
+							</td>
+							<td>
+								<input id="ckwzChild2List{{idx}}_removetime" name="ckwzChild2List[{{idx}}].removetime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
+									value="{{row.removetime}}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+							</td>
+							<td>
+								<input id="ckwzChild2List{{idx}}_location" name="ckwzChild2List[{{idx}}].location" type="text" value="{{row.location}}" maxlength="100" class="input-small "/>
+							</td>
+							<td>
+								<input id="ckwzChild2List{{idx}}_amount" name="ckwzChild2List[{{idx}}].amount" type="text" value="{{row.amount}}" maxlength="64" class="input-small "/>
+							</td>
+							<td>
+								<input id="ckwzChild2List{{idx}}_updateperson" name="ckwzChild2List[{{idx}}].updateperson" type="text" value="{{row.updateperson}}" maxlength="100" class="input-small "/>
+							</td>
+							<td>
+								<textarea id="ckwzChild2List{{idx}}_remarks" name="ckwzChild2List[{{idx}}].remarks" rows="4" maxlength="255" class="input-small ">{{row.remarks}}</textarea>
+							</td>
+							<shiro:hasPermission name="ckwz:ckwzMain:edit"><td class="text-center" width="10">
+								{{#delBtn}}<span class="close" onclick="delRow(this, '#ckwzChild2List{{idx}}')" title="删除">&times;</span>{{/delBtn}}
+							</td></shiro:hasPermission>
+						</tr>//-->
+					</script>
+					<script type="text/javascript">
+						var ckwzChild2RowIdx = 0, ckwzChild2Tpl = $("#ckwzChild2Tpl").html().replace(/(\/\/\<!\-\-)|(\/\/\-\->)/g,"");
+						$(document).ready(function() {
+							var data = ${fns:toJson(ckwzMain.ckwzChild2List)};
+							for (var i=0; i<data.length; i++){
+								addRow('#ckwzChild2List', ckwzChild2RowIdx, ckwzChild2Tpl, data[i]);
+								ckwzChild2RowIdx = ckwzChild2RowIdx + 1;
 							}
 						});
 					</script>

@@ -14,18 +14,20 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 仓库物资管理Entity
  * @author qyd
- * @version 2018-06-19
+ * @version 2018-06-22
  */
 public class CkwzMain extends DataEntity<CkwzMain> {
 	
 	private static final long serialVersionUID = 1L;
-	private String type;		// 物资分类
-	private String personname;		// 物资创建人
-	private String amount;		// 数量（总计）
-	private Date updatetime;		// 更新日期
-	private Date beginUpdatetime;		// 开始 更新日期
-	private Date endUpdatetime;		// 结束 更新日期
-	private List<CkwzChild> ckwzChildList = Lists.newArrayList();		// 子表列表
+	private String productname;		// 品名
+	private String amount;		// 数量
+	private String type;		// 类型
+	private String createperson;		// 创建者
+	private Date inDate;		// 创建时间
+	private Date beginInDate;		// 开始 创建时间
+	private Date endInDate;		// 结束 创建时间
+	private List<CkwzChild1> ckwzChild1List = Lists.newArrayList();		// 子表列表
+	private List<CkwzChild2> ckwzChild2List = Lists.newArrayList();		// 子表列表
 	
 	public CkwzMain() {
 		super();
@@ -35,22 +37,13 @@ public class CkwzMain extends DataEntity<CkwzMain> {
 		super(id);
 	}
 
-	@Length(min=0, max=64, message="物资分类长度必须介于 0 和 64 之间")
-	public String getType() {
-		return type;
+	@Length(min=0, max=100, message="品名长度必须介于 0 和 100 之间")
+	public String getProductname() {
+		return productname;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	@Length(min=0, max=64, message="物资创建人长度必须介于 0 和 64 之间")
-	public String getPersonname() {
-		return personname;
-	}
-
-	public void setPersonname(String personname) {
-		this.personname = personname;
+	public void setProductname(String productname) {
+		this.productname = productname;
 	}
 	
 	public String getAmount() {
@@ -61,36 +54,61 @@ public class CkwzMain extends DataEntity<CkwzMain> {
 		this.amount = amount;
 	}
 	
+	@Length(min=0, max=64, message="类型长度必须介于 0 和 64 之间")
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	@Length(min=0, max=100, message="创建者长度必须介于 0 和 100 之间")
+	public String getCreateperson() {
+		return createperson;
+	}
+
+	public void setCreateperson(String createperson) {
+		this.createperson = createperson;
+	}
+	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	public Date getUpdatetime() {
-		return updatetime;
+	public Date getInDate() {
+		return inDate;
 	}
 
-	public void setUpdatetime(Date updatetime) {
-		this.updatetime = updatetime;
+	public void setInDate(Date inDate) {
+		this.inDate = inDate;
 	}
 	
-	public Date getBeginUpdatetime() {
-		return beginUpdatetime;
+	public Date getBeginInDate() {
+		return beginInDate;
 	}
 
-	public void setBeginUpdatetime(Date beginUpdatetime) {
-		this.beginUpdatetime = beginUpdatetime;
+	public void setBeginInDate(Date beginInDate) {
+		this.beginInDate = beginInDate;
 	}
 	
-	public Date getEndUpdatetime() {
-		return endUpdatetime;
+	public Date getEndInDate() {
+		return endInDate;
 	}
 
-	public void setEndUpdatetime(Date endUpdatetime) {
-		this.endUpdatetime = endUpdatetime;
+	public void setEndInDate(Date endInDate) {
+		this.endInDate = endInDate;
 	}
 		
-	public List<CkwzChild> getCkwzChildList() {
-		return ckwzChildList;
+	public List<CkwzChild1> getCkwzChild1List() {
+		return ckwzChild1List;
 	}
 
-	public void setCkwzChildList(List<CkwzChild> ckwzChildList) {
-		this.ckwzChildList = ckwzChildList;
+	public void setCkwzChild1List(List<CkwzChild1> ckwzChild1List) {
+		this.ckwzChild1List = ckwzChild1List;
+	}
+	public List<CkwzChild2> getCkwzChild2List() {
+		return ckwzChild2List;
+	}
+
+	public void setCkwzChild2List(List<CkwzChild2> ckwzChild2List) {
+		this.ckwzChild2List = ckwzChild2List;
 	}
 }

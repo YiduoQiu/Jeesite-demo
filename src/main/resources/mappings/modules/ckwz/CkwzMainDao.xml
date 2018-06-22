@@ -4,10 +4,11 @@
     
 	<sql id="ckwzMainColumns">
 		a.id AS "id",
-		a.type AS "type",
-		a.personname AS "personname",
+		a.productname AS "productname",
 		a.amount AS "amount",
-		a.updatetime AS "updatetime",
+		a.type AS "type",
+		a.createperson AS "createperson",
+		a.in_date AS "inDate",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
@@ -34,17 +35,17 @@
 		<include refid="ckwzMainJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="productname != null and productname != ''">
+				AND a.productname LIKE 
+					<if test="dbName == 'oracle'">'%'||#{productname}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{productname}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{productname},'%')</if>
+			</if>
 			<if test="type != null and type != ''">
-				AND a.type LIKE 
-					<if test="dbName == 'oracle'">'%'||#{type}||'%'</if>
-					<if test="dbName == 'mssql'">'%'+#{type}+'%'</if>
-					<if test="dbName == 'mysql'">concat('%',#{type},'%')</if>
+				AND a.type = #{type}
 			</if>
-			<if test="personname != null and personname != ''">
-				AND a.personname = #{personname}
-			</if>
-			<if test="beginUpdatetime != null and endUpdatetime != null and beginUpdatetime != '' and endUpdatetime != ''">
-				AND a.updatetime BETWEEN #{beginUpdatetime} AND #{endUpdatetime}
+			<if test="beginInDate != null and endInDate != null and beginInDate != '' and endInDate != ''">
+				AND a.in_date BETWEEN #{beginInDate} AND #{endInDate}
 			</if>
 		</where>
 		<choose>
@@ -78,10 +79,11 @@
 	<insert id="insert">
 		INSERT INTO ckwz_main(
 			id,
-			type,
-			personname,
+			productname,
 			amount,
-			updatetime,
+			type,
+			createperson,
+			in_date,
 			create_by,
 			create_date,
 			update_by,
@@ -90,10 +92,11 @@
 			del_flag
 		) VALUES (
 			#{id},
-			#{type},
-			#{personname},
+			#{productname},
 			#{amount},
-			#{updatetime},
+			#{type},
+			#{createperson},
+			#{inDate},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -105,10 +108,11 @@
 	
 	<update id="update">
 		UPDATE ckwz_main SET 	
-			type = #{type},
-			personname = #{personname},
+			productname = #{productname},
 			amount = #{amount},
-			updatetime = #{updatetime},
+			type = #{type},
+			createperson = #{createperson},
+			in_date = #{inDate},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
 			remarks = #{remarks}
