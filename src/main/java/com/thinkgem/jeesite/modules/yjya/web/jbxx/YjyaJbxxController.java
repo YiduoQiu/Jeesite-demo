@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.yjya.service.jbxx.YjyaJbxxService;
 /**
  * 应急预案_基本信息表生成Controller
  * @author qyd
- * @version 2018-06-15
+ * @version 2018-06-22
  */
 @Controller
 @RequestMapping(value = "${adminPath}/yjya/jbxx/yjyaJbxx")

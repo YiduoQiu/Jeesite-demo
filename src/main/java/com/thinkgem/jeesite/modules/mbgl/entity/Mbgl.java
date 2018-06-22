@@ -1,42 +1,42 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.modules.yjya.entity.jbxx;
+package com.thinkgem.jeesite.modules.mbgl.entity;
 
 import org.hibernate.validator.constraints.Length;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
- * 应急预案_基本信息表生成Entity
+ * 目标管理Entity
  * @author qyd
  * @version 2018-06-22
  */
-public class YjyaJbxx extends DataEntity<YjyaJbxx> {
+public class Mbgl extends DataEntity<Mbgl> {
 	
 	private static final long serialVersionUID = 1L;
-	private String comorganization;		// 指挥机构
+	private String title;		// 标题
 	private String username;		// 姓名
-	private String response;		// 职责
+	private String response;		// 岗位
 	private String telephone;		// 电话
-	private String yjyaPlan;		// 应急预案
-	private String file;		// 文件
+	private String plan;		// 任务目标
+	private String file;		// 附件
 	
-	public YjyaJbxx() {
+	public Mbgl() {
 		super();
 	}
 
-	public YjyaJbxx(String id){
+	public Mbgl(String id){
 		super(id);
 	}
 
-	@Length(min=0, max=3000, message="指挥机构长度必须介于 0 和 3000 之间")
-	public String getComorganization() {
-		return comorganization;
+	@Length(min=0, max=100, message="标题长度必须介于 0 和 100 之间")
+	public String getTitle() {
+		return title;
 	}
 
-	public void setComorganization(String comorganization) {
-		this.comorganization = comorganization;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	@Length(min=0, max=64, message="姓名长度必须介于 0 和 64 之间")
@@ -48,7 +48,7 @@ public class YjyaJbxx extends DataEntity<YjyaJbxx> {
 		this.username = username;
 	}
 	
-	@Length(min=0, max=64, message="职责长度必须介于 0 和 64 之间")
+	@Length(min=0, max=64, message="岗位长度必须介于 0 和 64 之间")
 	public String getResponse() {
 		return response;
 	}
@@ -66,16 +66,16 @@ public class YjyaJbxx extends DataEntity<YjyaJbxx> {
 		this.telephone = telephone;
 	}
 	
-	@Length(min=0, max=3333, message="应急预案长度必须介于 0 和 3333 之间")
-	public String getYjyaPlan() {
-		return yjyaPlan;
+	@Length(min=0, max=3333, message="任务目标长度必须介于 0 和 3333 之间")
+	public String getPlan() {
+		return plan;
 	}
 
-	public void setYjyaPlan(String yjyaPlan) {
-		this.yjyaPlan = yjyaPlan;
+	public void setPlan(String plan) {
+		this.plan = plan;
 	}
 	
-	@Length(min=0, max=255, message="文件长度必须介于 0 和 255 之间")
+	@Length(min=0, max=1000, message="附件长度必须介于 0 和 1000 之间")
 	public String getFile() {
 		return file;
 	}

@@ -18,8 +18,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/yjya/jbxx/yjyaJbxx/">信息列表</a></li>
-		<shiro:hasPermission name="yjya:jbxx:yjyaJbxx:edit"><li><a href="${ctx}/yjya/jbxx/yjyaJbxx/form">信息添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/yjya/jbxx/yjyaJbxx/">应急预案_基本信息表列表</a></li>
+		<shiro:hasPermission name="yjya:jbxx:yjyaJbxx:edit"><li><a href="${ctx}/yjya/jbxx/yjyaJbxx/form">应急预案_基本信息表添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="yjyaJbxx" action="${ctx}/yjya/jbxx/yjyaJbxx/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

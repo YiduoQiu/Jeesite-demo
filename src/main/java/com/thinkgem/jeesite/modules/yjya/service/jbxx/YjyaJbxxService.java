@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.yjya.dao.jbxx.YjyaJbxxDao;
 /**
  * 应急预案_基本信息表生成Service
  * @author qyd
- * @version 2018-06-15
+ * @version 2018-06-22
  */
 @Service
 @Transactional(readOnly = true)

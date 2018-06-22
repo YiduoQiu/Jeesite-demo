@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thinkgem.jeesite.modules.yjya.dao.jbxx.YjyaJbxxDao">
+<mapper namespace="com.thinkgem.jeesite.modules.mbgl.dao.MbglDao">
     
-	<sql id="yjyaJbxxColumns">
+	<sql id="mbglColumns">
 		a.id AS "id",
-		a.comorganization AS "comorganization",
+		a.title AS "title",
 		a.username AS "username",
 		a.response AS "response",
 		a.telephone AS "telephone",
-		a.yjya_plan AS "yjyaPlan",
+		a.plan AS "plan",
 		a.file AS "file",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
@@ -18,27 +18,29 @@
 		a.del_flag AS "delFlag"
 	</sql>
 	
-	<sql id="yjyaJbxxJoins">
-		LEFT JOIN sys_user u3 ON u3.id = a.username
+	<sql id="mbglJoins">
 	</sql>
     
-	<select id="get" resultType="YjyaJbxx">
+	<select id="get" resultType="Mbgl">
 		SELECT 
-			<include refid="yjyaJbxxColumns"/>
-		FROM yjya_jbxx a
-		<include refid="yjyaJbxxJoins"/>
+			<include refid="mbglColumns"/>
+		FROM mbgl a
+		<include refid="mbglJoins"/>
 		WHERE a.id = #{id}
 	</select>
 	
-	<select id="findList" resultType="YjyaJbxx">
+	<select id="findList" resultType="Mbgl">
 		SELECT 
-			<include refid="yjyaJbxxColumns"/>
-		FROM yjya_jbxx a
-		<include refid="yjyaJbxxJoins"/>
+			<include refid="mbglColumns"/>
+		FROM mbgl a
+		<include refid="mbglJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="comorganization != null and comorganization != ''">
-				AND a.comorganization = #{comorganization}
+			<if test="title != null and title != ''">
+				AND a.title LIKE 
+					<if test="dbName == 'oracle'">'%'||#{title}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{title}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{title},'%')</if>
 			</if>
 			<if test="username != null and username != ''">
 				AND a.username = #{username}
@@ -54,11 +56,11 @@
 		</choose>
 	</select>
 	
-	<select id="findAllList" resultType="YjyaJbxx">
+	<select id="findAllList" resultType="Mbgl">
 		SELECT 
-			<include refid="yjyaJbxxColumns"/>
-		FROM yjya_jbxx a
-		<include refid="yjyaJbxxJoins"/>
+			<include refid="mbglColumns"/>
+		FROM mbgl a
+		<include refid="mbglJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 		</where>		
@@ -73,13 +75,13 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO yjya_jbxx(
+		INSERT INTO mbgl(
 			id,
-			comorganization,
+			title,
 			username,
 			response,
 			telephone,
-			yjya_plan,
+			plan,
 			file,
 			create_by,
 			create_date,
@@ -89,11 +91,11 @@
 			del_flag
 		) VALUES (
 			#{id},
-			#{comorganization},
+			#{title},
 			#{username},
 			#{response},
 			#{telephone},
-			#{yjyaPlan},
+			#{plan},
 			#{file},
 			#{createBy.id},
 			#{createDate},
@@ -105,12 +107,12 @@
 	</insert>
 	
 	<update id="update">
-		UPDATE yjya_jbxx SET 	
-			comorganization = #{comorganization},
+		UPDATE mbgl SET 	
+			title = #{title},
 			username = #{username},
 			response = #{response},
 			telephone = #{telephone},
-			yjya_plan = #{yjyaPlan},
+			plan = #{plan},
 			file = #{file},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},
@@ -119,7 +121,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE yjya_jbxx SET 
+		UPDATE mbgl SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
