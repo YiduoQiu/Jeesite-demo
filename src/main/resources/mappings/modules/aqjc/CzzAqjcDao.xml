@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.aqjc.dao.CzzAqjcDao">
+    
+	<sql id="czzAqjcColumns">
+		a.id AS "id",
+		a.check_type AS "checkType",
+		a.name AS "name",
+		a.date AS "date",
+		a.location AS "location",
+		a.extent AS "extent",
+		a.responsible AS "responsible",
+		a.participate AS "participate",
+		a.checkcontent AS "checkcontent",
+		a.problem AS "problem",
+		a.requirements AS "requirements",
+		a.deadline AS "deadline",
+		a.type AS "type",
+		a.correctacction AS "correctacction",
+		a.confirm AS "confirm",
+		a.confirmdate AS "confirmdate",
+		a.file AS "file",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="czzAqjcJoins">
+	</sql>
+    
+	<select id="get" resultType="CzzAqjc">
+		SELECT 
+			<include refid="czzAqjcColumns"/>
+		FROM czz_aqjc a
+		<include refid="czzAqjcJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzAqjc">
+		SELECT 
+			<include refid="czzAqjcColumns"/>
+		FROM czz_aqjc a
+		<include refid="czzAqjcJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="checkType != null and checkType != ''">
+				AND a.check_type = #{checkType}
+			</if>
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+				AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+			<if test="location != null and location != ''">
+				AND a.location = #{location}
+			</if>
+			<if test="extent != null and extent != ''">
+				AND a.extent = #{extent}
+			</if>
+			<if test="responsible != null and responsible != ''">
+				AND a.responsible = #{responsible}
+			</if>
+			<if test="participate != null and participate != ''">
+				AND a.participate = #{participate}
+			</if>
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzAqjc">
+		SELECT 
+			<include refid="czzAqjcColumns"/>
+		FROM czz_aqjc a
+		<include refid="czzAqjcJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_aqjc(
+			id,
+			check_type,
+			name,
+			date,
+			location,
+			extent,
+			responsible,
+			participate,
+			checkcontent,
+			problem,
+			requirements,
+			deadline,
+			type,
+			correctacction,
+			confirm,
+			confirmdate,
+			file,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{checkType},
+			#{name},
+			#{date},
+			#{location},
+			#{extent},
+			#{responsible},
+			#{participate},
+			#{checkcontent},
+			#{problem},
+			#{requirements},
+			#{deadline},
+			#{type},
+			#{correctacction},
+			#{confirm},
+			#{confirmdate},
+			#{file},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_aqjc SET 	
+			check_type = #{checkType},
+			name = #{name},
+			date = #{date},
+			location = #{location},
+			extent = #{extent},
+			responsible = #{responsible},
+			participate = #{participate},
+			checkcontent = #{checkcontent},
+			problem = #{problem},
+			requirements = #{requirements},
+			deadline = #{deadline},
+			type = #{type},
+			file = #{file},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_aqjc SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

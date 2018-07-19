@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.aqtr.dao.CzzAqtrDao">
+    
+	<sql id="czzAqtrColumns">
+		a.id AS "id",
+		a.title AS "title",
+		a.date AS "date",
+		a.amount_gcjs AS "amountGcjs",
+		a.amount_gygx AS "amountGygx",
+		a.amount_scxc AS "amountScxc",
+		a.amount_yhzg AS "amountYhzg",
+		a.amount_fxbs AS "amountFxbs",
+		a.amount_lbyp AS "amountLbyp",
+		a.amount_xgytg AS "amountXgytg",
+		a.amount_zrbx AS "amountZrbx",
+		a.amount_yjjs AS "amountYjjs",
+		a.amount_sczx AS "amountSczx",
+		a.amount_qt AS "amountQt",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="czzAqtrJoins">
+	</sql>
+    
+	<select id="get" resultType="CzzAqtr">
+		SELECT 
+			<include refid="czzAqtrColumns"/>
+		FROM czz_aqtr a
+		<include refid="czzAqtrJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzAqtr">
+		SELECT 
+			<include refid="czzAqtrColumns"/>
+		FROM czz_aqtr a
+		<include refid="czzAqtrJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="title != null and title != ''">
+				AND a.title LIKE 
+					<if test="dbName == 'oracle'">'%'||#{title}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{title}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{title},'%')</if>
+			</if>
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+				AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzAqtr">
+		SELECT 
+			<include refid="czzAqtrColumns"/>
+		FROM czz_aqtr a
+		<include refid="czzAqtrJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_aqtr(
+			id,
+			title,
+			date,
+			amount_gcjs,
+			amount_gygx,
+			amount_scxc,
+			amount_yhzg,
+			amount_fxbs,
+			amount_lbyp,
+			amount_xgytg,
+			amount_zrbx,
+			amount_yjjs,
+			amount_sczx,
+			amount_qt,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{title},
+			#{date},
+			#{amountGcjs},
+			#{amountGygx},
+			#{amountScxc},
+			#{amountYhzg},
+			#{amountFxbs},
+			#{amountLbyp},
+			#{amountXgytg},
+			#{amountZrbx},
+			#{amountYjjs},
+			#{amountSczx},
+			#{amountQt},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_aqtr SET 	
+			title = #{title},
+			date = #{date},
+			amount_gcjs = #{amountGcjs},
+			amount_gygx = #{amountGygx},
+			amount_scxc = #{amountScxc},
+			amount_yhzg = #{amountYhzg},
+			amount_fxbs = #{amountFxbs},
+			amount_lbyp = #{amountLbyp},
+			amount_xgytg = #{amountXgytg},
+			amount_zrbx = #{amountZrbx},
+			amount_yjjs = #{amountYjjs},
+			amount_sczx = #{amountSczx},
+			amount_qt = #{amountQt},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_aqtr SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

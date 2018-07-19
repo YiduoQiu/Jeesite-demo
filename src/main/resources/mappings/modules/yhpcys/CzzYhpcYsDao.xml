@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.yhpcys.dao.CzzYhpcYsDao">
+    
+	<sql id="czzYhpcYsColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.date AS "date",
+		a.location AS "location",
+		a.responsible AS "responsible",
+		a.problem AS "problem",
+		a.requirements AS "requirements",
+		a.deadline AS "deadline",
+		a.amount AS "amount",
+		a.correctacction AS "correctacction",
+		a.confirm AS "confirm",
+		a.confirmdate AS "confirmdate",
+		a.type AS "type",
+		a.file AS "file",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="czzYhpcYsJoins">
+	</sql>
+    
+	<select id="get" resultType="CzzYhpcYs">
+		SELECT 
+			<include refid="czzYhpcYsColumns"/>
+		FROM czz_yhpc a
+		<include refid="czzYhpcYsJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzYhpcYs">
+		SELECT 
+			<include refid="czzYhpcYsColumns"/>
+		FROM czz_yhpc a
+		<include refid="czzYhpcYsJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+				AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+			<if test="location != null and location != ''">
+				AND a.location = #{location}
+			</if>
+			<if test="responsible != null and responsible != ''">
+				AND a.responsible = #{responsible}
+			</if>
+			<if test="confirm != null and confirm != ''">
+				AND a.confirm = #{confirm}
+			</if>
+			<if test="beginConfirmdate != null and endConfirmdate != null and beginConfirmdate != '' and endConfirmdate != ''">
+				AND a.confirmdate BETWEEN #{beginConfirmdate} AND #{endConfirmdate}
+			</if>
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzYhpcYs">
+		SELECT 
+			<include refid="czzYhpcYsColumns"/>
+		FROM czz_yhpc a
+		<include refid="czzYhpcYsJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_yhpc(
+			id,
+			name,
+			date,
+			location,
+			responsible,
+			problem,
+			requirements,
+			deadline,
+			amount,
+			correctacction,
+			confirm,
+			confirmdate,
+			type,
+			file,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{name},
+			#{date},
+			#{location},
+			#{responsible},
+			#{problem},
+			#{requirements},
+			#{deadline},
+			#{amount},
+			#{correctacction},
+			#{confirm},
+			#{confirmdate},
+			#{type},
+			#{file},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_yhpc SET 	
+			name = #{name},
+			date = #{date},
+			location = #{location},
+			responsible = #{responsible},
+			correctacction = #{correctacction},
+			confirm = #{confirm},
+			confirmdate = #{confirmdate},
+			type = #{type},
+			file = #{file},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_yhpc SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

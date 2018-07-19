@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.wxygl.dao.CzzWxyglDao">
+    
+	<sql id="czzWxyglColumns">
+		a.id AS "id",
+		a.wxy_name AS "wxyName",
+		a.location AS "location",
+		a.person AS "person",
+		a.plan AS "plan",
+		a.file AS "file",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="czzWxyglJoins">
+	</sql>
+    
+	<select id="get" resultType="CzzWxygl">
+		SELECT 
+			<include refid="czzWxyglColumns"/>
+		FROM czz_wxygl a
+		<include refid="czzWxyglJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzWxygl">
+		SELECT 
+			<include refid="czzWxyglColumns"/>
+		FROM czz_wxygl a
+		<include refid="czzWxyglJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="wxyName != null and wxyName != ''">
+				AND a.wxy_name = #{wxyName}
+			</if>
+			<if test="location != null and location != ''">
+				AND a.location = #{location}
+			</if>
+			<if test="person != null and person != ''">
+				AND a.person = #{person}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzWxygl">
+		SELECT 
+			<include refid="czzWxyglColumns"/>
+		FROM czz_wxygl a
+		<include refid="czzWxyglJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_wxygl(
+			id,
+			wxy_name,
+			location,
+			person,
+			plan,
+			file,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{wxyName},
+			#{location},
+			#{person},
+			#{plan},
+			#{file},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_wxygl SET 	
+			wxy_name = #{wxyName},
+			location = #{location},
+			person = #{person},
+			plan = #{plan},
+			file = #{file},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_wxygl SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

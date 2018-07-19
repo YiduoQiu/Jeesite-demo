@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.zntx.dao.CzzZntxDao">
+    
+	<sql id="czzZntxColumns">
+		a.id AS "id",
+		a.type AS "type",
+		a.title AS "title",
+		a.content AS "content",
+		a.person AS "person",
+		a.phone AS "phone",
+		a.start_date AS "startDate",
+		a.end_date AS "endDate",
+		a.intervaltime AS "intervaltime",
+		a.interval_type AS "intervalType",
+		a.last_date AS "lastDate",
+		a.remind AS "remind",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="czzZntxJoins">
+	</sql>
+    
+	<select id="get" resultType="CzzZntx">
+		SELECT 
+			<include refid="czzZntxColumns"/>
+		FROM czz_zntx a
+		<include refid="czzZntxJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzZntx">
+		SELECT 
+			<include refid="czzZntxColumns"/>
+		FROM czz_zntx a
+		<include refid="czzZntxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="title != null and title != ''">
+				AND a.title LIKE 
+					<if test="dbName == 'oracle'">'%'||#{title}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{title}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{title},'%')</if>
+			</if>
+			<if test="person != null and person != ''">
+				AND a.person = #{person}
+			</if>
+			<if test="startDate != null and startDate != ''">
+				AND a.start_date = #{startDate}
+			</if>
+			<if test="endDate != null and endDate != ''">
+				AND a.end_date = #{endDate}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzZntx">
+		SELECT 
+			<include refid="czzZntxColumns"/>
+		FROM czz_zntx a
+		<include refid="czzZntxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_zntx(
+			id,
+			type,
+			title,
+			content,
+			person,
+			phone,
+			start_date,
+			end_date,
+			intervaltime,
+			interval_type,
+			last_date,
+			remind,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{type},
+			#{title},
+			#{content},
+			#{person},
+			#{phone},
+			#{startDate},
+			#{endDate},
+			#{intervaltime},
+			#{intervalType},
+			#{lastDate},
+			#{remind},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_zntx SET 	
+			type = #{type},
+			title = #{title},
+			content = #{content},
+			person = #{person},
+			phone = #{phone},
+			start_date = #{startDate},
+			end_date = #{endDate},
+			intervaltime = #{intervaltime},
+			interval_type = #{intervalType},
+			remind = #{remind},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_zntx SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

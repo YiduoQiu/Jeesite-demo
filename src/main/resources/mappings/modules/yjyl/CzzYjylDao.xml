@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.yjyl.dao.CzzYjylDao">
+    
+	<sql id="czzYjylColumns">
+		a.id AS "id",
+		a.name AS "name",
+		a.date AS "date",
+		a.location AS "location",
+		a.accident AS "accident",
+		a.plan AS "plan",
+		a.exercise AS "exercise",
+		a.situation AS "situation",
+		a.evaluate AS "evaluate",
+		a.revise AS "revise",
+		a.file AS "file",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="czzYjylJoins">
+	</sql>
+    
+	<select id="get" resultType="CzzYjyl">
+		SELECT 
+			<include refid="czzYjylColumns"/>
+		FROM czz_yjyl a
+		<include refid="czzYjylJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzYjyl">
+		SELECT 
+			<include refid="czzYjylColumns"/>
+		FROM czz_yjyl a
+		<include refid="czzYjylJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="name != null and name != ''">
+				AND a.name LIKE 
+					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="date != null and date != ''">
+				AND a.date = #{date}
+			</if>
+			<if test="location != null and location != ''">
+				AND a.location = #{location}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzYjyl">
+		SELECT 
+			<include refid="czzYjylColumns"/>
+		FROM czz_yjyl a
+		<include refid="czzYjylJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_yjyl(
+			id,
+			name,
+			date,
+			location,
+			accident,
+			plan,
+			exercise,
+			situation,
+			evaluate,
+			revise,
+			file,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{name},
+			#{date},
+			#{location},
+			#{accident},
+			#{plan},
+			#{exercise},
+			#{situation},
+			#{evaluate},
+			#{revise},
+			#{file},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_yjyl SET 	
+			name = #{name},
+			date = #{date},
+			location = #{location},
+			accident = #{accident},
+			plan = #{plan},
+			exercise = #{exercise},
+			situation = #{situation},
+			evaluate = #{evaluate},
+			revise = #{revise},
+			file = #{file},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_yjyl SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>
