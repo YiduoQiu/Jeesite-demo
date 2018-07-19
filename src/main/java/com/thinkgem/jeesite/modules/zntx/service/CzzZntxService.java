@@ -43,5 +43,12 @@ public class CzzZntxService extends CrudService<CzzZntxDao, CzzZntx> {
 	public void delete(CzzZntx czzZntx) {
 		super.delete(czzZntx);
 	}
+/***************************
+ * 函数名：智能提醒模块提醒对象
+ * 功能：取得提醒对象信息
+ * *************************/
+	public List<CzzZntx> getYesObjects(CzzZntx czzZntx) {
+		return super.findGoalData(czzZntx);
+	}
 	
 }

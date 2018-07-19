@@ -85,6 +85,17 @@
 		</choose>
 	</select>
 	
+	<select id="findGoalData" resultType="CzzZntx">
+		SELECT 
+			<include refid="czzZntxColumns"/>
+		FROM czz_zntx a
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			AND a.remind = '0'
+		</where>
+		ORDER BY a.update_date DESC
+	</select>
+	
 	<insert id="insert">
 		INSERT INTO czz_zntx(
 			id,

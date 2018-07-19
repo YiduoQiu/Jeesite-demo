@@ -79,4 +79,11 @@ public interface CrudDao<T> extends BaseDao {
 	 */
 	public int delete(T entity);
 	
+	/**
+	 * 查找目标数据
+	 * @param entity
+	 * @return
+	 */
+	public List<T> findGoalData(T entity);
+	
 }
