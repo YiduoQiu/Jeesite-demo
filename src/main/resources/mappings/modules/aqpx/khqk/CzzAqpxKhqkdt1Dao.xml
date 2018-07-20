@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.aqpx.dao.khqk.CzzAqpxKhqkdt1Dao">
+    
+	<sql id="czzAqpxKhqkdt1Columns">
+		a.id AS "id",
+		a.test_data_main_id AS "testDataMain.ID",
+		a.name AS "name",
+		a.subject AS "subject",
+		a.grade AS "grade",
+		a.standard AS "standard",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="czzAqpxKhqkdt1Joins">
+		LEFT JOIN czz_aqpx_khqk b ON b.id = a.test_data_main_id
+	</sql>
+    
+	<select id="get" resultType="CzzAqpxKhqkdt1">
+		SELECT 
+			<include refid="czzAqpxKhqkdt1Columns"/>
+		FROM czz_aqpx_khqkdt1 a
+		<include refid="czzAqpxKhqkdt1Joins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzAqpxKhqkdt1">
+		SELECT 
+			<include refid="czzAqpxKhqkdt1Columns"/>
+		FROM czz_aqpx_khqkdt1 a
+		<include refid="czzAqpxKhqkdt1Joins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="testDataMain != null and testDataMain.ID != null and testDataMain.ID != ''">
+				AND a.test_data_main_id = #{testDataMain.ID}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.create_date ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzAqpxKhqkdt1">
+		SELECT 
+			<include refid="czzAqpxKhqkdt1Columns"/>
+		FROM czz_aqpx_khqkdt1 a
+		<include refid="czzAqpxKhqkdt1Joins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.create_date ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_aqpx_khqkdt1(
+			id,
+			test_data_main_id,
+			name,
+			subject,
+			grade,
+			standard,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{testDataMain.ID},
+			#{name},
+			#{subject},
+			#{grade},
+			#{standard},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_aqpx_khqkdt1 SET 	
+			test_data_main_id = #{testDataMain.ID},
+			name = #{name},
+			subject = #{subject},
+			grade = #{grade},
+			standard = #{standard},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_aqpx_khqkdt1 SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		<choose>
+			<when test="id !=null and id != ''">
+				WHERE id = #{id}
+			</when>
+			<otherwise>
+				WHERE test_data_main_id = #{testDataMain.ID}
+			</otherwise>
+		</choose>
+	</update>
+	
+</mapper>

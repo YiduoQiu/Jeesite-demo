@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thinkgem.jeesite.modules.zyjk.dao.CzzZyjkDao">
+<mapper namespace="com.thinkgem.jeesite.modules.aqpx.dao.pxqk.CzzAqpxPxqkDao">
     
-	<sql id="czzZyjkColumns">
+	<sql id="czzAqpxPxqkColumns">
 		a.id AS "id",
-		a.type AS "type",
-		a.person AS "person",
-		a.harm AS "harm",
-		a.safety AS "safety",
-		a.onsitetest AS "onsitetest",
-		a.phycheck AS "phycheck",
-		a.disease_flag AS "diseaseFlag",
-		a.method AS "method",
+		a.title AS "title",
+		a.date AS "date",
+		a.location AS "location",
+		a.content AS "content",
 		a.file AS "file",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
@@ -21,32 +17,32 @@
 		a.del_flag AS "delFlag"
 	</sql>
 	
-	<sql id="czzZyjkJoins">
+	<sql id="czzAqpxPxqkJoins">
 	</sql>
     
-	<select id="get" resultType="CzzZyjk">
+	<select id="get" resultType="CzzAqpxPxqk">
 		SELECT 
-			<include refid="czzZyjkColumns"/>
-		FROM czz_zyjk a
-		<include refid="czzZyjkJoins"/>
+			<include refid="czzAqpxPxqkColumns"/>
+		FROM czz_aqpx_pxqk a
+		<include refid="czzAqpxPxqkJoins"/>
 		WHERE a.id = #{id}
 	</select>
 	
-	<select id="findList" resultType="CzzZyjk">
+	<select id="findList" resultType="CzzAqpxPxqk">
 		SELECT 
-			<include refid="czzZyjkColumns"/>
-		FROM czz_zyjk a
-		<include refid="czzZyjkJoins"/>
+			<include refid="czzAqpxPxqkColumns"/>
+		FROM czz_aqpx_pxqk a
+		<include refid="czzAqpxPxqkJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="type != null and type != ''">
-				AND a.type = #{type}
+			<if test="title != null and title != ''">
+				AND a.title LIKE 
+					<if test="dbName == 'oracle'">'%'||#{title}||'%'</if>
+					<if test="dbName == 'mssql'">'%'+#{title}+'%'</if>
+					<if test="dbName == 'mysql'">concat('%',#{title},'%')</if>
 			</if>
-			<if test="person != null and person != ''">
-				AND a.person = #{person}
-			</if>
-			<if test="diseaseFlag != null and diseaseFlag != ''">
-				AND a.disease_flag = #{diseaseFlag}
+			<if test="date != null and date != ''">
+				AND a.date = #{date}
 			</if>
 		</where>
 		<choose>
@@ -59,11 +55,11 @@
 		</choose>
 	</select>
 	
-	<select id="findAllList" resultType="CzzZyjk">
+	<select id="findAllList" resultType="CzzAqpxPxqk">
 		SELECT 
-			<include refid="czzZyjkColumns"/>
-		FROM czz_zyjk a
-		<include refid="czzZyjkJoins"/>
+			<include refid="czzAqpxPxqkColumns"/>
+		FROM czz_aqpx_pxqk a
+		<include refid="czzAqpxPxqkJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 		</where>		
@@ -78,16 +74,12 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO czz_zyjk(
+		INSERT INTO czz_aqpx_pxqk(
 			id,
-			type,
-			person,
-			harm,
-			safety,
-			onsitetest,
-			phycheck,
-			disease_flag,
-			method,
+			title,
+			date,
+			location,
+			content,
 			file,
 			create_by,
 			create_date,
@@ -97,14 +89,10 @@
 			del_flag
 		) VALUES (
 			#{id},
-			#{type},
-			#{person},
-			#{harm},
-			#{safety},
-			#{onsitetest},
-			#{phycheck},
-			#{diseaseFlag},
-			#{method},
+			#{title},
+			#{date},
+			#{location},
+			#{content},
 			#{file},
 			#{createBy.id},
 			#{createDate},
@@ -116,15 +104,11 @@
 	</insert>
 	
 	<update id="update">
-		UPDATE czz_zyjk SET 	
-			type = #{type},
-			person = #{person},
-			harm = #{harm},
-			safety = #{safety},
-			onsitetest = #{onsitetest},
-			phycheck = #{phycheck},
-			disease_flag = #{diseaseFlag},
-			method = #{method},
+		UPDATE czz_aqpx_pxqk SET 	
+			title = #{title},
+			date = #{date},
+			location = #{location},
+			content = #{content},
 			file = #{file},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
@@ -132,7 +116,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE czz_zyjk SET 
+		UPDATE czz_aqpx_pxqk SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>

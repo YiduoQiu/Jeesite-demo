@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.yjyl.service.CzzYjylService;
 /**
  * 应急演练Controller
  * @author qyd
- * @version 2018-07-04
+ * @version 2018-07-20
  */
 @Controller
 @RequestMapping(value = "${adminPath}/yjyl/czzYjyl")

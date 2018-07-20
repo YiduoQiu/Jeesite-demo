@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 职业健康Entity
  * @author qyd
- * @version 2018-07-04
+ * @version 2018-07-20
  */
 public class CzzZyjk extends DataEntity<CzzZyjk> {
 	

@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.yjjy.service.CzzYjjyService;
 /**
  * 应急救援Controller
  * @author qyd
- * @version 2018-07-04
+ * @version 2018-07-20
  */
 @Controller
 @RequestMapping(value = "${adminPath}/yjjy/czzYjjy")

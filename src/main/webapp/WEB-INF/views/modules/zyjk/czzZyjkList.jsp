@@ -25,13 +25,13 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label style="width: 100px;">职业危害类别：</label>
+			<li><label>职业危害类别：</label>
 				<form:input path="type" htmlEscape="false" maxlength="200" class="input-medium"/>
 			</li>
 			<li><label>人员：</label>
 				<form:input path="person" htmlEscape="false" maxlength="255" class="input-medium"/>
 			</li>
-			<li><label>有无职业病：</label>
+			<li><label>有无职业病标记：</label>
 				<form:radiobuttons path="diseaseFlag" items="${fns:getDictList('disease_flag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
@@ -44,7 +44,7 @@
 			<tr>
 				<th>职业危害类别</th>
 				<th>人员</th>
-				<th>有无职业病</th>
+				<th>有无职业病标记</th>
 				<shiro:hasPermission name="zyjk:czzZyjk:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>

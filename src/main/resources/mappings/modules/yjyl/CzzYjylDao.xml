@@ -134,8 +134,7 @@
 			revise = #{revise},
 			file = #{file},
 			update_by = #{updateBy.id},
-			update_date = #{updateDate},
-			remarks = #{remarks}
+			update_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
 	

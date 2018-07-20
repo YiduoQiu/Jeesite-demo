@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.thinkgem.jeesite.modules.yjjy.dao.CzzYjjyDao">
+<mapper namespace="com.thinkgem.jeesite.modules.aqpx.dao.ndpxjh.CzzAqpxNdjhDao">
     
-	<sql id="czzYjjyColumns">
+	<sql id="czzAqpxNdjhColumns">
 		a.id AS "id",
 		a.title AS "title",
-		a.plan AS "plan",
-		a.specialplan AS "specialplan",
-		a.comprehensiveplan AS "comprehensiveplan",
-		a.file AS "file",
+		a.content AS "content",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
@@ -17,22 +14,22 @@
 		a.del_flag AS "delFlag"
 	</sql>
 	
-	<sql id="czzYjjyJoins">
+	<sql id="czzAqpxNdjhJoins">
 	</sql>
     
-	<select id="get" resultType="CzzYjjy">
+	<select id="get" resultType="CzzAqpxNdjh">
 		SELECT 
-			<include refid="czzYjjyColumns"/>
-		FROM czz_yjjy a
-		<include refid="czzYjjyJoins"/>
+			<include refid="czzAqpxNdjhColumns"/>
+		FROM czz_aqpx_ndjh a
+		<include refid="czzAqpxNdjhJoins"/>
 		WHERE a.id = #{id}
 	</select>
 	
-	<select id="findList" resultType="CzzYjjy">
+	<select id="findList" resultType="CzzAqpxNdjh">
 		SELECT 
-			<include refid="czzYjjyColumns"/>
-		FROM czz_yjjy a
-		<include refid="czzYjjyJoins"/>
+			<include refid="czzAqpxNdjhColumns"/>
+		FROM czz_aqpx_ndjh a
+		<include refid="czzAqpxNdjhJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 			<if test="title != null and title != ''">
@@ -52,11 +49,11 @@
 		</choose>
 	</select>
 	
-	<select id="findAllList" resultType="CzzYjjy">
+	<select id="findAllList" resultType="CzzAqpxNdjh">
 		SELECT 
-			<include refid="czzYjjyColumns"/>
-		FROM czz_yjjy a
-		<include refid="czzYjjyJoins"/>
+			<include refid="czzAqpxNdjhColumns"/>
+		FROM czz_aqpx_ndjh a
+		<include refid="czzAqpxNdjhJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
 		</where>		
@@ -71,13 +68,10 @@
 	</select>
 	
 	<insert id="insert">
-		INSERT INTO czz_yjjy(
+		INSERT INTO czz_aqpx_ndjh(
 			id,
 			title,
-			plan,
-			specialplan,
-			comprehensiveplan,
-			file,
+			content,
 			create_by,
 			create_date,
 			update_by,
@@ -87,10 +81,7 @@
 		) VALUES (
 			#{id},
 			#{title},
-			#{plan},
-			#{specialplan},
-			#{comprehensiveplan},
-			#{file},
+			#{content},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -101,19 +92,16 @@
 	</insert>
 	
 	<update id="update">
-		UPDATE czz_yjjy SET 	
+		UPDATE czz_aqpx_ndjh SET 	
 			title = #{title},
-			plan = #{plan},
-			specialplan = #{specialplan},
-			comprehensiveplan = #{comprehensiveplan},
-			file = #{file},
+			content = #{content},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
 	
 	<update id="delete">
-		UPDATE czz_yjjy SET 
+		UPDATE czz_aqpx_ndjh SET 
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
