@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.yhpcys.dao.CzzYhpcYsDao;
 /**
  * 隐患排查验收Service
  * @author qyd
- * @version 2018-07-06
+ * @version 2018-08-08
  */
 @Service
 @Transactional(readOnly = true)

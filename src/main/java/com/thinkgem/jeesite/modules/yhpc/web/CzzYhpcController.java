@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.yhpc.service.CzzYhpcService;
 /**
  * 隐患排查Controller
  * @author qyd
- * @version 2018-07-06
+ * @version 2018-08-09
  */
 @Controller
 @RequestMapping(value = "${adminPath}/yhpc/czzYhpc")

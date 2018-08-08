@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.yhpcys.entity.CzzYhpcYs;
 /**
  * 隐患排查验收DAO接口
  * @author qyd
- * @version 2018-07-06
+ * @version 2018-08-08
  */
 @MyBatisDao
 public interface CzzYhpcYsDao extends CrudDao<CzzYhpcYs> {

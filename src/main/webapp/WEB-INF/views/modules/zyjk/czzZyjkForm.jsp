@@ -22,6 +22,20 @@
 					}
 				}
 			});
+			var check = $("input[name='diseaseFlag']");
+			var checked = $("input[name='diseaseFlag']:checked").val();
+			if(checked == '1'){
+				$("#czff").show();
+			} else {
+				$("#czff").hide();
+			}
+			check.bind("click",function(e){
+				if($(this).val() == '0') {
+					$("#czff").hide();
+				} else {
+					$("#czff").show();
+				}
+			});
 		});
 	</script>
 </head>
@@ -75,7 +89,7 @@
 				<form:radiobuttons path="diseaseFlag" items="${fns:getDictList('disease_flag')}" itemLabel="label" itemValue="value" htmlEscape="false" class=""/>
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="control-group" id="czff">
 			<label class="control-label">处置方法：</label>
 			<div class="controls">
 				<form:textarea path="method" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>

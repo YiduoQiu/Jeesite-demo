@@ -42,12 +42,6 @@
 			<li><label>责任人：</label>
 				<form:input path="responsible" htmlEscape="false" maxlength="100" class="input-medium"/>
 			</li>
-			<li><label>整改状态：</label>
-				<form:select path="type" class="input-medium">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('type_flag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -60,7 +54,6 @@
 				<th>检查时间</th>
 				<th>地点</th>
 				<th>责任人</th>
-				<th>整改状态</th>
 				<shiro:hasPermission name="yhpc:czzYhpc:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -78,9 +71,6 @@
 				</td>
 				<td>
 					${czzYhpc.responsible}
-				</td>
-				<td>
-					${fns:getDictLabel(czzYhpc.type, 'type_flag', '')}
 				</td>
 				<shiro:hasPermission name="yhpc:czzYhpc:edit"><td>
     				<a href="${ctx}/yhpc/czzYhpc/form?id=${czzYhpc.id}">修改</a>

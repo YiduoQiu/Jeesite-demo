@@ -22,6 +22,48 @@
 					}
 				}
 			});
+			//初始化时
+			var yh_ini = $(".select2-chosen").html();
+			if(yh_ini == "一般隐患"){
+				$("#zrr").show();
+				$("#content1").hide();
+				$("#content2").hide();
+				$("#content3").hide();
+				$("#content4").hide();
+				$("#content5").hide();
+				$("#content6").hide();
+			}
+			if(yh_ini == "重大隐患"){
+				$("#zrr").hide();
+				$("#content1").show();
+				$("#content2").show();
+				$("#content3").show();
+				$("#content4").show();
+				$("#content5").show();
+				$("#content6").show();
+			}
+			//给选择类型绑定事件
+			$(".select2-chosen").bind("DOMNodeInserted",function(e){
+				var yl_type = $(".select2-chosen").html();
+				if(yl_type == "一般隐患"){
+					$("#zrr").show();
+					$("#content1").hide();
+					$("#content2").hide();
+					$("#content3").hide();
+					$("#content4").hide();
+					$("#content5").hide();
+					$("#content6").hide();
+				}
+				if(yl_type == "重大隐患"){
+					$("#zrr").hide();
+					$("#content1").show();
+					$("#content2").show();
+					$("#content3").show();
+					$("#content4").show();
+					$("#content5").show();
+					$("#content6").show();
+				}
+			});
 		});
 	</script>
 </head>
@@ -40,6 +82,15 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">隐患类型：</label>
+			<div class="controls">
+				<form:select path="yhType" class="input-xlarge ">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('yh_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">检查时间：</label>
 			<div class="controls">
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
@@ -53,10 +104,46 @@
 				<form:input path="location" htmlEscape="false" maxlength="255" class="input-xlarge "/>
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="control-group" id="zrr">
 			<label class="control-label">责任人：</label>
 			<div class="controls">
 				<form:input path="responsible" htmlEscape="false" maxlength="100" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group" id="content1">
+			<label class="control-label">治理的目标和任务：</label>
+			<div class="controls">
+				<form:textarea path="content1" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+			</div>
+		</div>
+		<div class="control-group" id="content2">
+			<label class="control-label">采取的方法和措施：</label>
+			<div class="controls">
+				<form:textarea path="content2" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+			</div>
+		</div>
+		<div class="control-group" id="content3">
+			<label class="control-label">经费和物资的落实：</label>
+			<div class="controls">
+				<form:textarea path="content3" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+			</div>
+		</div>
+		<div class="control-group" id="content4">
+			<label class="control-label">负责治理的机构和人员：</label>
+			<div class="controls">
+				<form:textarea path="content4" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+			</div>
+		</div>
+		<div class="control-group" id="content5">
+			<label class="control-label">治理的时限和要求：</label>
+			<div class="controls">
+				<form:textarea path="content5" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+			</div>
+		</div>
+		<div class="control-group" id="content6">
+			<label class="control-label">安全措施和应急预案：</label>
+			<div class="controls">
+				<form:textarea path="content6" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

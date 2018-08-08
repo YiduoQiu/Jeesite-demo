@@ -5,6 +5,7 @@
 	<sql id="czzYhpcColumns">
 		a.id AS "id",
 		a.name AS "name",
+		a.yh_type AS "yhType",
 		a.date AS "date",
 		a.location AS "location",
 		a.responsible AS "responsible",
@@ -14,11 +15,17 @@
 		a.amount AS "amount",
 		a.correctacction AS "correctacction",
 		a.confirm AS "confirm",
+		a.content_1 AS "content1",
+		a.content_2 AS "content2",
 		a.confirmdate AS "confirmdate",
 		a.type AS "type",
+		a.content_3 AS "content3",
+		a.content_4 AS "content4",
 		a.file AS "file",
 		a.create_by AS "createBy.id",
+		a.content_5 AS "content5",
 		a.create_date AS "createDate",
+		a.content_6 AS "content6",
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
@@ -58,9 +65,6 @@
 			<if test="responsible != null and responsible != ''">
 				AND a.responsible = #{responsible}
 			</if>
-			<if test="type != null and type != ''">
-				AND a.type = #{type}
-			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -94,6 +98,7 @@
 		INSERT INTO czz_yhpc(
 			id,
 			name,
+			yh_type,
 			date,
 			location,
 			responsible,
@@ -103,11 +108,17 @@
 			amount,
 			correctacction,
 			confirm,
+			content_1,
+			content_2,
 			confirmdate,
 			type,
+			content_3,
+			content_4,
 			file,
 			create_by,
+			content_5,
 			create_date,
+			content_6,
 			update_by,
 			update_date,
 			remarks,
@@ -115,6 +126,7 @@
 		) VALUES (
 			#{id},
 			#{name},
+			#{yhType},
 			#{date},
 			#{location},
 			#{responsible},
@@ -124,11 +136,17 @@
 			#{amount},
 			#{correctacction},
 			#{confirm},
+			#{content1},
+			#{content2},
 			#{confirmdate},
 			#{type},
+			#{content3},
+			#{content4},
 			#{file},
 			#{createBy.id},
+			#{content5},
 			#{createDate},
+			#{content6},
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
@@ -139,6 +157,7 @@
 	<update id="update">
 		UPDATE czz_yhpc SET 	
 			name = #{name},
+			yh_type = #{yhType},
 			date = #{date},
 			location = #{location},
 			responsible = #{responsible},
@@ -146,8 +165,14 @@
 			requirements = #{requirements},
 			deadline = #{deadline},
 			amount = #{amount},
+			content_1 = #{content1},
+			content_2 = #{content2},
 			type = #{type},
+			content_3 = #{content3},
+			content_4 = #{content4},
 			file = #{file},
+			content_5 = #{content5},
+			content_6 = #{content6},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
 		WHERE id = #{id}

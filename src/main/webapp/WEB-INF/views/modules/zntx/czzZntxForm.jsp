@@ -58,12 +58,14 @@
 			<label class="control-label">接收人：</label>
 			<div class="controls">
 				<form:textarea path="person" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
+				<span class="help-inline">请填写接收人姓名，若有多个接收人，请将姓名用逗号隔开</span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">接收人电话：</label>
 			<div class="controls">
-				<form:input path="phone" htmlEscape="false" maxlength="20" class="input-xlarge "/>
+				<form:textarea path="phone" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
+				<span class="help-inline">请填写接收人手机号码，若有多个接收人，请将手机号码用逗号隔开</span>
 			</div>
 		</div>
 		<div class="control-group">
