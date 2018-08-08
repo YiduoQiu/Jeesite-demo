@@ -62,8 +62,12 @@
 		<li class="active"><a href="${ctx}/awh/czzAwh/form?id=${czzAwh.id}">安委会<shiro:hasPermission name="awh:czzAwh:edit">${not empty czzAwh.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="awh:czzAwh:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzAwh" action="${ctx}/awh/czzAwh/save" method="post" class="form-horizontal">
+		
+		<div class="control-group">
+			<label class="control-label">主任：</label>
+		</div>
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>		
+		<sys:message content="${message}"/>	
 		<div class="control-group">
 			<label class="control-label">姓名：</label>
 			<div class="controls">
@@ -89,7 +93,7 @@
 			</div>
 		</div>
 			<div class="control-group">
-				<label class="control-label">安委会子表__副主任：</label>
+				<label class="control-label">副主任：</label>
 				<div class="controls">
 					<table id="contentTable" class="table table-striped table-bordered table-condensed">
 						<thead>
@@ -144,7 +148,7 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label">安委会子表_成员：</label>
+				<label class="control-label">成员：</label>
 				<div class="controls">
 					<table id="contentTable" class="table table-striped table-bordered table-condensed">
 						<thead>
