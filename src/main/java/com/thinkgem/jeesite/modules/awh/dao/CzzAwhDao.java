@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.awh.entity.CzzAwh;
 /**
  * 安委会DAO接口
  * @author qyd
- * @version 2018-07-16
+ * @version 2018-08-08
  */
 @MyBatisDao
 public interface CzzAwhDao extends CrudDao<CzzAwh> {

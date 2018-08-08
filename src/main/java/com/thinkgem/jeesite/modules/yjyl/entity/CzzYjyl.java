@@ -12,20 +12,19 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 应急演练Entity
  * @author qyd
- * @version 2018-07-20
+ * @version 2018-08-08
  */
 public class CzzYjyl extends DataEntity<CzzYjyl> {
 	
 	private static final long serialVersionUID = 1L;
+	private String ylType;		// 演练类型
 	private String name;		// 标题
 	private Date date;		// 时间
 	private String location;		// 地点
-	private String accident;		// 事故经过
-	private String plan;		// 方案制定
-	private String exercise;		// 现场演练
-	private String situation;		// 处置情况
-	private String evaluate;		// 评估
-	private String revise;		// 修订
+	private String plan;		// 演练方案
+	private String accident;		// 演练过程
+	private String evaluate;		// 演练评估
+	private String revise;		// 预案修订（处置方案）
 	private String file;		// 附件
 	
 	public CzzYjyl() {
@@ -36,6 +35,15 @@ public class CzzYjyl extends DataEntity<CzzYjyl> {
 		super(id);
 	}
 
+	@Length(min=0, max=1, message="演练类型长度必须介于 0 和 1 之间")
+	public String getYlType() {
+		return ylType;
+	}
+
+	public void setYlType(String ylType) {
+		this.ylType = ylType;
+	}
+	
 	@Length(min=0, max=200, message="标题长度必须介于 0 和 200 之间")
 	public String getName() {
 		return name;
@@ -63,16 +71,7 @@ public class CzzYjyl extends DataEntity<CzzYjyl> {
 		this.location = location;
 	}
 	
-	@Length(min=0, max=2000, message="事故经过长度必须介于 0 和 2000 之间")
-	public String getAccident() {
-		return accident;
-	}
-
-	public void setAccident(String accident) {
-		this.accident = accident;
-	}
-	
-	@Length(min=0, max=2000, message="方案制定长度必须介于 0 和 2000 之间")
+	@Length(min=0, max=2000, message="演练方案长度必须介于 0 和 2000 之间")
 	public String getPlan() {
 		return plan;
 	}
@@ -81,25 +80,16 @@ public class CzzYjyl extends DataEntity<CzzYjyl> {
 		this.plan = plan;
 	}
 	
-	@Length(min=0, max=2000, message="现场演练长度必须介于 0 和 2000 之间")
-	public String getExercise() {
-		return exercise;
+	@Length(min=0, max=2000, message="演练过程长度必须介于 0 和 2000 之间")
+	public String getAccident() {
+		return accident;
 	}
 
-	public void setExercise(String exercise) {
-		this.exercise = exercise;
+	public void setAccident(String accident) {
+		this.accident = accident;
 	}
 	
-	@Length(min=0, max=2000, message="处置情况长度必须介于 0 和 2000 之间")
-	public String getSituation() {
-		return situation;
-	}
-
-	public void setSituation(String situation) {
-		this.situation = situation;
-	}
-	
-	@Length(min=0, max=2000, message="评估长度必须介于 0 和 2000 之间")
+	@Length(min=0, max=2000, message="演练评估长度必须介于 0 和 2000 之间")
 	public String getEvaluate() {
 		return evaluate;
 	}
@@ -108,7 +98,7 @@ public class CzzYjyl extends DataEntity<CzzYjyl> {
 		this.evaluate = evaluate;
 	}
 	
-	@Length(min=0, max=255, message="修订长度必须介于 0 和 255 之间")
+	@Length(min=0, max=255, message="预案修订（处置方案）长度必须介于 0 和 255 之间")
 	public String getRevise() {
 		return revise;
 	}

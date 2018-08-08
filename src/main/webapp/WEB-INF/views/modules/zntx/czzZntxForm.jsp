@@ -57,7 +57,7 @@
 		<div class="control-group">
 			<label class="control-label">接收人：</label>
 			<div class="controls">
-				<form:input path="person" htmlEscape="false" maxlength="64" class="input-xlarge "/>
+				<form:textarea path="person" htmlEscape="false" rows="4" maxlength="1000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

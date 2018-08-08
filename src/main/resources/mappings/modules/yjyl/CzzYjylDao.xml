@@ -4,13 +4,12 @@
     
 	<sql id="czzYjylColumns">
 		a.id AS "id",
+		a.yl_type AS "ylType",
 		a.name AS "name",
 		a.date AS "date",
 		a.location AS "location",
-		a.accident AS "accident",
 		a.plan AS "plan",
-		a.exercise AS "exercise",
-		a.situation AS "situation",
+		a.accident AS "accident",
 		a.evaluate AS "evaluate",
 		a.revise AS "revise",
 		a.file AS "file",
@@ -40,17 +39,14 @@
 		<include refid="czzYjylJoins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="ylType != null and ylType != ''">
+				AND a.yl_type = #{ylType}
+			</if>
 			<if test="name != null and name != ''">
 				AND a.name LIKE 
 					<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
 					<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
-			</if>
-			<if test="date != null and date != ''">
-				AND a.date = #{date}
-			</if>
-			<if test="location != null and location != ''">
-				AND a.location = #{location}
 			</if>
 		</where>
 		<choose>
@@ -84,13 +80,12 @@
 	<insert id="insert">
 		INSERT INTO czz_yjyl(
 			id,
+			yl_type,
 			name,
 			date,
 			location,
-			accident,
 			plan,
-			exercise,
-			situation,
+			accident,
 			evaluate,
 			revise,
 			file,
@@ -102,13 +97,12 @@
 			del_flag
 		) VALUES (
 			#{id},
+			#{ylType},
 			#{name},
 			#{date},
 			#{location},
-			#{accident},
 			#{plan},
-			#{exercise},
-			#{situation},
+			#{accident},
 			#{evaluate},
 			#{revise},
 			#{file},
@@ -123,13 +117,12 @@
 	
 	<update id="update">
 		UPDATE czz_yjyl SET 	
+			yl_type = #{ylType},
 			name = #{name},
 			date = #{date},
 			location = #{location},
-			accident = #{accident},
 			plan = #{plan},
-			exercise = #{exercise},
-			situation = #{situation},
+			accident = #{accident},
 			evaluate = #{evaluate},
 			revise = #{revise},
 			file = #{file},

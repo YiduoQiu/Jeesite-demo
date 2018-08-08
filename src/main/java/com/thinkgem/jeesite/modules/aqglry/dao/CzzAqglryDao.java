@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.aqglry.entity.CzzAqglry;
 /**
  * 安全管理人员DAO接口
  * @author qyd
- * @version 2018-07-12
+ * @version 2018-08-08
  */
 @MyBatisDao
 public interface CzzAqglryDao extends CrudDao<CzzAqglry> {

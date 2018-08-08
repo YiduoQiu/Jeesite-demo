@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 安全管理人员Entity
  * @author qyd
- * @version 2018-07-12
+ * @version 2018-08-08
  */
 public class CzzAqglry extends DataEntity<CzzAqglry> {
 	
@@ -19,6 +19,7 @@ public class CzzAqglry extends DataEntity<CzzAqglry> {
 	private String name;		// 姓名
 	private String phone;		// 电话
 	private String responsible;		// 职能职责
+	private String file;		// 附件
 	
 	public CzzAqglry() {
 		super();
@@ -62,6 +63,15 @@ public class CzzAqglry extends DataEntity<CzzAqglry> {
 
 	public void setResponsible(String responsible) {
 		this.responsible = responsible;
+	}
+	
+	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
 	}
 	
 }

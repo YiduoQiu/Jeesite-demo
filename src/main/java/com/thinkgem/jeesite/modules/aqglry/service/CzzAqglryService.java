@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.aqglry.dao.CzzAqglryDao;
 /**
  * 安全管理人员Service
  * @author qyd
- * @version 2018-07-12
+ * @version 2018-08-08
  */
 @Service
 @Transactional(readOnly = true)

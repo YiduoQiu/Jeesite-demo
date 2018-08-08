@@ -34,15 +34,15 @@
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">姓名：</label>
-			<div class="controls">
-				<form:input path="name" htmlEscape="false" maxlength="100" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
 			<label class="control-label">职务：</label>
 			<div class="controls">
 				<form:input path="function" htmlEscape="false" maxlength="1000" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">姓名：</label>
+			<div class="controls">
+				<form:input path="name" htmlEscape="false" maxlength="100" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -52,9 +52,17 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">职责：</label>
+			<label class="control-label">职能职责：</label>
 			<div class="controls">
 				<form:textarea path="responsible" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">附件：</label>
+			<div class="controls">
+				<form:hidden id="file" path="file" htmlEscape="false" maxlength="100" class="input-xlarge"/>
+				<sys:ckfinder input="file" type="files" uploadPath="/aqglry/czzAqglry" selectMultiple="true"/>
+				<span class="help-inline">本企业安全机构成立文件</span>
 			</div>
 		</div>
 		<div class="form-actions">

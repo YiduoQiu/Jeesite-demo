@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>应急救援管理</title>
+	<title>应急预案管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -18,8 +18,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/yjjy/czzYjjy/">应急救援列表</a></li>
-		<shiro:hasPermission name="yjjy:czzYjjy:edit"><li><a href="${ctx}/yjjy/czzYjjy/form">应急救援添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/yjjy/czzYjjy/">应急预案列表</a></li>
+		<shiro:hasPermission name="yjjy:czzYjjy:edit"><li><a href="${ctx}/yjjy/czzYjjy/form">应急预案添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzYjjy" action="${ctx}/yjjy/czzYjjy/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>

@@ -22,6 +22,25 @@
 					}
 				}
 			});
+			//给选择类型绑定事件
+			$(".select2-chosen").bind("DOMNodeInserted",function(e){
+				var yl_type = $(".select2-chosen").html();
+				if(yl_type == "综合演练"){
+					$("#ylfa").html("综合演练方案");
+					$("#ylgc").html("综合演练过程");
+					$("#ylpg").html("综合演练评估");
+				}
+				if(yl_type == "专项演练"){
+					$("#ylfa").html("专项演练方案");
+					$("#ylgc").html("专项演练过程");
+					$("#ylpg").html("专项演练评估");
+				}
+				if(yl_type == "现场演练"){
+					$("#ylfa").html("现场演练方案");
+					$("#ylgc").html("现场演练过程");
+					$("#ylpg").html("现场演练评估");
+				}
+			});
 		});
 	</script>
 </head>
@@ -33,6 +52,15 @@
 	<form:form id="inputForm" modelAttribute="czzYjyl" action="${ctx}/yjyl/czzYjyl/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
+		<div class="control-group">
+			<label class="control-label">演练类型：</label>
+			<div class="controls">
+				<form:select path="ylType" class="input-xlarge ">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('yl_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</div>
+		</div>
 		<div class="control-group">
 			<label class="control-label">标题：</label>
 			<div class="controls">
@@ -54,37 +82,25 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">事故经过：</label>
-			<div class="controls">
-				<form:textarea path="accident" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">方案制定：</label>
+			<label class="control-label" id="ylfa">演练方案：</label>
 			<div class="controls">
 				<form:textarea path="plan" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">现场演练：</label>
+			<label class="control-label" id="ylgc">演练过程：</label>
 			<div class="controls">
-				<form:textarea path="exercise" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+				<form:textarea path="accident" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">处置情况：</label>
-			<div class="controls">
-				<form:textarea path="situation" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">评估：</label>
+			<label class="control-label" id="ylpg">演练评估：</label>
 			<div class="controls">
 				<form:textarea path="evaluate" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">修订：</label>
+			<label class="control-label">预案修订（处置方案）：</label>
 			<div class="controls">
 				<form:textarea path="revise" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
 			</div>

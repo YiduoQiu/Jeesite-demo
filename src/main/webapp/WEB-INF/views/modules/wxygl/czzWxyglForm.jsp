@@ -52,7 +52,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">管理方案：</label>
+			<label class="control-label">管理措施：</label>
 			<div class="controls">
 				<form:input path="plan" htmlEscape="false" maxlength="2000" class="input-xlarge "/>
 			</div>
@@ -62,12 +62,6 @@
 			<div class="controls">
 				<form:hidden id="file" path="file" htmlEscape="false" maxlength="100" class="input-xlarge"/>
 				<sys:ckfinder input="file" type="files" uploadPath="/wxygl/czzWxygl" selectMultiple="true"/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">备注信息：</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="255" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="form-actions">

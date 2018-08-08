@@ -63,15 +63,9 @@
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzAwh" action="${ctx}/awh/czzAwh/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>	
+		<sys:message content="${message}"/>		
 		<div class="control-group">
-			<label class="control-label">安委会组成人员</label>
-		</div>
-		<div class="control-group">
-			<label class="control-label">主任</label>
-		</div>	
-		<div class="control-group">
-			<label class="control-label"> 姓名：</label>
+			<label class="control-label">姓名：</label>
 			<div class="controls">
 				<form:input path="name" htmlEscape="false" maxlength="100" class="input-xlarge "/>
 			</div>
@@ -95,7 +89,7 @@
 			</div>
 		</div>
 			<div class="control-group">
-				<label class="control-label">副主任：</label>
+				<label class="control-label">安委会子表__副主任：</label>
 				<div class="controls">
 					<table id="contentTable" class="table table-striped table-bordered table-condensed">
 						<thead>
@@ -150,7 +144,7 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label">成员：</label>
+				<label class="control-label">安委会子表_成员：</label>
 				<div class="controls">
 					<table id="contentTable" class="table table-striped table-bordered table-condensed">
 						<thead>
@@ -204,6 +198,14 @@
 					</script>
 				</div>
 			</div>
+			<div class="control-group">
+			<label class="control-label">附件：</label>
+			<div class="controls">
+				<form:hidden id="file" path="file" htmlEscape="false" maxlength="100" class="input-xlarge"/>
+				<sys:ckfinder input="file" type="files" uploadPath="/awh/czzAwh" selectMultiple="true"/>
+				<span class="help-inline">本企业安全机构成立文件</span>
+			</div>
+		</div>
 		<div class="form-actions">
 			<shiro:hasPermission name="awh:czzAwh:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>

@@ -22,7 +22,7 @@ import com.thinkgem.jeesite.modules.awh.dao.CzzAwhDt2Dao;
 /**
  * 安委会Service
  * @author qyd
- * @version 2018-07-16
+ * @version 2018-08-08
  */
 @Service
 @Transactional(readOnly = true)

@@ -86,7 +86,7 @@
 		<div class="control-group">
 			<label class="control-label">整改情况：</label>
 			<div class="controls">
-				<form:input path="correctacction" htmlEscape="false" maxlength="2000" class="input-xlarge "/>
+				<form:textarea path="correctacction" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

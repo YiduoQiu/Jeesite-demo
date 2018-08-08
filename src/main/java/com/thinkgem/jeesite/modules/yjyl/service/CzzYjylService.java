@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.yjyl.dao.CzzYjylDao;
 /**
  * 应急演练Service
  * @author qyd
- * @version 2018-07-20
+ * @version 2018-08-08
  */
 @Service
 @Transactional(readOnly = true)

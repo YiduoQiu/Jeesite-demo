@@ -13,7 +13,8 @@
 		a.update_by AS "updateBy.id",
 		a.update_date AS "updateDate",
 		a.remarks AS "remarks",
-		a.del_flag AS "delFlag"
+		a.del_flag AS "delFlag",
+		a.file AS "file"
 	</sql>
 	
 	<sql id="czzAwhJoins">
@@ -81,7 +82,8 @@
 			update_by,
 			update_date,
 			remarks,
-			del_flag
+			del_flag,
+			file
 		) VALUES (
 			#{id},
 			#{name},
@@ -93,7 +95,8 @@
 			#{updateBy.id},
 			#{updateDate},
 			#{remarks},
-			#{delFlag}
+			#{delFlag},
+			#{file}
 		)
 	</insert>
 	
@@ -104,7 +107,8 @@
 			job = #{job},
 			post = #{post},
 			update_by = #{updateBy.id},
-			update_date = #{updateDate}
+			update_date = #{updateDate},
+			file = #{file}
 		WHERE id = #{id}
 	</update>
 	

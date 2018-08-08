@@ -12,7 +12,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 安委会Entity
  * @author qyd
- * @version 2018-07-16
+ * @version 2018-08-08
  */
 public class CzzAwh extends DataEntity<CzzAwh> {
 	
@@ -21,6 +21,7 @@ public class CzzAwh extends DataEntity<CzzAwh> {
 	private String phone;		// 联系电话
 	private String job;		// 分管工作
 	private String post;		// 职务
+	private String file;		// 附件
 	private List<CzzAwhDt1> czzAwhDt1List = Lists.newArrayList();		// 子表列表
 	private List<CzzAwhDt2> czzAwhDt2List = Lists.newArrayList();		// 子表列表
 	
@@ -66,6 +67,15 @@ public class CzzAwh extends DataEntity<CzzAwh> {
 
 	public void setPost(String post) {
 		this.post = post;
+	}
+	
+	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
 	}
 	
 	public List<CzzAwhDt1> getCzzAwhDt1List() {

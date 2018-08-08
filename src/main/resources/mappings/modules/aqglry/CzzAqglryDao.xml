@@ -8,6 +8,7 @@
 		a.name AS "name",
 		a.phone AS "phone",
 		a.responsible AS "responsible",
+		a.file AS "file",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
@@ -79,6 +80,7 @@
 			name,
 			phone,
 			responsible,
+			file,
 			create_by,
 			create_date,
 			update_by,
@@ -91,6 +93,7 @@
 			#{name},
 			#{phone},
 			#{responsible},
+			#{file},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -106,6 +109,7 @@
 			name = #{name},
 			phone = #{phone},
 			responsible = #{responsible},
+			file = #{file},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
 		WHERE id = #{id}

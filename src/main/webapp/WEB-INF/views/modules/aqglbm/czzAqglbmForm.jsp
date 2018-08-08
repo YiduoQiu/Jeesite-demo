@@ -40,9 +40,17 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">职责：</label>
+			<label class="control-label">职能职责：</label>
 			<div class="controls">
 				<form:textarea path="function" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">附件：</label>
+			<div class="controls">
+				<form:hidden id="file" path="file" htmlEscape="false" maxlength="100" class="input-xlarge"/>
+				<sys:ckfinder input="file" type="files" uploadPath="/aqglbm/czzAqglbm" selectMultiple="true"/>
+				<span class="help-inline">本企业安全机构成立文件</span>
 			</div>
 		</div>
 		<div class="form-actions">

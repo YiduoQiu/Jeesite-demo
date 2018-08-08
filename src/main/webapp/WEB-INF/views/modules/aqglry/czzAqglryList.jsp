@@ -42,7 +42,7 @@
 				<th>职务</th>
 				<th>姓名</th>
 				<th>电话</th>
-				<th>职责</th>
+				<th>职能职责</th>
 				<shiro:hasPermission name="aqglry:czzAqglry:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>

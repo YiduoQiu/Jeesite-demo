@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>应急救援管理</title>
+	<title>应急预案管理</title>
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -27,8 +27,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/yjjy/czzYjjy/">应急救援列表</a></li>
-		<li class="active"><a href="${ctx}/yjjy/czzYjjy/form?id=${czzYjjy.id}">应急救援<shiro:hasPermission name="yjjy:czzYjjy:edit">${not empty czzYjjy.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="yjjy:czzYjjy:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/yjjy/czzYjjy/">应急预案列表</a></li>
+		<li class="active"><a href="${ctx}/yjjy/czzYjjy/form?id=${czzYjjy.id}">应急预案<shiro:hasPermission name="yjjy:czzYjjy:edit">${not empty czzYjjy.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="yjjy:czzYjjy:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzYjjy" action="${ctx}/yjjy/czzYjjy/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -40,9 +40,9 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">岗位处置方案：</label>
+			<label class="control-label">综合预案：</label>
 			<div class="controls">
-				<form:textarea path="plan" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+				<form:textarea path="comprehensiveplan" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -52,9 +52,9 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">综合预案：</label>
+			<label class="control-label">现场处置方案：</label>
 			<div class="controls">
-				<form:textarea path="comprehensiveplan" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+				<form:textarea path="plan" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

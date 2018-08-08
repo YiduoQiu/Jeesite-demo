@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.aqglbm.service.CzzAqglbmService;
 /**
  * 安全管理部门Controller
  * @author qyd
- * @version 2018-07-12
+ * @version 2018-08-08
  */
 @Controller
 @RequestMapping(value = "${adminPath}/aqglbm/czzAqglbm")
