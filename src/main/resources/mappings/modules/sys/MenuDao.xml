@@ -19,6 +19,7 @@
 		a.update_by AS "updateBy.id",
 		a.update_date,
 		a.del_flag,
+		a.is_single,
 		p.name AS "parent.name"
 	</sql>
 	
@@ -83,7 +84,8 @@
 			update_by, 
 			update_date, 
 			remarks, 
-			del_flag
+			del_flag, 
+			is_single
 		) VALUES (
 			#{id}, 
 			#{parent.id}, 
@@ -100,7 +102,8 @@
 			#{updateBy.id}, 
 			#{updateDate}, 
 			#{remarks}, 
-			#{delFlag}
+			#{delFlag}, 
+			#{isSingle}
 		)
 	</insert>
 	
@@ -117,7 +120,8 @@
 			permission = #{permission}, 
 			update_by = #{updateBy.id}, 
 			update_date = #{updateDate}, 
-			remarks = #{remarks}
+			remarks = #{remarks}, 
+			is_single = #{isSingle}
 		WHERE id = #{id}
 	</update>
 	

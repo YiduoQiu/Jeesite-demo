@@ -30,6 +30,7 @@ public class Menu extends DataEntity<Menu> {
 	private Integer sort; 	// 排序
 	private String isShow; 	// 是否在菜单中显示（1：显示；0：不显示）
 	private String permission; // 权限标识
+	private String isSingle; 	// 是否单独的菜单（1：无子菜单；0：有子菜单）
 	
 	private String userId;
 	
@@ -37,6 +38,7 @@ public class Menu extends DataEntity<Menu> {
 		super();
 		this.sort = 30;
 		this.isShow = "1";
+		this.isSingle = "0";
 	}
 	
 	public Menu(String id){
@@ -114,6 +116,15 @@ public class Menu extends DataEntity<Menu> {
 
 	public void setIsShow(String isShow) {
 		this.isShow = isShow;
+	}
+	
+	@Length(min=1, max=1)
+	public String getIsSingle() {
+		return isSingle;
+	}
+
+	public void setIsSingle(String isSingle) {
+		this.isSingle = isSingle;
 	}
 
 	@Length(min=0, max=200)

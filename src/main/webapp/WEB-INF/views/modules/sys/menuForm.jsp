@@ -82,6 +82,13 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">有无子菜单:</label>
+			<div class="controls">
+				<form:radiobuttons path="isSingle" items="${fns:getDictList('menu_show')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
+				<span class="help-inline">该菜单或操作是否有子菜单，若无子菜单则直接连接到目标页面</span>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">权限标识:</label>
 			<div class="controls">
 				<form:input path="permission" htmlEscape="false" maxlength="100" class="input-xxlarge"/>
