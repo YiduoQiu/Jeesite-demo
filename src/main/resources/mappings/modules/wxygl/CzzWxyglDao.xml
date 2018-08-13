@@ -5,6 +5,7 @@
 	<sql id="czzWxyglColumns">
 		a.id AS "id",
 		a.wxy_name AS "wxyName",
+		a.wxy_type AS "wxyType",
 		a.location AS "location",
 		a.person AS "person",
 		a.plan AS "plan",
@@ -38,11 +39,11 @@
 			<if test="wxyName != null and wxyName != ''">
 				AND a.wxy_name = #{wxyName}
 			</if>
+			<if test="wxyType != null and wxyType != ''">
+				AND a.wxy_type = #{wxyType}
+			</if>
 			<if test="location != null and location != ''">
 				AND a.location = #{location}
-			</if>
-			<if test="person != null and person != ''">
-				AND a.person = #{person}
 			</if>
 		</where>
 		<choose>
@@ -77,6 +78,7 @@
 		INSERT INTO czz_wxygl(
 			id,
 			wxy_name,
+			wxy_type,
 			location,
 			person,
 			plan,
@@ -90,6 +92,7 @@
 		) VALUES (
 			#{id},
 			#{wxyName},
+			#{wxyType},
 			#{location},
 			#{person},
 			#{plan},
@@ -106,6 +109,7 @@
 	<update id="update">
 		UPDATE czz_wxygl SET 	
 			wxy_name = #{wxyName},
+			wxy_type = #{wxyType},
 			location = #{location},
 			person = #{person},
 			plan = #{plan},

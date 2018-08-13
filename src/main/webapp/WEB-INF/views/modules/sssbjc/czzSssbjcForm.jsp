@@ -22,6 +22,19 @@
 					}
 				}
 			});
+			//给选择类型绑定事件
+			$(".select2-chosen").bind("DOMNodeInserted",function(e){
+				var yl_type = $(".select2-chosen").html();
+				if(yl_type == "优"){
+					alert("请继续保持");
+				}
+				if(yl_type == "良"){
+					alert("请加强巡查");
+				}
+				if(yl_type == "差"){
+					alert("请立即整改");
+				}
+			});
 		});
 	</script>
 </head>
@@ -63,6 +76,15 @@
 			<label class="control-label">验收情况：</label>
 			<div class="controls">
 				<form:textarea path="returninfo" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">设施设备安全状态：</label>
+			<div class="controls">
+				<form:select path="aqType" class="input-xlarge ">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('aq_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 			</div>
 		</div>
 		<div class="control-group">

@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.sssbjc.service.CzzSssbjcService;
 /**
  * 设施设备安全检查Controller
  * @author qyd
- * @version 2018-07-17
+ * @version 2018-08-13
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sssbjc/czzSssbjc")

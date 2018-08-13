@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.sssbjc.entity.CzzSssbjc;
 /**
  * 设施设备安全检查DAO接口
  * @author qyd
- * @version 2018-07-17
+ * @version 2018-08-13
  */
 @MyBatisDao
 public interface CzzSssbjcDao extends CrudDao<CzzSssbjc> {

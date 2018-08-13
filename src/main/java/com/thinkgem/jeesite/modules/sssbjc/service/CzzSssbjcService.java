@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.sssbjc.dao.CzzSssbjcDao;
 /**
  * 设施设备安全检查Service
  * @author qyd
- * @version 2018-07-17
+ * @version 2018-08-13
  */
 @Service
 @Transactional(readOnly = true)

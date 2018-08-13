@@ -25,14 +25,17 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>危险点位：</label>
+			<li><label>危险源名称：</label>
 				<form:input path="wxyName" htmlEscape="false" maxlength="100" class="input-medium"/>
+			</li>
+			<li><label>危险源类型（0：一般危险源，1：重大危险源）：</label>
+				<form:select path="wxyType" class="input-medium">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('wxy_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 			</li>
 			<li><label>位置：</label>
 				<form:input path="location" htmlEscape="false" maxlength="300" class="input-medium"/>
-			</li>
-			<li><label>管理人员：</label>
-				<form:input path="person" htmlEscape="false" maxlength="100" class="input-medium"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
@@ -42,7 +45,8 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 			<tr>
-				<th>危险点位</th>
+				<th>危险源名称</th>
+				<th>危险源类型（0：一般危险源，1：重大危险源）</th>
 				<th>位置</th>
 				<th>管理人员</th>
 				<shiro:hasPermission name="wxygl:czzWxygl:edit"><th>操作</th></shiro:hasPermission>
@@ -54,6 +58,9 @@
 				<td><a href="${ctx}/wxygl/czzWxygl/form?id=${czzWxygl.id}">
 					${czzWxygl.wxyName}
 				</a></td>
+				<td>
+					${fns:getDictLabel(czzWxygl.wxyType, 'wxy_type', '')}
+				</td>
 				<td>
 					${czzWxygl.location}
 				</td>

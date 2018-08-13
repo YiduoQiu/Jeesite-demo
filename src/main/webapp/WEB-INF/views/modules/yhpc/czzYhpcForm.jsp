@@ -103,7 +103,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">检查时间：</label>
+			<label class="control-label">排查时间：</label>
 			<div class="controls">
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${czzYhpc.date}" pattern="yyyy-MM-dd HH:mm:ss"/>"

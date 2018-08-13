@@ -54,9 +54,10 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">人员：</label>
+			<label class="control-label">涉及人员名单：</label>
 			<div class="controls">
-				<form:input path="person" htmlEscape="false" maxlength="255" class="input-xlarge "/>
+				<form:textarea path="person" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+				<span class="help-inline">姓名间请用逗号隔开</span>
 			</div>
 		</div>
 		<div class="control-group">
@@ -66,7 +67,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">职安评价：</label>
+			<label class="control-label">职安评价书：</label>
 			<div class="controls">
 				<form:textarea path="safety" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
 			</div>

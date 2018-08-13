@@ -40,6 +40,15 @@
 			</div>
 		</div>
 		<div class="control-group">
+			<label class="control-label">危险源类型：</label>
+			<div class="controls">
+				<form:select path="wxyType" class="input-xlarge ">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('wxy_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</div>
+		</div>
+		<div class="control-group">
 			<label class="control-label">位置：</label>
 			<div class="controls">
 				<form:input path="location" htmlEscape="false" maxlength="300" class="input-xlarge "/>
@@ -52,9 +61,9 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">管理措施：</label>
+			<label class="control-label">管理方案：</label>
 			<div class="controls">
-				<form:input path="plan" htmlEscape="false" maxlength="2000" class="input-xlarge "/>
+				<form:textarea path="plan" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

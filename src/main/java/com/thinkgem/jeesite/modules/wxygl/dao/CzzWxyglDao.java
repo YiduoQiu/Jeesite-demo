@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.wxygl.entity.CzzWxygl;
 /**
  * 危险源管理DAO接口
  * @author qyd
- * @version 2018-07-04
+ * @version 2018-08-13
  */
 @MyBatisDao
 public interface CzzWxyglDao extends CrudDao<CzzWxygl> {

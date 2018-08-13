@@ -90,13 +90,13 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">确认人：</label>
+			<label class="control-label">验收人：</label>
 			<div class="controls">
 				<form:input path="confirm" htmlEscape="false" maxlength="100" class="input-xlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">确认时间：</label>
+			<label class="control-label">验收时间：</label>
 			<div class="controls">
 				<input name="confirmdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${czzFcys.confirmdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"

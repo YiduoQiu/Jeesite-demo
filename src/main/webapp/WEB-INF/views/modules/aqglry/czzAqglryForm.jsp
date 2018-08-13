@@ -62,7 +62,7 @@
 			<div class="controls">
 				<form:hidden id="file" path="file" htmlEscape="false" maxlength="100" class="input-xlarge"/>
 				<sys:ckfinder input="file" type="files" uploadPath="/aqglry/czzAqglry" selectMultiple="true"/>
-				<span class="help-inline">本企业安全机构成立文件</span>
+				<span class="help-inline">本企业安全管理人员任命文件</span>
 			</div>
 		</div>
 		<div class="form-actions">

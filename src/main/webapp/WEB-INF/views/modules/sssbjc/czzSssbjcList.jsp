@@ -36,6 +36,12 @@
 			<li><label>地点：</label>
 				<form:input path="location" htmlEscape="false" maxlength="255" class="input-medium"/>
 			</li>
+			<li><label>设施设备安全状态（0：优，1：良，2：差）：</label>
+				<form:select path="aqType" class="input-medium">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('aq_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
 		</ul>
@@ -47,6 +53,7 @@
 				<th>设备名称</th>
 				<th>时间</th>
 				<th>地点</th>
+				<th>设施设备安全状态（0：优，1：良，2：差）</th>
 				<shiro:hasPermission name="sssbjc:czzSssbjc:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -61,6 +68,9 @@
 				</td>
 				<td>
 					${czzSssbjc.location}
+				</td>
+				<td>
+					${fns:getDictLabel(czzSssbjc.aqType, 'aq_type', '')}
 				</td>
 				<shiro:hasPermission name="sssbjc:czzSssbjc:edit"><td>
     				<a href="${ctx}/sssbjc/czzSssbjc/form?id=${czzSssbjc.id}">修改</a>

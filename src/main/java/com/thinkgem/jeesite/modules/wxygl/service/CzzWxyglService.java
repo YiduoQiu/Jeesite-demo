@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.wxygl.dao.CzzWxyglDao;
 /**
  * 危险源管理Service
  * @author qyd
- * @version 2018-07-04
+ * @version 2018-08-13
  */
 @Service
 @Transactional(readOnly = true)

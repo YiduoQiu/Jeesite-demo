@@ -12,7 +12,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 设施设备安全检查Entity
  * @author qyd
- * @version 2018-07-17
+ * @version 2018-08-13
  */
 public class CzzSssbjc extends DataEntity<CzzSssbjc> {
 	
@@ -23,6 +23,7 @@ public class CzzSssbjc extends DataEntity<CzzSssbjc> {
 	private String checkcontent;		// 检修内容
 	private String returninfo;		// 验收情况
 	private String file;		// 附件
+	private String aqType;		// 设施设备安全状态（0：优，1：良，2：差）
 	
 	public CzzSssbjc() {
 		super();
@@ -84,6 +85,15 @@ public class CzzSssbjc extends DataEntity<CzzSssbjc> {
 
 	public void setFile(String file) {
 		this.file = file;
+	}
+	
+	@Length(min=0, max=1, message="设施设备安全状态（0：优，1：良，2：差）长度必须介于 0 和 1 之间")
+	public String getAqType() {
+		return aqType;
+	}
+
+	public void setAqType(String aqType) {
+		this.aqType = aqType;
 	}
 	
 }

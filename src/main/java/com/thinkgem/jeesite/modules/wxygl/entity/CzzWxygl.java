@@ -10,12 +10,13 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 危险源管理Entity
  * @author qyd
- * @version 2018-07-04
+ * @version 2018-08-13
  */
 public class CzzWxygl extends DataEntity<CzzWxygl> {
 	
 	private static final long serialVersionUID = 1L;
 	private String wxyName;		// 危险源名称
+	private String wxyType;		// 危险源类型（0：一般危险源，1：重大危险源）
 	private String location;		// 位置
 	private String person;		// 管理人员
 	private String plan;		// 管理方案
@@ -36,6 +37,15 @@ public class CzzWxygl extends DataEntity<CzzWxygl> {
 
 	public void setWxyName(String wxyName) {
 		this.wxyName = wxyName;
+	}
+	
+	@Length(min=0, max=1, message="危险源类型（0：一般危险源，1：重大危险源）长度必须介于 0 和 1 之间")
+	public String getWxyType() {
+		return wxyType;
+	}
+
+	public void setWxyType(String wxyType) {
+		this.wxyType = wxyType;
 	}
 	
 	@Length(min=0, max=300, message="位置长度必须介于 0 和 300 之间")

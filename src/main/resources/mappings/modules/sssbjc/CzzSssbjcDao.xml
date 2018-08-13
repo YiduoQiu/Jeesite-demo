@@ -10,6 +10,7 @@
 		a.checkcontent AS "checkcontent",
 		a.returninfo AS "returninfo",
 		a.file AS "file",
+		a.aq_type AS "aqType",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
@@ -47,6 +48,9 @@
 			</if>
 			<if test="location != null and location != ''">
 				AND a.location = #{location}
+			</if>
+			<if test="aqType != null and aqType != ''">
+				AND a.aq_type = #{aqType}
 			</if>
 		</where>
 		<choose>
@@ -86,6 +90,7 @@
 			checkcontent,
 			returninfo,
 			file,
+			aq_type,
 			create_by,
 			create_date,
 			update_by,
@@ -100,6 +105,7 @@
 			#{checkcontent},
 			#{returninfo},
 			#{file},
+			#{aqType},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -117,6 +123,7 @@
 			checkcontent = #{checkcontent},
 			returninfo = #{returninfo},
 			file = #{file},
+			aq_type = #{aqType},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
 		WHERE id = #{id}

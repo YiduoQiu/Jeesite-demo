@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.wxygl.service.CzzWxyglService;
 /**
  * 危险源管理Controller
  * @author qyd
- * @version 2018-07-04
+ * @version 2018-08-13
  */
 @Controller
 @RequestMapping(value = "${adminPath}/wxygl/czzWxygl")
