@@ -12,7 +12,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 安委会Entity
  * @author qyd
- * @version 2018-08-08
+ * @version 2018-08-18
  */
 public class CzzAwh extends DataEntity<CzzAwh> {
 	

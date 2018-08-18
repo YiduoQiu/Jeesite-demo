@@ -25,7 +25,7 @@ import com.thinkgem.jeesite.modules.awh.service.CzzAwhService;
 /**
  * 安委会Controller
  * @author qyd
- * @version 2018-08-08
+ * @version 2018-08-18
  */
 @Controller
 @RequestMapping(value = "${adminPath}/awh/czzAwh")

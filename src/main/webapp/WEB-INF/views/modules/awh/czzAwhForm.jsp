@@ -62,12 +62,9 @@
 		<li class="active"><a href="${ctx}/awh/czzAwh/form?id=${czzAwh.id}">安委会<shiro:hasPermission name="awh:czzAwh:edit">${not empty czzAwh.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="awh:czzAwh:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzAwh" action="${ctx}/awh/czzAwh/save" method="post" class="form-horizontal">
-		
-		<div class="control-group">
-			<label class="control-label">主任：</label>
-		</div>
 		<form:hidden path="id"/>
-		<sys:message content="${message}"/>	
+		<sys:message content="${message}"/>
+		<label class="control-label">主任：</label>		
 		<div class="control-group">
 			<label class="control-label">姓名：</label>
 			<div class="controls">
@@ -207,7 +204,6 @@
 			<div class="controls">
 				<form:hidden id="file" path="file" htmlEscape="false" maxlength="100" class="input-xlarge"/>
 				<sys:ckfinder input="file" type="files" uploadPath="/awh/czzAwh" selectMultiple="true"/>
-				<span class="help-inline">本企业安全机构成立文件</span>
 			</div>
 		</div>
 		<div class="form-actions">
