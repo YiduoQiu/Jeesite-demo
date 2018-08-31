@@ -5,6 +5,7 @@ package com.thinkgem.jeesite.modules.awh.entity;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
@@ -34,10 +35,12 @@ public class CzzAwhDt1 extends DataEntity<CzzAwhDt1> {
 	}
 
 	@Length(min=0, max=64, message="业务主表ID长度必须介于 0 和 64 之间")
+	@JsonBackReference
 	public CzzAwh getTestDataMain() {
 		return testDataMain;
 	}
 
+	@JsonBackReference
 	public void setTestDataMain(CzzAwh testDataMain) {
 		this.testDataMain = testDataMain;
 	}

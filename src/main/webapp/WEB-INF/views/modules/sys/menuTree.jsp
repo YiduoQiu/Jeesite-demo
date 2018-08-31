@@ -27,7 +27,7 @@
 	</script>
 </head>
 <body> --%>
-	<div class="accordion" id="menu-${param.parentId}"><c:set var="menuList" value="${fns:getMenuList()}"/><c:set var="firstMenu" value="true"/><c:forEach items="${menuList}" var="menu" varStatus="idxStatus">
+	<div class="accordion" id="menu-${param.parentId}"><c:set var="menuList" value="${fns:getMenuList()}"/><c:if test="${menu.isSingle eq '1'}"><c:set var="firstMenu" value="true"/></c:if><c:forEach items="${menuList}" var="menu" varStatus="idxStatus">
 	<c:if test="${menu.parent.id eq (not empty param.parentId ? param.parentId:1)&&menu.isShow eq '1'}">
 		<c:if test="${menu.isSingle eq '0'}">
 			<div class="accordion-group">
@@ -48,7 +48,12 @@
 		<c:if test="${menu.isSingle eq '1'}">
 			<div class="accordion-group">
 			    <div class="accordion-heading">
-			    	<a class="accordion-toggle" href="${fn:indexOf(menu.href, '://') eq -1 ? ctx : ''}${not empty menu.href ? menu.href : '/404'}" target="${not empty menu.target ? menu.target : 'mainFrame'}" title="${menu.remarks}"><i class="icon-chevron-${not empty firstMenu && firstMenu ? 'down' : 'right'}"></i>&nbsp;${menu.name}</a>
+			    	<c:if test="${menu.name ne '法律法规查询'}">
+			    		<a class="accordion-toggle" href="${fn:indexOf(menu.href, '://') eq -1 ? ctx : ''}${not empty menu.href ? menu.href : '/404'}" target="${not empty menu.target ? menu.target : 'mainFrame'}" title="${menu.remarks}"><i class="icon-chevron-${not empty firstMenu && firstMenu ? 'down' : 'right'}"></i>&nbsp;${menu.name}</a>
+			    	</c:if>
+			    	<c:if test="${menu.name eq '法律法规查询'}">
+			    		<a class="accordion-toggle" href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="mainFrame" title="${menu.remarks}"><i class="icon-chevron-${not empty firstMenu && firstMenu ? 'down' : 'right'}"></i>&nbsp;${menu.name}</a>
+			    	</c:if>
 			    </div>
 			</div>
 		</c:if>

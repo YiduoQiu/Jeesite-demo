@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.aqtrzj.dao.CzzAqtrzjDt1Dao">
+    
+	<sql id="czzAqtrzjDt1Columns">
+		a.id AS "id",
+		a.test_data_main_id AS "testDataMain.id",
+		a.amount_title AS "amountTitle",
+		a.amount_januray AS "amountJanuray",
+		a.amount_february AS "amountFebruary",
+		a.amount_march AS "amountMarch",
+		a.amount_april AS "amountApril",
+		a.amount_may AS "amountMay",
+		a.amount_june AS "amountJune",
+		a.amount_july AS "amountJuly",
+		a.amount_august AS "amountAugust",
+		a.amount_september AS "amountSeptember",
+		a.amount_october AS "amountOctober",
+		a.amount_november AS "amountNovember",
+		a.amount_december AS "amountDecember",
+		a.amount_year AS "amountYear",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="czzAqtrzjDt1Joins">
+		LEFT JOIN czz_aqtrzj b ON b.id = a.test_data_main_id
+	</sql>
+    
+	<select id="get" resultType="CzzAqtrzjDt1">
+		SELECT 
+			<include refid="czzAqtrzjDt1Columns"/>
+		FROM czz_aqtrzj_dt1 a
+		<include refid="czzAqtrzjDt1Joins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzAqtrzjDt1">
+		SELECT 
+			<include refid="czzAqtrzjDt1Columns"/>
+		FROM czz_aqtrzj_dt1 a
+		<include refid="czzAqtrzjDt1Joins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="testDataMain != null and testDataMain.id != null and testDataMain.id != ''">
+				AND a.test_data_main_id = #{testDataMain.id}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.create_date ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzAqtrzjDt1">
+		SELECT 
+			<include refid="czzAqtrzjDt1Columns"/>
+		FROM czz_aqtrzj_dt1 a
+		<include refid="czzAqtrzjDt1Joins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.create_date ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_aqtrzj_dt1(
+			id,
+			test_data_main_id,
+			amount_title,
+			amount_januray,
+			amount_february,
+			amount_march,
+			amount_april,
+			amount_may,
+			amount_june,
+			amount_july,
+			amount_august,
+			amount_september,
+			amount_october,
+			amount_november,
+			amount_december,
+			amount_year,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{testDataMain.id},
+			#{amountTitle},
+			#{amountJanuray},
+			#{amountFebruary},
+			#{amountMarch},
+			#{amountApril},
+			#{amountMay},
+			#{amountJune},
+			#{amountJuly},
+			#{amountAugust},
+			#{amountSeptember},
+			#{amountOctober},
+			#{amountNovember},
+			#{amountDecember},
+			#{amountYear},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_aqtrzj_dt1 SET 	
+			test_data_main_id = #{testDataMain.id},
+			amount_title = #{amountTitle},
+			amount_januray = #{amountJanuray},
+			amount_february = #{amountFebruary},
+			amount_march = #{amountMarch},
+			amount_april = #{amountApril},
+			amount_may = #{amountMay},
+			amount_june = #{amountJune},
+			amount_july = #{amountJuly},
+			amount_august = #{amountAugust},
+			amount_september = #{amountSeptember},
+			amount_october = #{amountOctober},
+			amount_november = #{amountNovember},
+			amount_december = #{amountDecember},
+			amount_year = #{amountYear},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_aqtrzj_dt1 SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		<choose>
+			<when test="id !=null and id != ''">
+				WHERE id = #{id}
+			</when>
+			<otherwise>
+				WHERE test_data_main_id = #{testDataMain.id}
+			</otherwise>
+		</choose>
+	</update>
+	
+</mapper>

@@ -46,15 +46,20 @@
 				if ($(menuId).length > 0){
 					$("#left .accordion").hide();
 					$(menuId).show();
-					// 初始化点击第一个二级菜单
-					if (!$(menuId + " .accordion-body:first").hasClass('in')){
-						$(menuId + " .accordion-heading:first a").click();
+					if ($(menuId + " .accordion-body:first").length > 0){
+						// 初始化点击第一个二级菜单
+						if (!$(menuId + " .accordion-body:first").hasClass('in')){
+							$(menuId + " .accordion-heading:first a").click();
+						}
+						if (!$(menuId + " .accordion-body li:first ul:first").is(":visible")){
+							$(menuId + " .accordion-body a:first i").click();
+						}
+						// 初始化点击第一个三级菜单
+						$(menuId + " .accordion-body li:first li:first a:first i").click();
+					} else{
+						// 初始化点击第一个一级菜单
+						$(menuId + " .accordion-heading:first a:first i").click();
 					}
-					if (!$(menuId + " .accordion-body li:first ul:first").is(":visible")){
-						$(menuId + " .accordion-body a:first i").click();
-					}
-					// 初始化点击第一个三级菜单
-					$(menuId + " .accordion-body li:first li:first a:first i").click();
 				}else{
 					// 获取二级菜单数据
 					$.get($(this).attr("data-href"), function(data){
@@ -84,18 +89,24 @@
 							$(this).children("i").addClass("icon-white");
 						});
 						// 展现三级
-						$(menuId + " .accordion-inner a").click(function(){
-							var href = $(this).attr("data-href");
-							if($(href).length > 0){
-								$(href).toggle().parent().toggle();
-								return false;
-							}
-							// <c:if test="${tabmode eq '1'}"> 打开显示页签
-							return addTab($(this)); // </c:if>
-						});
+						if ($(menuId + ".accordion-group:first .accordion-body").length > 0){
+							$(menuId + " .accordion-inner a").click(function(){
+								var href = $(this).attr("data-href");
+								if($(href).length > 0){
+									$(href).toggle().parent().toggle();
+									return false;
+								}
+								// <c:if test="${tabmode eq '1'}"> 打开显示页签
+								return addTab($(this)); // </c:if>
+							});
+						}
 						// 默认选中第一个菜单
-						$(menuId + " .accordion-body a:first i").click();
-						$(menuId + " .accordion-body li:first li:first a:first i").click();
+						if ($(menuId + ".accordion-group:first .accordion-body").length > 0){
+							$(menuId + " .accordion-body a:first i").click();
+							$(menuId + " .accordion-body li:first li:first a:first i").click();
+						} else {
+							$(menuId + " .accordion-heading:first a:first i").click();
+						}
 					});
 				}
 				// 大小宽度调整
@@ -227,7 +238,7 @@
 		</div>
 	</div>
 	<script type="text/javascript"> 
-		var leftWidth = 160; // 左侧窗口大小
+		var leftWidth = 180; // 左侧窗口大小
 		var tabTitleHeight = 33; // 页签的高度
 		var htmlObj = $("html"), mainObj = $("#main");
 		var headerObj = $("#header"), footerObj = $("#footer");
