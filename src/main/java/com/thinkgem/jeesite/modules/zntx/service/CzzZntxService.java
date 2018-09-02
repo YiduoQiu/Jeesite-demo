@@ -3,6 +3,7 @@
  */
 package com.thinkgem.jeesite.modules.zntx.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -50,5 +51,11 @@ public class CzzZntxService extends CrudService<CzzZntxDao, CzzZntx> {
 	public List<CzzZntx> getYesObjects(CzzZntx czzZntx) {
 		return super.findGoalData(czzZntx);
 	}
-	
+
+	@Transactional(readOnly = false)
+	public void updateLastDateById(CzzZntx czzZntx){
+		CzzZntx zntx = super.get(czzZntx.getId());
+		zntx.setLastDate(new Date());
+		super.save(zntx);
+	}
 }

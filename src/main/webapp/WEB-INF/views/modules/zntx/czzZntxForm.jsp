@@ -22,6 +22,56 @@
 					}
 				}
 			});
+
+            //给提醒选择类型绑定事件
+            $("#lx .select2-chosen").bind("DOMNodeInserted",function(e){
+                var yl_type = $("#lx .select2-chosen").html();
+                if(yl_type == "安全生产许可证" || yl_type == '特种作业操作证'){
+                    $("#intervaltime").val(3);
+                    $("#intervaltime").attr('readonly','readonly');
+                    $("#sjlx .select2-chosen").html("年");
+                    $("#sjlx #intervalType").val(0);
+                    $('#sjlx .controls').css('display', 'none');
+                    $('#sjlx #jgsjlx').css('display', 'block');
+                    $('#sjlx #jgsjlx').val('年');
+                    $('#sjlx #jgsjlx').attr('readonly', 'readonly');
+                } else if (yl_type == "安全管理资格证") {
+                    $("#intervaltime").val(1);
+                    $("#intervaltime").attr('readonly','readonly');
+                    $("#sjlx .select2-chosen").html("年");
+                    $("#sjlx #intervalType").val(0);
+                    $('#sjlx .controls').css('display', 'none');
+                    $('#sjlx #jgsjlx').css('display', 'block');
+                    $('#sjlx #jgsjlx').val('年');
+                    $('#sjlx #jgsjlx').attr('readonly', 'readonly');
+				} else if (yl_type == '隐患排查') {
+                    $("#intervaltime").val(1);
+                    $("#intervaltime").attr('readonly','readonly');
+                    $("#sjlx .select2-chosen").html("月");
+                    $("#sjlx #intervalType").val(1);
+                    $('#sjlx .controls').css('display', 'none');
+                    $('#sjlx #jgsjlx').css('display', 'block');
+                    $('#sjlx #jgsjlx').val('月');
+                    $('#sjlx #jgsjlx').attr('readonly', 'readonly');
+				} else if (yl_type == '安全检查') {
+                    $("#intervaltime").val(15);
+                    $("#intervaltime").attr('readonly','readonly');
+                    $("#sjlx .select2-chosen").html("日");
+                    $("#sjlx #intervalType").val(2);
+                    $('#sjlx .controls').css('display', 'none');
+                    $('#sjlx #jgsjlx').css('display', 'block');
+                    $('#sjlx #jgsjlx').val('日');
+                    $('#sjlx #jgsjlx').attr('readonly', 'readonly');
+				} else {
+                    $("#intervaltime").removeAttr('readonly');
+                    $("#intervaltime").val('');
+                    $("#sjlx .select2-chosen").html('');
+                    $("#sjlx #intervalType").val('');
+                    $('#sjlx .controls').css('display', 'block');
+                    $('#sjlx #jgsjlx').css('display', 'none');
+				}
+            });
+
 		});
 	</script>
 </head>
@@ -33,9 +83,9 @@
 	<form:form id="inputForm" modelAttribute="czzZntx" action="${ctx}/zntx/czzZntx/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
-		<div class="control-group">
+		<div class="control-group" id="lx">
 			<label class="control-label">类型：</label>
-			<div class="controls">
+			<div class="controls" id="zntxType">
 				<form:select path="type" class="input-xlarge ">
 					<form:option value="" label=""/>
 					<form:options items="${fns:getDictList('remind_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
@@ -90,8 +140,9 @@
 				<form:input path="intervaltime" htmlEscape="false" maxlength="10" class="input-xlarge "/>
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="control-group" id="sjlx">
 			<label class="control-label">间隔时间类型：</label>
+			<input style="display: none; margin-left: 180px;" type="text" id="jgsjlx" />
 			<div class="controls">
 				<form:select path="intervalType" class="input-xlarge ">
 					<form:option value="" label=""/>

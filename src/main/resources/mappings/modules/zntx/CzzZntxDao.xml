@@ -90,8 +90,9 @@
 			<include refid="czzZntxColumns"/>
 		FROM czz_zntx a
 		<where>
-			a.del_flag = #{DEL_FLAG_NORMAL}
+			a.del_flag = 0
 			AND a.remind = '0'
+			AND now() BETWEEN a.start_date and a.end_date
 		</where>
 		ORDER BY a.update_date DESC
 	</select>
@@ -151,7 +152,8 @@
 			interval_type = #{intervalType},
 			remind = #{remind},
 			update_by = #{updateBy.id},
-			update_date = #{updateDate}
+			update_date = #{updateDate},
+			last_date = #{updateDate}
 		WHERE id = #{id}
 	</update>
 	
