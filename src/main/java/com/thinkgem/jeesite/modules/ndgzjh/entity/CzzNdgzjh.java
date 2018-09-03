@@ -4,6 +4,7 @@
 package com.thinkgem.jeesite.modules.ndgzjh.entity;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
@@ -46,7 +47,7 @@ public class CzzNdgzjh extends DataEntity<CzzNdgzjh> {
 		this.name = name;
 	}
 	
-	@Length(min=0, max=2000, message="工作计划长度必须介于 0 和 2000 之间")
+	@NotBlank
 	public String getPlan() {
 		return plan;
 	}

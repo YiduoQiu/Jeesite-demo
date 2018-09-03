@@ -36,7 +36,7 @@
 			<li><label>地点：</label>
 				<form:input path="location" htmlEscape="false" maxlength="255" class="input-medium"/>
 			</li>
-			<li><label>设施设备安全状态（0：优，1：良，2：差）：</label>
+			<li><label>设施设备安全状态：</label>
 				<form:select path="aqType" class="input-medium">
 					<form:option value="" label=""/>
 					<form:options items="${fns:getDictList('aq_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
@@ -53,7 +53,7 @@
 				<th>设备名称</th>
 				<th>时间</th>
 				<th>地点</th>
-				<th>设施设备安全状态（0：优，1：良，2：差）</th>
+				<th>设施设备安全状态</th>
 				<shiro:hasPermission name="sssbjc:czzSssbjc:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>

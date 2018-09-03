@@ -75,8 +75,8 @@
 			<label class="control-label">制定时间：</label>
 			<div class="controls">
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${czzAqtrzj.date}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzAqtrzj.date}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 			<div class="control-group">

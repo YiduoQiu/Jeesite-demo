@@ -65,7 +65,7 @@
 			<div class="controls">
 				<input name="sbTime" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${czzAqsgbg.sbTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -75,7 +75,9 @@
 				<sys:ckfinder input="file" type="files" uploadPath="/aqsgbg/czzAqsgbg" selectMultiple="true"/>
 			</div>
 		</div>
-		<span class="help_line">请及时上报，一小时内报当地主管部门和应急管理部门</span>
+		<div>
+			<span class="help_line" style="color:red; font-size:21px; display: block; padding-top: 12px;padding-left: 90px;">请及时上报，一小时内报当地主管部门和应急管理部门</span>
+		</div>
 		<div class="form-actions">
 			<shiro:hasPermission name="aqsgbg:czzAqsgbg:edit"><input id="btnSubmit" class="btn btn-primary" type="submit" value="保 存"/>&nbsp;</shiro:hasPermission>
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>

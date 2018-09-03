@@ -56,8 +56,8 @@
 			<label class="control-label">时间：</label>
 			<div class="controls">
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${czzSssbjc.date}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzSssbjc.date}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -69,13 +69,19 @@
 		<div class="control-group">
 			<label class="control-label">检修内容：</label>
 			<div class="controls">
-				<form:textarea path="checkcontent" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+				<form:textarea path="checkcontent" htmlEscape="false" rows="4" maxlength="6000" class="input-xxlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">处置情况：</label>
+			<div class="controls">
+				<form:textarea path="disposal" htmlEscape="false" rows="4" maxlength="6000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">验收情况：</label>
 			<div class="controls">
-				<form:textarea path="returninfo" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+				<form:textarea path="returninfo" htmlEscape="false" rows="4" maxlength="6000" class="input-xxlarge "/>
 			</div>
 		</div>
 		<div class="control-group">

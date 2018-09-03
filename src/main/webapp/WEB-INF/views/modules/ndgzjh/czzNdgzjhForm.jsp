@@ -48,7 +48,8 @@
 		<div class="control-group">
 			<label class="control-label">工作计划：</label>
 			<div class="controls">
-				<form:textarea path="plan" htmlEscape="false" rows="4" maxlength="2000" class="input-xxlarge "/>
+				<form:textarea path="plan" htmlEscape="false" rows="4" class="input-xxlarge "/>
+				<sys:ckeditor replace="plan"/>
 			</div>
 		</div>
 		<div class="control-group">

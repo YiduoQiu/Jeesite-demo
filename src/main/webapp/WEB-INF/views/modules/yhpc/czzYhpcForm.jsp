@@ -24,7 +24,7 @@
 			});
 			//初始化时
 			var yh_ini = $(".select2-chosen").html();
-			if(yh_ini == "一般隐患"){
+			if(yh_ini == "一般隐患" || yh_ini == "较大隐患"){
 				$("#czwt").show();
 				$("#zgcs").show();
 				$("#zgqx").show();
@@ -51,7 +51,7 @@
 			//给选择类型绑定事件
 			$(".select2-chosen").bind("DOMNodeInserted",function(e){
 				var yl_type = $(".select2-chosen").html();
-				if(yl_type == "一般隐患"){
+				if(yl_type == "一般隐患" || yl_type == "较大隐患"){
 					$("#czwt").show();
 					$("#zgcs").show();
 					$("#zgqx").show();
@@ -106,8 +106,8 @@
 			<label class="control-label">排查时间：</label>
 			<div class="controls">
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${czzYhpc.date}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzYhpc.date}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">

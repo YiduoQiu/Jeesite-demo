@@ -4,6 +4,7 @@
 package com.thinkgem.jeesite.modules.aqgl_zrz.entity;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
@@ -35,8 +36,8 @@ public class CzzAqglZrz extends DataEntity<CzzAqglZrz> {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
-	@Length(min=0, max=3000, message="考核内容长度必须介于 0 和 3000 之间")
+
+	@NotBlank
 	public String getContent() {
 		return content;
 	}

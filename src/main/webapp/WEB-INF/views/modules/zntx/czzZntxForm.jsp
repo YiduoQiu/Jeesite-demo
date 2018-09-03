@@ -22,6 +22,53 @@
 					}
 				}
 			});
+			
+			//初始化时
+			var yh_ini = $("#lx .select2-chosen").html();
+            if(yh_ini == "安全生产许可证" || yh_ini == '特种作业操作证'){
+                $("#intervaltime").val(3);
+                $("#intervaltime").attr('readonly','readonly');
+                $("#sjlx .select2-chosen").html("年");
+                $("#sjlx #intervalType").val(0);
+                $('#sjlx .controls').css('display', 'none');
+                $('#sjlx #jgsjlx').css('display', 'block');
+                $('#sjlx #jgsjlx').val('年');
+                $('#sjlx #jgsjlx').attr('readonly', 'readonly');
+            } else if (yh_ini == "安全管理资格证" || yh_ini == '法人资格证' || yh_ini == '管理员资格证') {
+                $("#intervaltime").val(1);
+                $("#intervaltime").attr('readonly','readonly');
+                $("#sjlx .select2-chosen").html("年");
+                $("#sjlx #intervalType").val(0);
+                $('#sjlx .controls').css('display', 'none');
+                $('#sjlx #jgsjlx').css('display', 'block');
+                $('#sjlx #jgsjlx').val('年');
+                $('#sjlx #jgsjlx').attr('readonly', 'readonly');
+			} else if (yh_ini == '隐患排查') {
+                $("#intervaltime").val(1);
+                $("#intervaltime").attr('readonly','readonly');
+                $("#sjlx .select2-chosen").html("月");
+                $("#sjlx #intervalType").val(1);
+                $('#sjlx .controls').css('display', 'none');
+                $('#sjlx #jgsjlx').css('display', 'block');
+                $('#sjlx #jgsjlx').val('月');
+                $('#sjlx #jgsjlx').attr('readonly', 'readonly');
+			} else if (yh_ini == '安全检查') {
+                $("#intervaltime").val(15);
+                $("#intervaltime").attr('readonly','readonly');
+                $("#sjlx .select2-chosen").html("日");
+                $("#sjlx #intervalType").val(2);
+                $('#sjlx .controls').css('display', 'none');
+                $('#sjlx #jgsjlx').css('display', 'block');
+                $('#sjlx #jgsjlx').val('日');
+                $('#sjlx #jgsjlx').attr('readonly', 'readonly');
+			} else {
+                $("#intervaltime").removeAttr('readonly');
+                $("#intervaltime").val('');
+                $("#sjlx .select2-chosen").html('');
+                $("#sjlx #intervalType").val('');
+                $('#sjlx .controls').css('display', 'block');
+                $('#sjlx #jgsjlx').css('display', 'none');
+			}
 
             //给提醒选择类型绑定事件
             $("#lx .select2-chosen").bind("DOMNodeInserted",function(e){
@@ -35,7 +82,7 @@
                     $('#sjlx #jgsjlx').css('display', 'block');
                     $('#sjlx #jgsjlx').val('年');
                     $('#sjlx #jgsjlx').attr('readonly', 'readonly');
-                } else if (yl_type == "安全管理资格证") {
+                } else if (yl_type == "安全管理资格证" || yl_type == '法人资格证' || yl_type == '管理员资格证') {
                     $("#intervaltime").val(1);
                     $("#intervaltime").attr('readonly','readonly');
                     $("#sjlx .select2-chosen").html("年");
@@ -122,16 +169,16 @@
 			<label class="control-label">开始日期：</label>
 			<div class="controls">
 				<input name="startDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${czzZntx.startDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzZntx.startDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">结束日期：</label>
 			<div class="controls">
 				<input name="endDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${czzZntx.endDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzZntx.endDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">

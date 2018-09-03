@@ -41,7 +41,6 @@
 			<tr>
 				<th>标题</th>
 				<th>创建人</th>
-				<th>工作计划</th>
 				<shiro:hasPermission name="ndgzjh:czzNdgzjh:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -53,9 +52,6 @@
 				</a></td>
 				<td>
 					${czzNdgzjh.name}
-				</td>
-				<td>
-					${czzNdgzjh.plan}
 				</td>
 				<shiro:hasPermission name="ndgzjh:czzNdgzjh:edit"><td>
     				<a href="${ctx}/ndgzjh/czzNdgzjh/form?id=${czzNdgzjh.id}">修改</a>

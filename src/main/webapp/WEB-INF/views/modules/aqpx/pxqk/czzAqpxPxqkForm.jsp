@@ -74,8 +74,8 @@
 			<label class="control-label">时间：</label>
 			<div class="controls">
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-					value="<fmt:formatDate value="${czzAqpxPxqk.date}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzAqpxPxqk.date}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</div>
 		</div>
 		<div class="control-group">
@@ -116,7 +116,7 @@
 							</td>
 							<td>
 								<input id="czzAqpxPxqkdt1List{{idx}}_date" name="czzAqpxPxqkdt1List[{{idx}}].date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
-									value="{{row.date}}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+									value="{{row.date}}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',isShowClear:false});"/>
 							</td>
 							<td>
 								<input id="czzAqpxPxqkdt1List{{idx}}_monday" name="czzAqpxPxqkdt1List[{{idx}}].monday" type="text" value="{{row.monday}}" maxlength="100" class="input-small "/>
