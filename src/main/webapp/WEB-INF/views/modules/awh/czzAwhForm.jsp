@@ -48,6 +48,7 @@
 				delFlag.val("1");
 				$(obj).html("&divide;").attr("title", "撤销删除");
 				$(obj).parent().parent().addClass("error");
+				$(prefix).hide();
 			}else if(delFlag.val() == "1"){
 				delFlag.val("0");
 				$(obj).html("&times;").attr("title", "删除");
@@ -58,37 +59,45 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/awh/czzAwh/">安委会列表</a></li>
-		<li class="active"><a href="${ctx}/awh/czzAwh/form?id=${czzAwh.id}">安委会<shiro:hasPermission name="awh:czzAwh:edit">${not empty czzAwh.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="awh:czzAwh:edit">查看</shiro:lacksPermission></a></li>
+		<%--<li><a href="${ctx}/awh/czzAwh/">安委会列表</a></li>--%>
+		<li class="active"><a href="${ctx}/awh/czzAwh/form?id=${czzAwh.id}">安委会</a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzAwh" action="${ctx}/awh/czzAwh/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
-		<label class="control-label">主任：</label>		
 		<div class="control-group">
-			<label class="control-label">姓名：</label>
-			<div class="controls">
-				<form:input path="name" htmlEscape="false" maxlength="100" class="input-xlarge "/>
+				<label class="control-label">主任：</label>
+				<div class="controls">
+					<table id="contentTable" class="table table-striped table-bordered table-condensed">
+						<thead>
+							<tr>
+								<th class="hide"></th>
+								<th>姓名</th>
+								<th>联系电话</th>
+								<th>分管工作</th>
+								<th>职务</th>
+								<shiro:hasPermission name="awh:czzAwh:edit"><th width="10">&nbsp;</th></shiro:hasPermission>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							<td>
+								<form:input path="name" htmlEscape="false" maxlength="100" class="input-small "/>
+							</td>
+							<td>
+								<form:input path="phone" htmlEscape="false" maxlength="20" class="input-small "/>
+							</td>
+							<td>
+								<form:input path="job" htmlEscape="false" maxlength="1000" class="input-small "/>
+							</td>
+							<td>
+								<form:input path="post" htmlEscape="false" maxlength="200" class="input-small "/>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">联系电话：</label>
-			<div class="controls">
-				<form:input path="phone" htmlEscape="false" maxlength="20" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">分管工作：</label>
-			<div class="controls">
-				<form:input path="job" htmlEscape="false" maxlength="1000" class="input-xlarge "/>
-			</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">职务：</label>
-			<div class="controls">
-				<form:input path="post" htmlEscape="false" maxlength="200" class="input-xlarge "/>
-			</div>
-		</div>
 			<div class="control-group">
 				<label class="control-label">副主任：</label>
 				<div class="controls">
@@ -204,6 +213,7 @@
 			<div class="controls">
 				<form:hidden id="file" path="file" htmlEscape="false" maxlength="100" class="input-xlarge"/>
 				<sys:ckfinder input="file" type="files" uploadPath="/awh/czzAwh" selectMultiple="true"/>
+				<span class="help-inline">本企业安全管理人员任命文件</span>
 			</div>
 		</div>
 		<div class="form-actions">

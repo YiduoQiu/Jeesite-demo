@@ -48,17 +48,29 @@ public class CzzAwhController extends BaseController {
 	
 	@RequiresPermissions("awh:czzAwh:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(CzzAwh czzAwh, HttpServletRequest request, HttpServletResponse response, Model model) {
-		Page<CzzAwh> page = czzAwhService.findPage(new Page<CzzAwh>(request, response), czzAwh); 
-		model.addAttribute("page", page);
-		return "modules/awh/czzAwhList";
+//	public String list(CzzAwh czzAwh, HttpServletRequest request, HttpServletResponse response, Model model) {
+//		Page<CzzAwh> page = czzAwhService.findPage(new Page<CzzAwh>(request, response), czzAwh); 
+//		model.addAttribute("page", page);
+//		return "modules/awh/czzAwhForm";
+//	}
+	public String list(CzzAwh czzAwh, Model model) {
+		model.addAttribute("czzAwh", czzAwh);
+		return "modules/awh/czzAwhForm";
 	}
 
 	@RequiresPermissions("awh:czzAwh:view")
 	@RequestMapping(value = "form")
 	public String form(CzzAwh czzAwh, Model model) {
 		model.addAttribute("czzAwh", czzAwh);
-		return "modules/awh/czzAwhForm";
+//		return "modules/awh/czzAwhForm";
+		return "modules/awh/czzAwhList";
+	}
+	
+	@RequiresPermissions("awh:czzAwh:view")
+	@RequestMapping(value = "location")
+	public String location(CzzAwh czzAwh, Model model) {
+		model.addAttribute("czzAwh", czzAwh);
+		return "modules/awh/czzAwhLocation";
 	}
 
 	@RequiresPermissions("awh:czzAwh:edit")
@@ -69,15 +81,16 @@ public class CzzAwhController extends BaseController {
 		}
 		czzAwhService.save(czzAwh);
 		addMessage(redirectAttributes, "保存安委会成功");
-		return "redirect:"+Global.getAdminPath()+"/awh/czzAwh/?repage";
+//		return "modules/awh/czzAwhList";
+		return "modules/awh/czzAwhLocation";
 	}
-	
+
 	@RequiresPermissions("awh:czzAwh:edit")
 	@RequestMapping(value = "delete")
 	public String delete(CzzAwh czzAwh, RedirectAttributes redirectAttributes) {
 		czzAwhService.delete(czzAwh);
 		addMessage(redirectAttributes, "删除安委会成功");
-		return "redirect:"+Global.getAdminPath()+"/awh/czzAwh/?repage";
+		return "modules/awh/czzAwhForm";
 	}
 
 }

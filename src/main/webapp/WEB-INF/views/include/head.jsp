@@ -19,3 +19,5 @@
 <link href="${ctxStatic}/common/jeesite.css" type="text/css" rel="stylesheet" />
 <script src="${ctxStatic}/common/jeesite.js" type="text/javascript"></script>
 <script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
+<%-- New join css for update main style --%>
+<link href="${ctxStatic}/bootstrap/mainCss/updateMainStyle.css" type="text/css" rel="stylesheet" />

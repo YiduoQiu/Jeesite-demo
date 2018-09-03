@@ -11,4 +11,6 @@
 	<link href="${ctxStatic}/common/jeesite.min.css" type="text/css" rel="stylesheet" />
 	<link href="${ctxStaticTheme}/style.css" type="text/css" rel="stylesheet" />
 	<script src="${ctxStaticTheme}/script.js" type="text/javascript"></script>
+	<%-- New join css for update main style --%>
+	<link href="${ctxStatic}/bootstrap/mainCss/updateMainStyle.css" type="text/css" rel="stylesheet" />
 </c:if>

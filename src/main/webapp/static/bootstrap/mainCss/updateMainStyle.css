@@ -1,0 +1,71 @@
+.container {
+    width: 1200px!important;
+}
+.container .brand {
+    font-weight: bold;
+}
+.container .content .row {
+    display: flex;
+    justify-content: flex-start;
+}
+.container .content .row .span4 {
+    width: 33.3%;
+    border: 1px solid #ededed;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.container .content .row .span4 h4 {
+    margin: 0;
+    line-height: 28px;
+    font-weight: normal;
+}
+
+.container .content .row .span4 h4 a {
+    line-height: 28px;
+    font-size: 13px;
+    color: #999;
+}
+.container .content .row .span4 ul {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+}
+.container .content .row .span4 ul li {
+    line-height: normal;
+    margin-top: 5px;
+}
+.container .content .row .span4 ul li a {
+    display: block;
+    color: #686868!important;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.container .content .row .span4 ul li span {
+    color: #999!important;
+    margin-top: 2px;
+}
+
+.container .content .row .span2 h4 {
+    width: 75px!important;
+}
+
+.container .nav-collapse #main_nav li {
+    /*padding: 0 20px;*/
+    margin: 0 10px;
+}
+.container .nav-collapse #main_nav li a {
+    margin: 0;
+    padding: 18px 20px;
+}
+
+.container .nav-collapse .navbar-form {
+    display: none;
+}
+.content .hero-unit p a.btn {
+    padding: 5px 10px;
+    margin-top: 15px;
+}
