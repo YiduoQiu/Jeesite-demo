@@ -113,7 +113,7 @@ public class CzzYhpcYs extends DataEntity<CzzYhpcYs> {
 		this.requirements = requirements;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	public Date getDeadline() {
 		return deadline;
 	}

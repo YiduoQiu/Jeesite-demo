@@ -30,11 +30,11 @@
 			</li>
 			<li><label>检查时间：</label>
 				<input name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzYhpcYs.beginDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> - 
+					value="<fmt:formatDate value="${czzYhpcYs.beginDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
 				<input name="endDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzYhpcYs.endDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzYhpcYs.endDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
 			<li><label>地点：</label>
 				<form:input path="location" htmlEscape="false" maxlength="255" class="input-medium"/>
@@ -47,11 +47,11 @@
 			</li>
 			<li><label>确认时间：</label>
 				<input name="beginConfirmdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzYhpcYs.beginConfirmdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> - 
+					value="<fmt:formatDate value="${czzYhpcYs.beginConfirmdate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
 				<input name="endConfirmdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzYhpcYs.endConfirmdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzYhpcYs.endConfirmdate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
 			<li><label>整改状态：</label>
 				<form:select path="type" class="input-medium">
@@ -84,7 +84,7 @@
 					${czzYhpcYs.name}
 				</a></td>
 				<td>
-					<fmt:formatDate value="${czzYhpcYs.date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzYhpcYs.date}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${czzYhpcYs.location}

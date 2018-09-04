@@ -32,6 +32,8 @@ public class CzzFcys extends DataEntity<CzzFcys> {
 	private String correctacction;		// 整改情况
 	private String confirm;		// 确认人
 	private Date confirmdate;		// 确认时间
+	private Date beginConfirmdate;		// 开始 确认时间
+	private Date endConfirmdate;		// 结束 确认时间
 	private String file;		// 附件
 	private Date beginDate;		// 开始 时间
 	private Date endDate;		// 结束 时间
@@ -170,7 +172,11 @@ public class CzzFcys extends DataEntity<CzzFcys> {
 		this.confirm = confirm;
 	}
 	
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	public Date getBeginConfirmdate() {
+		return beginConfirmdate;
+	}
+
 	public Date getConfirmdate() {
 		return confirmdate;
 	}
@@ -178,7 +184,19 @@ public class CzzFcys extends DataEntity<CzzFcys> {
 	public void setConfirmdate(Date confirmdate) {
 		this.confirmdate = confirmdate;
 	}
-	
+
+	public void setBeginConfirmdate(Date beginConfirmdate) {
+		this.beginConfirmdate = beginConfirmdate;
+	}
+
+	public Date getEndConfirmdate() {
+		return endConfirmdate;
+	}
+
+	public void setEndConfirmdate(Date endConfirmdate) {
+		this.endConfirmdate = endConfirmdate;
+	}
+
 	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;

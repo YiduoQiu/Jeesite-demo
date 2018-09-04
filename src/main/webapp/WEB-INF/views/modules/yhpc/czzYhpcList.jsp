@@ -30,11 +30,11 @@
 			</li>
 			<li><label>检查时间：</label>
 				<input name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzYhpc.beginDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> - 
+					value="<fmt:formatDate value="${czzYhpc.beginDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
 				<input name="endDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzYhpc.endDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzYhpc.endDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
 			<li><label>地点：</label>
 				<form:input path="location" htmlEscape="false" maxlength="255" class="input-medium"/>
@@ -64,7 +64,7 @@
 					${czzYhpc.name}
 				</a></td>
 				<td>
-					<fmt:formatDate value="${czzYhpc.date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzYhpc.date}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${czzYhpc.location}

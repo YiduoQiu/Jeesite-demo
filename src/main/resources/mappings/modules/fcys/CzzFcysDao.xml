@@ -58,6 +58,9 @@
 			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
 				AND a.date BETWEEN #{beginDate} AND #{endDate}
 			</if>
+			<if test="beginConfirmdate != null and endConfirmdate != null and beginConfirmdate != '' and endConfirmdate != ''">
+				AND a.confirmdate BETWEEN #{beginConfirmdate} AND #{endConfirmdate}
+			</if>
 			<if test="location != null and location != ''">
 				AND a.location = #{location}
 			</if>
@@ -72,9 +75,6 @@
 			</if>
 			<if test="confirm != null and confirm != ''">
 				AND a.confirm = #{confirm}
-			</if>
-			<if test="confirmdate != null and confirmdate != ''">
-				AND a.confirmdate = #{confirmdate}
 			</if>
 		</where>
 		<choose>

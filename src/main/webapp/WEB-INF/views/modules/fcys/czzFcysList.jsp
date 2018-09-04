@@ -25,6 +25,12 @@
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
+			<li><label>整改状态：</label>
+				<form:select path="type" class="input-medium">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('type_flag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
 			<li><label>检查类型：</label>
 				<form:select path="checkType" class="input-medium">
 					<form:option value="" label=""/>
@@ -36,34 +42,19 @@
 			</li>
 			<li><label>时间：</label>
 				<input name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzFcys.beginDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/> - 
+					value="<fmt:formatDate value="${czzFcys.beginDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
 				<input name="endDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzFcys.endDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzFcys.endDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
-			<li><label>地点：</label>
-				<form:input path="location" htmlEscape="false" maxlength="255" class="input-medium"/>
-			</li>
-			<li><label>范围：</label>
-				<form:input path="extent" htmlEscape="false" maxlength="2000" class="input-medium"/>
-			</li>
-			<li><label>负责人：</label>
-				<form:input path="responsible" htmlEscape="false" maxlength="100" class="input-medium"/>
-			</li>
-			<li><label>整改状态：</label>
-				<form:select path="type" class="input-medium">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('type_flag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</li>
-			<li><label>确认人：</label>
-				<form:input path="confirm" htmlEscape="false" maxlength="100" class="input-medium"/>
-			</li>
-			<li><label>确认时间：</label>
-				<input name="confirmdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzFcys.confirmdate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+			<li><label>验收时间：</label>
+				<input name="beginConfirmdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${czzFcys.beginConfirmdate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
+				<input name="endConfirmdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
+					value="<fmt:formatDate value="${czzFcys.endConfirmdate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
@@ -81,7 +72,7 @@
 				<th>负责人</th>
 				<th>整改状态</th>
 				<th>确认人</th>
-				<th>确认时间</th>
+				<th>验收时间</th>
 				<shiro:hasPermission name="fcys:czzFcys:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -95,7 +86,7 @@
 					${czzFcys.name}
 				</td>
 				<td>
-					<fmt:formatDate value="${czzFcys.date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzFcys.date}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${czzFcys.location}
@@ -113,7 +104,7 @@
 					${czzFcys.confirm}
 				</td>
 				<td>
-					<fmt:formatDate value="${czzFcys.confirmdate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzFcys.confirmdate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<shiro:hasPermission name="fcys:czzFcys:edit"><td>
     				<a href="${ctx}/fcys/czzFcys/form?id=${czzFcys.id}">修改</a>

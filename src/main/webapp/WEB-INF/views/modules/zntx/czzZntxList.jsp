@@ -33,13 +33,13 @@
 			</li>
 			<li><label>开始日期：</label>
 				<input name="startDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzZntx.startDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzZntx.startDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
 			<li><label>结束日期：</label>
 				<input name="endDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzZntx.endDate}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzZntx.endDate}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
@@ -66,10 +66,10 @@
 					${czzZntx.person}
 				</td>
 				<td>
-					<fmt:formatDate value="${czzZntx.startDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzZntx.startDate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
-					<fmt:formatDate value="${czzZntx.endDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzZntx.endDate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<shiro:hasPermission name="zntx:czzZntx:edit"><td>
     				<a href="${ctx}/zntx/czzZntx/form?id=${czzZntx.id}">修改</a>

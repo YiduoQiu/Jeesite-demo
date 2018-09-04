@@ -28,7 +28,7 @@
 			<li><label>危险源名称：</label>
 				<form:input path="wxyName" htmlEscape="false" maxlength="100" class="input-medium"/>
 			</li>
-			<li><label>危险源类型（0：一般危险源，1：重大危险源）：</label>
+			<li><label>危险源类型：</label>
 				<form:select path="wxyType" class="input-medium">
 					<form:option value="" label=""/>
 					<form:options items="${fns:getDictList('wxy_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
@@ -46,7 +46,7 @@
 		<thead>
 			<tr>
 				<th>危险源名称</th>
-				<th>危险源类型（0：一般危险源，1：重大危险源）</th>
+				<th>危险源类型</th>
 				<th>位置</th>
 				<th>管理人员</th>
 				<shiro:hasPermission name="wxygl:czzWxygl:edit"><th>操作</th></shiro:hasPermission>

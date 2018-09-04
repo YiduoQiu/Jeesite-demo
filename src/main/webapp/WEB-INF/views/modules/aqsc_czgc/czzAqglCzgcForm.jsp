@@ -42,7 +42,7 @@
 		<div class="control-group">
 			<label class="control-label">内容：</label>
 			<div class="controls">
-				<form:textarea path="content" htmlEscape="false" rows="4" class="input-xxlarge "/>
+				<form:textarea path="content" htmlEscape="false" rows="4" class="input-xxlarge " style="display:none"/>
 				<sys:ckeditor replace="content" />
 			</div>
 		</div>

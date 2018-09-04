@@ -38,7 +38,6 @@
 			<tr>
 				<th>机构名称</th>
 				<th>职能职责</th>
-				<th>更新时间</th>
 				<shiro:hasPermission name="aqglbm:czzAqglbm:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>
@@ -50,9 +49,6 @@
 				</a></td>
 				<td>
 					${czzAqglbm.function}
-				</td>
-				<td>
-					<fmt:formatDate value="${czzAqglbm.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 				</td>
 				<shiro:hasPermission name="aqglbm:czzAqglbm:edit"><td>
     				<a href="${ctx}/aqglbm/czzAqglbm/form?id=${czzAqglbm.id}">修改</a>

@@ -30,8 +30,8 @@
 			</li>
 			<li><label>时间：</label>
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzZyaq.date}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzZyaq.date}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
 			<li><label>地点：</label>
 				<form:input path="location" htmlEscape="false" maxlength="255" class="input-medium"/>
@@ -59,7 +59,7 @@
 					${czzZyaq.name}
 				</a></td>
 				<td>
-					<fmt:formatDate value="${czzZyaq.date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzZyaq.date}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${czzZyaq.location}
