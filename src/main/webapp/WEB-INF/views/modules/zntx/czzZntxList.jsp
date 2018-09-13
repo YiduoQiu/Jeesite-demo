@@ -18,7 +18,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/zntx/czzZntx/">该条提醒列表</a></li>
+		<li class="active"><a href="${ctx}/zntx/czzZntx/">该条提醒</a></li>
 		<shiro:hasPermission name="zntx:czzZntx:edit"><li><a href="${ctx}/zntx/czzZntx/form">该条提醒添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzZntx" action="${ctx}/zntx/czzZntx/" method="post" class="breadcrumb form-search">

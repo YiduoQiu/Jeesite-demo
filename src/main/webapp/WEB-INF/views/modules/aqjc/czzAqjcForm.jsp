@@ -22,13 +22,16 @@
 					}
 				}
 			});
+			if($("#filePreview li").html() == "无"){
+				$("#filePreview li").hide();
+			}
 		});
 	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/aqjc/czzAqjc/">安全检查列表</a></li>
-		<li class="active"><a href="${ctx}/aqjc/czzAqjc/form?id=${czzAqjc.id}">安全检查<shiro:hasPermission name="aqjc:czzAqjc:edit">${not empty czzAqjc.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="aqjc:czzAqjc:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/aqjc/czzAqjc/">安全检查</a></li>
+		<li class="active"><a href="${ctx}/aqjc/czzAqjc/form?id=${czzAqjc.id}">安全检查<shiro:hasPermission name="aqjc:czzAqjc:edit">${not empty czzAqjc.id?'编辑':'添加'}</shiro:hasPermission><shiro:lacksPermission name="aqjc:czzAqjc:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzAqjc" action="${ctx}/aqjc/czzAqjc/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
@@ -49,7 +52,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">时间：</label>
+			<label class="control-label">排查时间：</label>
 			<div class="controls">
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate "
 					value="<fmt:formatDate value="${czzAqjc.date}" pattern="yyyy-MM-dd"/>"

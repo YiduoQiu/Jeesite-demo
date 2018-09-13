@@ -24,7 +24,7 @@
 			});
 			//初始化时
 			var yh_ini = $(".select2-chosen").html();
-			if(yh_ini == "一般隐患" || yh_ini == "较大隐患"){
+			if(yh_ini == "一般安全事故隐患"){
 				$("#zrr").show();
 				$("#content1").hide();
 				$("#content2").hide();
@@ -33,7 +33,7 @@
 				$("#content5").hide();
 				$("#content6").hide();
 			}
-			if(yh_ini == "重大隐患"){
+			if(yh_ini == "重大安全事故隐患"){
 				$("#zrr").hide();
 				$("#content1").show();
 				$("#content2").show();
@@ -45,7 +45,7 @@
 			//给选择类型绑定事件
 			$(".select2-chosen").bind("DOMNodeInserted",function(e){
 				var yl_type = $(".select2-chosen").html();
-				if(yl_type == "一般隐患" || yl_type == "较大隐患"){
+				if(yl_type == "一般安全事故隐患"){
 					$("#zrr").show();
 					$("#content1").hide();
 					$("#content2").hide();
@@ -54,7 +54,7 @@
 					$("#content5").hide();
 					$("#content6").hide();
 				}
-				if(yl_type == "重大隐患"){
+				if(yl_type == "重大安全事故隐患"){
 					$("#zrr").hide();
 					$("#content1").show();
 					$("#content2").show();
@@ -69,8 +69,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/yhpcys/czzYhpcYs/">隐患排查验收列表</a></li>
-		<li class="active"><a href="${ctx}/yhpcys/czzYhpcYs/form?id=${czzYhpcYs.id}">隐患排查验收<shiro:hasPermission name="yhpcys:czzYhpcYs:edit">${not empty czzYhpcYs.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="yhpcys:czzYhpcYs:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/yhpcys/czzYhpcYs/">隐患排查验收</a></li>
+		<li class="active"><a href="${ctx}/yhpcys/czzYhpcYs/form?id=${czzYhpcYs.id}">隐患排查验收<shiro:hasPermission name="yhpcys:czzYhpcYs:edit">${not empty czzYhpcYs.id?'编辑':'添加'}</shiro:hasPermission><shiro:lacksPermission name="yhpcys:czzYhpcYs:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzYhpcYs" action="${ctx}/yhpcys/czzYhpcYs/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

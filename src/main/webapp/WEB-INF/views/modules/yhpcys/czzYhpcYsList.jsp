@@ -18,8 +18,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/yhpcys/czzYhpcYs/">隐患排查验收列表</a></li>
-		<shiro:hasPermission name="yhpcys:czzYhpcYs:edit"><li><a href="${ctx}/yhpcys/czzYhpcYs/form">隐患排查验收添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/yhpcys/czzYhpcYs/">隐患排查验收</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzYhpcYs" action="${ctx}/yhpcys/czzYhpcYs/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -28,7 +27,7 @@
 			<li><label>隐患名称：</label>
 				<form:input path="name" htmlEscape="false" maxlength="200" class="input-medium"/>
 			</li>
-			<li><label>检查时间：</label>
+			<li><label>排查时间：</label>
 				<input name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${czzYhpcYs.beginDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
@@ -68,7 +67,7 @@
 		<thead>
 			<tr>
 				<th>隐患名称</th>
-				<th>检查时间</th>
+				<th>排查时间</th>
 				<th>地点</th>
 				<th>责任人</th>
 				<th>确认人</th>

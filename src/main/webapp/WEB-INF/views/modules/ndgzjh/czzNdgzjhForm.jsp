@@ -22,13 +22,16 @@
 					}
 				}
 			});
+			if($("#filePreview li").html() == "无"){
+				$("#filePreview li").hide();
+			}
 		});
 	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/ndgzjh/czzNdgzjh/">年度工作计划列表</a></li>
-		<li class="active"><a href="${ctx}/ndgzjh/czzNdgzjh/form?id=${czzNdgzjh.id}">年度工作计划<shiro:hasPermission name="ndgzjh:czzNdgzjh:edit">${not empty czzNdgzjh.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="ndgzjh:czzNdgzjh:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/ndgzjh/czzNdgzjh/">年度工作计划</a></li>
+		<li class="active"><a href="${ctx}/ndgzjh/czzNdgzjh/form?id=${czzNdgzjh.id}">年度工作计划<shiro:hasPermission name="ndgzjh:czzNdgzjh:edit">${not empty czzNdgzjh.id?'编辑':'添加'}</shiro:hasPermission><shiro:lacksPermission name="ndgzjh:czzNdgzjh:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzNdgzjh" action="${ctx}/ndgzjh/czzNdgzjh/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>

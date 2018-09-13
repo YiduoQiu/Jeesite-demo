@@ -18,19 +18,13 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/aqjc/czzAqjc/">安全检查列表</a></li>
+		<li class="active"><a href="${ctx}/aqjc/czzAqjc/">安全检查</a></li>
 		<shiro:hasPermission name="aqjc:czzAqjc:edit"><li><a href="${ctx}/aqjc/czzAqjc/form">安全检查添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzAqjc" action="${ctx}/aqjc/czzAqjc/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>整改状态：</label>
-				<form:select path="type" class="input-medium">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('type_flag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</li>
 			<li><label>检查类型：</label>
 				<form:select path="checkType" class="input-medium">
 					<form:option value="" label=""/>
@@ -40,7 +34,13 @@
 			<li><label>标题：</label>
 				<form:input path="name" htmlEscape="false" maxlength="200" class="input-medium"/>
 			</li>
-			<li><label>时间：</label>
+			<li><label>整改状态：</label>
+				<form:select path="type" class="input-medium">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('type_flag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
+			<li><label>排查时间：</label>
 				<input name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${czzAqjc.beginDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
@@ -61,7 +61,7 @@
 			<tr>
 				<th>检查类型</th>
 				<th>标题</th>
-				<th>时间</th>
+				<th>排查时间</th>
 				<th>地点</th>
 				<th>范围</th>
 				<th>负责人</th>

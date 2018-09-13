@@ -22,6 +22,7 @@ public class CzzYhpc extends DataEntity<CzzYhpc> {
 	private Date date;		// 检查时间
 	private String location;		// 地点
 	private String responsible;		// 责任人
+	private String notice;		// 是否告知
 	private String problem;		// 存在问题
 	private String requirements;		// 整改措施
 	private Date deadline;		// 整改期限
@@ -93,6 +94,14 @@ public class CzzYhpc extends DataEntity<CzzYhpc> {
 		this.responsible = responsible;
 	}
 	
+	public String getNotice() {
+		return notice;
+	}
+
+	public void setNotice(String notice) {
+		this.notice = notice;
+	}
+
 	@Length(min=0, max=2000, message="存在问题长度必须介于 0 和 2000 之间")
 	public String getProblem() {
 		return problem;

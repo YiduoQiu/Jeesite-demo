@@ -18,7 +18,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/aqglry/czzAqglry/">安全管理人员列表</a></li>
+		<li class="active"><a href="${ctx}/aqglry/czzAqglry/">安全管理人员</a></li>
 		<shiro:hasPermission name="aqglry:czzAqglry:edit"><li><a href="${ctx}/aqglry/czzAqglry/form">安全管理人员添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzAqglry" action="${ctx}/aqglry/czzAqglry/" method="post" class="breadcrumb form-search">

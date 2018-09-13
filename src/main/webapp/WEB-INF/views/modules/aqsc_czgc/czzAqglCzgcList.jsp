@@ -18,7 +18,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/aqsc_czgc/czzAqglCzgc/">安全生产操作规程列表</a></li>
+		<li class="active"><a href="${ctx}/aqsc_czgc/czzAqglCzgc/">安全生产操作规程</a></li>
 		<shiro:hasPermission name="aqsc_czgc:czzAqglCzgc:edit"><li><a href="${ctx}/aqsc_czgc/czzAqglCzgc/form">安全生产操作规程添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzAqglCzgc" action="${ctx}/aqsc_czgc/czzAqglCzgc/" method="post" class="breadcrumb form-search">

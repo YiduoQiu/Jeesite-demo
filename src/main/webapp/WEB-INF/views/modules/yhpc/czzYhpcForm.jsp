@@ -22,9 +22,12 @@
 					}
 				}
 			});
+			if($("#filePreview li").html() == "无"){
+				$("#filePreview li").hide();
+			}
 			//初始化时
 			var yh_ini = $(".select2-chosen").html();
-			if(yh_ini == "一般隐患" || yh_ini == "较大隐患"){
+			if(yh_ini == "一般安全事故隐患"){
 				$("#czwt").show();
 				$("#zgcs").show();
 				$("#zgqx").show();
@@ -36,7 +39,7 @@
 				$("#content5").hide();
 				$("#content6").hide();
 			}
-			if(yh_ini == "重大隐患"){
+			if(yh_ini == "重大安全事故隐患"){
 				$("#czwt").hide();
 				$("#zgcs").hide();
 				$("#zgqx").hide();
@@ -48,10 +51,18 @@
 				$("#content5").show();
 				$("#content6").show();
 			}
+			
+			//通报情况初始化
+			var notice = $("input[name='notice']");
+			var noticed = $("input[name='notice']:checked").val();
+			if(noticed == '1'){
+				alert("请及时告知从业人员!");
+			}
+			
 			//给选择类型绑定事件
 			$(".select2-chosen").bind("DOMNodeInserted",function(e){
 				var yl_type = $(".select2-chosen").html();
-				if(yl_type == "一般隐患" || yl_type == "较大隐患"){
+				if(yl_type == "一般安全事故隐患"){
 					$("#czwt").show();
 					$("#zgcs").show();
 					$("#zgqx").show();
@@ -63,7 +74,7 @@
 					$("#content5").hide();
 					$("#content6").hide();
 				}
-				if(yl_type == "重大隐患"){
+				if(yl_type == "重大安全事故隐患"){
 					$("#czwt").hide();
 					$("#zgcs").hide();
 					$("#zgqx").hide();
@@ -76,12 +87,19 @@
 					$("#content6").show();
 				}
 			});
+			
+			//给通报情况绑定事件
+			notice.bind("click",function(e){
+				if($(this).val() == '1') {
+					alert("请及时告知从业人员!");
+				}
+			});
 		});
 	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/yhpc/czzYhpc/">隐患排查列表</a></li>
+		<li><a href="${ctx}/yhpc/czzYhpc/">隐患排查</a></li>
 		<li class="active"><a href="${ctx}/yhpc/czzYhpc/form?id=${czzYhpc.id}">隐患排查<shiro:hasPermission name="yhpc:czzYhpc:edit">${not empty czzYhpc.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="yhpc:czzYhpc:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzYhpc" action="${ctx}/yhpc/czzYhpc/save" method="post" class="form-horizontal">
@@ -120,6 +138,12 @@
 			<label class="control-label">责任人：</label>
 			<div class="controls">
 				<form:input path="responsible" htmlEscape="false" maxlength="100" class="input-xlarge "/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">通报情况：</label>
+			<div class="controls">
+				<form:radiobuttons path="notice" items="${fns:getDictList('notice_flag')}" itemLabel="label" itemValue="value" htmlEscape="false" class=""/>
 			</div>
 		</div>
 		<div class="control-group" id="czwt">

@@ -18,7 +18,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/yhpc/czzYhpc/">隐患排查列表</a></li>
+		<li class="active"><a href="${ctx}/yhpc/czzYhpc/">隐患排查</a></li>
 		<shiro:hasPermission name="yhpc:czzYhpc:edit"><li><a href="${ctx}/yhpc/czzYhpc/form">隐患排查添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzYhpc" action="${ctx}/yhpc/czzYhpc/" method="post" class="breadcrumb form-search">
@@ -28,7 +28,7 @@
 			<li><label>隐患名称：</label>
 				<form:input path="name" htmlEscape="false" maxlength="200" class="input-medium"/>
 			</li>
-			<li><label>检查时间：</label>
+			<li><label>排查时间：</label>
 				<input name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${czzYhpc.beginDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
@@ -51,7 +51,7 @@
 		<thead>
 			<tr>
 				<th>隐患名称</th>
-				<th>检查时间</th>
+				<th>排查时间</th>
 				<th>地点</th>
 				<th>责任人</th>
 				<shiro:hasPermission name="yhpc:czzYhpc:edit"><th>操作</th></shiro:hasPermission>

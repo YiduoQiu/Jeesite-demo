@@ -18,7 +18,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/ndgzjh/czzNdgzjh/">年度工作计划列表</a></li>
+		<li class="active"><a href="${ctx}/ndgzjh/czzNdgzjh/">年度工作计划</a></li>
 		<shiro:hasPermission name="ndgzjh:czzNdgzjh:edit"><li><a href="${ctx}/ndgzjh/czzNdgzjh/form">年度工作计划添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzNdgzjh" action="${ctx}/ndgzjh/czzNdgzjh/" method="post" class="breadcrumb form-search">

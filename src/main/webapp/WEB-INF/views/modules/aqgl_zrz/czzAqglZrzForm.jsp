@@ -22,12 +22,15 @@
 					}
 				}
 			});
+			if($("#filePreview li").html() == "无"){
+				$("#filePreview li").hide();
+			}
 		});
 	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/aqgl_zrz/czzAqglZrz/">安全管理责任制列表</a></li>
+		<li><a href="${ctx}/aqgl_zrz/czzAqglZrz/">安全管理责任制</a></li>
 		<li class="active"><a href="${ctx}/aqgl_zrz/czzAqglZrz/form?id=${czzAqglZrz.id}">安全管理责任制<shiro:hasPermission name="aqgl_zrz:czzAqglZrz:edit">${not empty czzAqglZrz.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="aqgl_zrz:czzAqglZrz:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzAqglZrz" action="${ctx}/aqgl_zrz/czzAqglZrz/save" method="post" class="form-horizontal">

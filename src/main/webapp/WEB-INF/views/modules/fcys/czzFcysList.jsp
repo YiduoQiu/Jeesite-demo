@@ -18,19 +18,12 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/fcys/czzFcys/">复查验收列表</a></li>
-		<shiro:hasPermission name="fcys:czzFcys:edit"><li><a href="${ctx}/fcys/czzFcys/form">复查验收添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/fcys/czzFcys/">复查验收</a></li>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzFcys" action="${ctx}/fcys/czzFcys/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
-			<li><label>整改状态：</label>
-				<form:select path="type" class="input-medium">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('type_flag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</li>
 			<li><label>检查类型：</label>
 				<form:select path="checkType" class="input-medium">
 					<form:option value="" label=""/>
@@ -40,7 +33,13 @@
 			<li><label>标题：</label>
 				<form:input path="name" htmlEscape="false" maxlength="200" class="input-medium"/>
 			</li>
-			<li><label>时间：</label>
+			<li><label>整改状态：</label>
+				<form:select path="type" class="input-medium">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('type_flag')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
+			</li>
+			<li><label>排查时间：</label>
 				<input name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${czzFcys.beginDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
@@ -48,7 +47,7 @@
 					value="<fmt:formatDate value="${czzFcys.endDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
-			<li><label>验收时间：</label>
+			<li><label>复查时间：</label>
 				<input name="beginConfirmdate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
 					value="<fmt:formatDate value="${czzFcys.beginConfirmdate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/> - 
@@ -66,13 +65,13 @@
 			<tr>
 				<th>检查类型</th>
 				<th>标题</th>
-				<th>时间</th>
+				<th>排查时间</th>
 				<th>地点</th>
 				<th>范围</th>
 				<th>负责人</th>
 				<th>整改状态</th>
 				<th>确认人</th>
-				<th>验收时间</th>
+				<th>复查时间</th>
 				<shiro:hasPermission name="fcys:czzFcys:edit"><th>操作</th></shiro:hasPermission>
 			</tr>
 		</thead>

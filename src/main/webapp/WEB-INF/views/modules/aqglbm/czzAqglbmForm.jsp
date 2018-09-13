@@ -22,12 +22,15 @@
 					}
 				}
 			});
+			if($("#filePreview li").html() == "无"){
+				$("#filePreview li").hide();
+			}
 		});
 	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/aqglbm/czzAqglbm/">安全管理部门列表</a></li>
+		<li><a href="${ctx}/aqglbm/czzAqglbm/">安全管理部门</a></li>
 		<li class="active"><a href="${ctx}/aqglbm/czzAqglbm/form?id=${czzAqglbm.id}">安全管理部门<shiro:hasPermission name="aqglbm:czzAqglbm:edit">${not empty czzAqglbm.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="aqglbm:czzAqglbm:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzAqglbm" action="${ctx}/aqglbm/czzAqglbm/save" method="post" class="form-horizontal">

@@ -124,7 +124,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/zntx/czzZntx/">该条提醒列表</a></li>
+		<li><a href="${ctx}/zntx/czzZntx/">该条提醒</a></li>
 		<li class="active"><a href="${ctx}/zntx/czzZntx/form?id=${czzZntx.id}">该条提醒<shiro:hasPermission name="zntx:czzZntx:edit">${not empty czzZntx.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="zntx:czzZntx:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzZntx" action="${ctx}/zntx/czzZntx/save" method="post" class="form-horizontal">

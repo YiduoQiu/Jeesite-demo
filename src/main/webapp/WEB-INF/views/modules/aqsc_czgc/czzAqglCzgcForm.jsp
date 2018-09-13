@@ -22,12 +22,15 @@
 					}
 				}
 			});
+			if($("#filePreview li").html() == "无"){
+				$("#filePreview li").hide();
+			}
 		});
 	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/aqsc_czgc/czzAqglCzgc/">安全生产操作规程列表</a></li>
+		<li><a href="${ctx}/aqsc_czgc/czzAqglCzgc/">安全生产操作规程</a></li>
 		<li class="active"><a href="${ctx}/aqsc_czgc/czzAqglCzgc/form?id=${czzAqglCzgc.id}">安全生产操作规程<shiro:hasPermission name="aqsc_czgc:czzAqglCzgc:edit">${not empty czzAqglCzgc.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="aqsc_czgc:czzAqglCzgc:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
 	<form:form id="inputForm" modelAttribute="czzAqglCzgc" action="${ctx}/aqsc_czgc/czzAqglCzgc/save" method="post" class="form-horizontal">
