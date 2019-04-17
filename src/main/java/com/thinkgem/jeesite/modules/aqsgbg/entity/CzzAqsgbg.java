@@ -24,6 +24,9 @@ public class CzzAqsgbg extends DataEntity<CzzAqsgbg> {
 	private Date sbTime;		// 上报时间
 	private String file;		// 附件
 	
+	private Date beginDate;		// 开始 时间
+	private Date endDate;		// 结束 时间
+	
 	public CzzAqsgbg() {
 		super();
 	}
@@ -50,7 +53,6 @@ public class CzzAqsgbg extends DataEntity<CzzAqsgbg> {
 		this.type = type;
 	}
 	
-	@Length(min=0, max=3000, message="发生经过长度必须介于 0 和 3000 之间")
 	public String getContent() {
 		return content;
 	}
@@ -77,13 +79,28 @@ public class CzzAqsgbg extends DataEntity<CzzAqsgbg> {
 		this.sbTime = sbTime;
 	}
 	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}
 
 	public void setFile(String file) {
 		this.file = file;
+	}
+
+	public Date getBeginDate() {
+		return beginDate;
+	}
+
+	public void setBeginDate(Date beginDate) {
+		this.beginDate = beginDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	
 }

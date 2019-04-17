@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.aqgl_zrz.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,7 @@ public class CzzAqglZrzController extends BaseController {
 	@RequiresPermissions("aqgl_zrz:czzAqglZrz:view")
 	@RequestMapping(value = "form")
 	public String form(CzzAqglZrz czzAqglZrz, Model model) {
+		czzAqglZrz.setContent(StringEscapeUtils.unescapeHtml4(czzAqglZrz.getContent()));
 		model.addAttribute("czzAqglZrz", czzAqglZrz);
 		return "modules/aqgl_zrz/czzAqglZrzForm";
 	}
@@ -80,4 +82,8 @@ public class CzzAqglZrzController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/aqgl_zrz/czzAqglZrz/?repage";
 	}
 
+	@RequestMapping(value = "help")
+	public String help1() {
+		return "modules/aqgl_zrz/czzAqglZrz_help";
+	}
 }

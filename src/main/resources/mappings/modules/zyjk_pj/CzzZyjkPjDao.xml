@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.zyjk_pj.dao.CzzZyjkPjDao">
+    
+	<sql id="czzZyjkPjColumns">
+		a.id AS "id",
+		a.content AS "content",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag",
+		a.file AS "file"
+	</sql>
+	
+	<sql id="czzZyjkPjJoins">
+	</sql>
+    
+	<select id="get" resultType="CzzZyjkPj">
+		SELECT 
+			<include refid="czzZyjkPjColumns"/>
+		FROM czz_zyjk_pj a
+		<include refid="czzZyjkPjJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzZyjkPj">
+		SELECT 
+			<include refid="czzZyjkPjColumns"/>
+		FROM czz_zyjk_pj a
+		<include refid="czzZyjkPjJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzZyjkPj">
+		SELECT 
+			<include refid="czzZyjkPjColumns"/>
+		FROM czz_zyjk_pj a
+		<include refid="czzZyjkPjJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_zyjk_pj(
+			id,
+			content,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag,
+			file
+		) VALUES (
+			#{id},
+			#{content},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag},
+			#{file}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_zyjk_pj SET 	
+			content = #{content},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			file = #{file}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_zyjk_pj SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

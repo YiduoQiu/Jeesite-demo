@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.zyjk.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ import com.thinkgem.jeesite.modules.zyjk.service.CzzZyjkService;
 /**
  * 职业健康Controller
  * @author qyd
- * @version 2018-07-20
+ * @version 2018-12-17
  */
 @Controller
 @RequestMapping(value = "${adminPath}/zyjk/czzZyjk")
@@ -57,6 +58,11 @@ public class CzzZyjkController extends BaseController {
 	@RequiresPermissions("zyjk:czzZyjk:view")
 	@RequestMapping(value = "form")
 	public String form(CzzZyjk czzZyjk, Model model) {
+		czzZyjk.setHarm(StringEscapeUtils.unescapeHtml4(czzZyjk.getHarm()));
+		czzZyjk.setOnsitetest(StringEscapeUtils.unescapeHtml4(czzZyjk.getOnsitetest()));
+		czzZyjk.setPerprotect(StringEscapeUtils.unescapeHtml4(czzZyjk.getPerprotect()));
+		czzZyjk.setPhycheck(StringEscapeUtils.unescapeHtml4(czzZyjk.getPhycheck()));
+		czzZyjk.setMethod(StringEscapeUtils.unescapeHtml4(czzZyjk.getMethod()));
 		model.addAttribute("czzZyjk", czzZyjk);
 		return "modules/zyjk/czzZyjkForm";
 	}

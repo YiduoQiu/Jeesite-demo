@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.fcys.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,10 @@ public class CzzFcysController extends BaseController {
 	@RequiresPermissions("fcys:czzFcys:view")
 	@RequestMapping(value = "form")
 	public String form(CzzFcys czzFcys, Model model) {
+		czzFcys.setCheckcontent(StringEscapeUtils.unescapeHtml4(czzFcys.getCheckcontent()));
+		czzFcys.setProblem(StringEscapeUtils.unescapeHtml4(czzFcys.getProblem()));
+		czzFcys.setRequirements(StringEscapeUtils.unescapeHtml4(czzFcys.getRequirements()));
+		czzFcys.setCorrectacction(StringEscapeUtils.unescapeHtml4(czzFcys.getCorrectacction()));
 		model.addAttribute("czzFcys", czzFcys);
 		return "modules/fcys/czzFcysForm";
 	}

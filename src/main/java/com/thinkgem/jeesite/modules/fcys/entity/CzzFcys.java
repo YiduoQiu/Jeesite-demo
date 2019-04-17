@@ -109,7 +109,6 @@ public class CzzFcys extends DataEntity<CzzFcys> {
 		this.participate = participate;
 	}
 	
-	@Length(min=0, max=2000, message="检查内容长度必须介于 0 和 2000 之间")
 	public String getCheckcontent() {
 		return checkcontent;
 	}
@@ -118,7 +117,6 @@ public class CzzFcys extends DataEntity<CzzFcys> {
 		this.checkcontent = checkcontent;
 	}
 	
-	@Length(min=0, max=2000, message="存在问题长度必须介于 0 和 2000 之间")
 	public String getProblem() {
 		return problem;
 	}
@@ -127,7 +125,6 @@ public class CzzFcys extends DataEntity<CzzFcys> {
 		this.problem = problem;
 	}
 	
-	@Length(min=0, max=2000, message="整改要求长度必须介于 0 和 2000 之间")
 	public String getRequirements() {
 		return requirements;
 	}
@@ -154,7 +151,6 @@ public class CzzFcys extends DataEntity<CzzFcys> {
 		this.type = type;
 	}
 	
-	@Length(min=0, max=2000, message="整改情况长度必须介于 0 和 2000 之间")
 	public String getCorrectacction() {
 		return correctacction;
 	}
@@ -197,7 +193,6 @@ public class CzzFcys extends DataEntity<CzzFcys> {
 		this.endConfirmdate = endConfirmdate;
 	}
 
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}

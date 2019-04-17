@@ -1,11 +1,11 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.thinkgem.jeesite.modules.aqjc.dao;
+package com.thinkgem.jeesite.modules.sjcx.dao;
 
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.annotation.MyBatisDao;
-import com.thinkgem.jeesite.modules.aqjc.entity.CzzAqjc;
+import com.thinkgem.jeesite.modules.sjcx.entity.CzzSjcx;
 
 /**
  * 安全检查DAO接口
@@ -13,6 +13,6 @@ import com.thinkgem.jeesite.modules.aqjc.entity.CzzAqjc;
  * @version 2018-07-06
  */
 @MyBatisDao
-public interface CzzAqjcDao extends CrudDao<CzzAqjc> {
-	
+public interface CzzSjcxDao extends CrudDao<CzzSjcx> {
+
 }

@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.aqglry.entity;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Length;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
@@ -20,6 +22,7 @@ public class CzzAqglry extends DataEntity<CzzAqglry> {
 	private String phone;		// 电话
 	private String responsible;		// 职能职责
 	private String file;		// 附件
+	private Integer sort; 	// 排序
 	
 	public CzzAqglry() {
 		super();
@@ -56,7 +59,6 @@ public class CzzAqglry extends DataEntity<CzzAqglry> {
 		this.phone = phone;
 	}
 	
-	@Length(min=0, max=2000, message="职能职责长度必须介于 0 和 2000 之间")
 	public String getResponsible() {
 		return responsible;
 	}
@@ -65,13 +67,21 @@ public class CzzAqglry extends DataEntity<CzzAqglry> {
 		this.responsible = responsible;
 	}
 	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}
 
 	public void setFile(String file) {
 		this.file = file;
+	}
+	
+	@NotNull
+	public Integer getSort() {
+		return sort;
+	}
+	
+	public void setSort(Integer sort) {
+		this.sort = sort;
 	}
 	
 }

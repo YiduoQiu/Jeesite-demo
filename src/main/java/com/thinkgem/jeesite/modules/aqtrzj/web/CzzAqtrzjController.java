@@ -57,7 +57,7 @@ public class CzzAqtrzjController extends BaseController {
 		model.addAttribute("czzAqtrzj", czzAqtrzj);
 		return "modules/aqtrzj/czzAqtrzjForm";
 	}
-
+	
 	@RequiresPermissions("aqtrzj:czzAqtrzj:edit")
 	@RequestMapping(value = "save")
 	public String save(CzzAqtrzj czzAqtrzj, Model model, RedirectAttributes redirectAttributes) {

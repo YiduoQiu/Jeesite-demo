@@ -6,6 +6,8 @@
 		a.id AS "id",
 		a.wxy_name AS "wxyName",
 		a.wxy_type AS "wxyType",
+		a.wxy_kind AS "wxyKind",
+		a.amount AS "amount",
 		a.location AS "location",
 		a.person AS "person",
 		a.plan AS "plan",
@@ -79,6 +81,8 @@
 			id,
 			wxy_name,
 			wxy_type,
+			wxy_kind,
+			amount,
 			location,
 			person,
 			plan,
@@ -93,6 +97,8 @@
 			#{id},
 			#{wxyName},
 			#{wxyType},
+			#{wxyKind},
+			#{amount},
 			#{location},
 			#{person},
 			#{plan},
@@ -110,6 +116,8 @@
 		UPDATE czz_wxygl SET 	
 			wxy_name = #{wxyName},
 			wxy_type = #{wxyType},
+			wxy_kind = #{wxyKind},
+			amount = #{amount},
 			location = #{location},
 			person = #{person},
 			plan = #{plan},
@@ -126,4 +134,25 @@
 		WHERE id = #{id}
 	</update>
 	
+	<!--一般危险源-->
+	<select id="firstCount" resultType="Integer">
+		select  count(1) from czz_wxygl a
+		<where>
+			a.wxy_type='0'
+			<!--<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">-->
+				<!--AND a.date BETWEEN #{beginDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}-->
+			<!--</if>-->
+		</where>
+	</select>
+	
+	<!--重大危险源-->
+	<select id="secondCount" resultType="Integer">
+		select  count(1) from czz_wxygl a
+		<where>
+			a.wxy_type='1'
+			<!--<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">-->
+				<!--AND a.date BETWEEN #{beginDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}-->
+			<!--</if>-->
+		</where>
+	</select>
 </mapper>

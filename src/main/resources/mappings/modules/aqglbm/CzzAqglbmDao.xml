@@ -5,6 +5,7 @@
 	<sql id="czzAqglbmColumns">
 		a.id AS "id",
 		a.name AS "name",
+		a.sort AS "sort",
 		a.function AS "function",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
@@ -45,7 +46,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+				ORDER BY a.sort
 			</otherwise>
 		</choose>
 	</select>
@@ -63,7 +64,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+				ORDER BY a.sort
 			</otherwise>
 		</choose>
 	</select>
@@ -72,6 +73,7 @@
 		INSERT INTO czz_aqglbm(
 			id,
 			name,
+			sort,
 			function,
 			create_by,
 			create_date,
@@ -83,6 +85,7 @@
 		) VALUES (
 			#{id},
 			#{name},
+			#{sort},
 			#{function},
 			#{createBy.id},
 			#{createDate},
@@ -97,6 +100,7 @@
 	<update id="update">
 		UPDATE czz_aqglbm SET 	
 			name = #{name},
+			sort = #{sort},
 			function = #{function},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate},

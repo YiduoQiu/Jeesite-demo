@@ -146,7 +146,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2018-06-29 16:03:15</creation_date>
-			<updated_date>2018-06-29 16:12:25</updated_date>
+			<updated_date>2018-11-20 11:09:57</updated_date>
 			<model_property>
 				<name>Project Name</name>
 				<value></value>
@@ -185,6 +185,22 @@
 	<dictionary>
 		<word>
 			<id>0</id>
+			<length>1</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description>证书是否齐全标记（0：不齐全；1：齐全）</description>
+			<logical_name>证书是否齐全</logical_name>
+			<physical_name>certi_flag</physical_name>
+			<type>character(n)</type>
+		</word>
+		<word>
+			<id>1</id>
 			<length>64</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -200,7 +216,7 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>1</id>
+			<id>2</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -216,7 +232,7 @@
 			<type>datetime</type>
 		</word>
 		<word>
-			<id>2</id>
+			<id>3</id>
 			<length>1</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -230,22 +246,6 @@
 			<logical_name>删除标记</logical_name>
 			<physical_name>del_flag</physical_name>
 			<type>character(n)</type>
-		</word>
-		<word>
-			<id>3</id>
-			<length>2000</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description>职能职责</description>
-			<logical_name>职能职责</logical_name>
-			<physical_name>function</physical_name>
-			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>4</id>
@@ -265,7 +265,7 @@
 		</word>
 		<word>
 			<id>5</id>
-			<length>100</length>
+			<length>1</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -274,13 +274,29 @@
 			<binary>false</binary>
 			<args></args>
 			<char_semantics>false</char_semantics>
-			<description>机构名称</description>
-			<logical_name>机构名称</logical_name>
-			<physical_name>name</physical_name>
-			<type>varchar(n)</type>
+			<description>是否再次提醒标记（空：提醒；1：不提醒）</description>
+			<logical_name>是否再次提醒</logical_name>
+			<physical_name>mention_flag</physical_name>
+			<type>character(n)</type>
 		</word>
 		<word>
 			<id>6</id>
+			<length>1</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description>是否设立机构标记（0：未设立；1：设立）</description>
+			<logical_name>是否设立机构</logical_name>
+			<physical_name>organ_flag</physical_name>
+			<type>character(n)</type>
+		</word>
+		<word>
+			<id>7</id>
 			<length>255</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -296,7 +312,39 @@
 			<type>nvarchar(n)</type>
 		</word>
 		<word>
-			<id>7</id>
+			<id>8</id>
+			<length>1</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description>是否明确职责标记（0：未明确；1：明确）</description>
+			<logical_name>是否明确职责</logical_name>
+			<physical_name>respon_flag</physical_name>
+			<type>character(n)</type>
+		</word>
+		<word>
+			<id>9</id>
+			<length>1</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description>是否设立制度标记（0：未设立；1：设立）</description>
+			<logical_name>是否设立制度</logical_name>
+			<physical_name>rule_flag</physical_name>
+			<type>character(n)</type>
+		</word>
+		<word>
+			<id>10</id>
 			<length>64</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -312,7 +360,7 @@
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>8</id>
+			<id>11</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -346,9 +394,9 @@
 			</color>
 			<connections>
 			</connections>
-			<physical_name>czz_aqglbm</physical_name>
-			<logical_name>安全管理部门表</logical_name>
-			<description>安全管理部门表</description>
+			<physical_name>czz_welcom</physical_name>
+			<logical_name>欢迎页面</logical_name>
+			<description>首次使用软件，提示页面表</description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
@@ -387,13 +435,13 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>5</word_id>
+					<word_id>6</word_id>
 					<id>7</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>character(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -420,13 +468,112 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>3</word_id>
+					<word_id>8</word_id>
 					<id>8</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>9</word_id>
+					<id>9</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>0</word_id>
+					<id>10</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>false</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>5</word_id>
+					<id>11</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>character(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
@@ -482,7 +629,7 @@
 				<group_name>common</group_name>
 				<columns>
 					<normal_column>
-						<word_id>0</word_id>
+						<word_id>1</word_id>
 						<id>0</id>
 						<description></description>
 						<unique_key_name></unique_key_name>
@@ -515,7 +662,7 @@
 						</sequence>
 					</normal_column>
 					<normal_column>
-						<word_id>1</word_id>
+						<word_id>2</word_id>
 						<id>1</id>
 						<description></description>
 						<unique_key_name></unique_key_name>
@@ -548,7 +695,7 @@
 						</sequence>
 					</normal_column>
 					<normal_column>
-						<word_id>7</word_id>
+						<word_id>10</word_id>
 						<id>2</id>
 						<description></description>
 						<unique_key_name></unique_key_name>
@@ -581,7 +728,7 @@
 						</sequence>
 					</normal_column>
 					<normal_column>
-						<word_id>8</word_id>
+						<word_id>11</word_id>
 						<id>3</id>
 						<description></description>
 						<unique_key_name></unique_key_name>
@@ -614,7 +761,7 @@
 						</sequence>
 					</normal_column>
 					<normal_column>
-						<word_id>6</word_id>
+						<word_id>7</word_id>
 						<id>4</id>
 						<description></description>
 						<unique_key_name></unique_key_name>
@@ -647,7 +794,7 @@
 						</sequence>
 					</normal_column>
 					<normal_column>
-						<word_id>2</word_id>
+						<word_id>3</word_id>
 						<id>5</id>
 						<description></description>
 						<unique_key_name></unique_key_name>

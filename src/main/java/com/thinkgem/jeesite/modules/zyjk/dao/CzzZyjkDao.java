@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.zyjk.entity.CzzZyjk;
 /**
  * 职业健康DAO接口
  * @author qyd
- * @version 2018-07-20
+ * @version 2018-12-17
  */
 @MyBatisDao
 public interface CzzZyjkDao extends CrudDao<CzzZyjk> {

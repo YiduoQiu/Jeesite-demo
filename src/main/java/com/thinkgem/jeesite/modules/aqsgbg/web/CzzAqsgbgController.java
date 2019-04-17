@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.aqsgbg.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,7 @@ public class CzzAqsgbgController extends BaseController {
 	@RequiresPermissions("aqsgbg:czzAqsgbg:view")
 	@RequestMapping(value = "form")
 	public String form(CzzAqsgbg czzAqsgbg, Model model) {
+		czzAqsgbg.setContent(StringEscapeUtils.unescapeHtml4(czzAqsgbg.getContent()));
 		model.addAttribute("czzAqsgbg", czzAqsgbg);
 		return "modules/aqsgbg/czzAqsgbgForm";
 	}
@@ -68,7 +70,7 @@ public class CzzAqsgbgController extends BaseController {
 			return form(czzAqsgbg, model);
 		}
 		czzAqsgbgService.save(czzAqsgbg);
-		addMessage(redirectAttributes, "保存DROP TABLE IF EXISTS czz_aqsgbg;成功");
+		addMessage(redirectAttributes, "保存安全事故报告成功");
 		return "redirect:"+Global.getAdminPath()+"/aqsgbg/czzAqsgbg/?repage";
 	}
 	

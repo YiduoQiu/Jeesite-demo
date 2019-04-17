@@ -3,9 +3,13 @@
  */
 package com.thinkgem.jeesite.modules.yhpc.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +23,7 @@ import com.thinkgem.jeesite.common.config.Global;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
+import com.thinkgem.jeesite.modules.aqjc.entity.CzzAqjc;
 import com.thinkgem.jeesite.modules.yhpc.entity.CzzYhpc;
 import com.thinkgem.jeesite.modules.yhpc.service.CzzYhpcService;
 
@@ -57,6 +62,14 @@ public class CzzYhpcController extends BaseController {
 	@RequiresPermissions("yhpc:czzYhpc:view")
 	@RequestMapping(value = "form")
 	public String form(CzzYhpc czzYhpc, Model model) {
+		czzYhpc.setContent1(StringEscapeUtils.unescapeHtml4(czzYhpc.getContent1()));
+		czzYhpc.setContent2(StringEscapeUtils.unescapeHtml4(czzYhpc.getContent2()));
+		czzYhpc.setContent3(StringEscapeUtils.unescapeHtml4(czzYhpc.getContent3()));
+		czzYhpc.setContent4(StringEscapeUtils.unescapeHtml4(czzYhpc.getContent4()));
+		czzYhpc.setContent5(StringEscapeUtils.unescapeHtml4(czzYhpc.getContent5()));
+		czzYhpc.setContent6(StringEscapeUtils.unescapeHtml4(czzYhpc.getContent6()));
+		czzYhpc.setProblem(StringEscapeUtils.unescapeHtml4(czzYhpc.getProblem()));
+		czzYhpc.setRequirements(StringEscapeUtils.unescapeHtml4(czzYhpc.getRequirements()));
 		model.addAttribute("czzYhpc", czzYhpc);
 		return "modules/yhpc/czzYhpcForm";
 	}
@@ -79,5 +92,4 @@ public class CzzYhpcController extends BaseController {
 		addMessage(redirectAttributes, "删除隐患排查成功");
 		return "redirect:"+Global.getAdminPath()+"/yhpc/czzYhpc/?repage";
 	}
-
 }

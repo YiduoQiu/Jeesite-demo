@@ -5,9 +5,8 @@
 	<sql id="czzYjjyColumns">
 		a.id AS "id",
 		a.title AS "title",
-		a.plan AS "plan",
-		a.specialplan AS "specialplan",
-		a.comprehensiveplan AS "comprehensiveplan",
+		a.type AS "type",
+		a.content AS "content",
 		a.file AS "file",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
@@ -41,13 +40,16 @@
 					<if test="dbName == 'mssql'">'%'+#{title}+'%'</if>
 					<if test="dbName == 'mysql'">concat('%',#{title},'%')</if>
 			</if>
+			<if test="type != null and type != ''">
+				AND a.type = #{type}
+			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+				ORDER BY a.type,a.update_date DESC
 			</otherwise>
 		</choose>
 	</select>
@@ -65,7 +67,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+				ORDER BY a.type,a.update_date DESC
 			</otherwise>
 		</choose>
 	</select>
@@ -74,9 +76,8 @@
 		INSERT INTO czz_yjjy(
 			id,
 			title,
-			plan,
-			specialplan,
-			comprehensiveplan,
+			type,
+			content,
 			file,
 			create_by,
 			create_date,
@@ -87,9 +88,8 @@
 		) VALUES (
 			#{id},
 			#{title},
-			#{plan},
-			#{specialplan},
-			#{comprehensiveplan},
+			#{type},
+			#{content},
 			#{file},
 			#{createBy.id},
 			#{createDate},
@@ -103,9 +103,8 @@
 	<update id="update">
 		UPDATE czz_yjjy SET 	
 			title = #{title},
-			plan = #{plan},
-			specialplan = #{specialplan},
-			comprehensiveplan = #{comprehensiveplan},
+			type = #{type},
+			content = #{content},
 			file = #{file},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}

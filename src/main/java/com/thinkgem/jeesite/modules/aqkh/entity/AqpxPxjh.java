@@ -55,7 +55,6 @@ public class AqpxPxjh extends DataEntity<AqpxPxjh> {
 		this.content = content;
 	}
 	
-	@Length(min=0, max=2000, message="附件长度必须介于 0 和 2000 之间")
 	public String getFiles() {
 		return files;
 	}

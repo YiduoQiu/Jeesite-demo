@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.yhpczd.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,7 @@ public class CzzYhpcXgzdController extends BaseController {
 	@RequiresPermissions("yhpczd:czzYhpcXgzd:view")
 	@RequestMapping(value = "form")
 	public String form(CzzYhpcXgzd czzYhpcXgzd, Model model) {
+		czzYhpcXgzd.setContent(StringEscapeUtils.unescapeHtml4(czzYhpcXgzd.getContent()));
 		model.addAttribute("czzYhpcXgzd", czzYhpcXgzd);
 		return "modules/yhpczd/czzYhpcXgzdForm";
 	}

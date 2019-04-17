@@ -4,9 +4,10 @@
 <head>
 	<title>应急预案管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -18,7 +19,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/yjjy/czzYjjy/">应急预案列表</a></li>
+		<li class="active"><a href="${ctx}/yjjy/czzYjjy/">应急预案</a></li>
 		<shiro:hasPermission name="yjjy:czzYjjy:edit"><li><a href="${ctx}/yjjy/czzYjjy/form">应急预案添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzYjjy" action="${ctx}/yjjy/czzYjjy/" method="post" class="breadcrumb form-search">
@@ -26,7 +27,13 @@
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<ul class="ul-form">
 			<li><label>标题：</label>
-				<form:input path="title" htmlEscape="false" maxlength="100" class="input-medium"/>
+				<form:input path="title" htmlEscape="false" maxlength="500" class="input-medium"/>
+			</li>
+			<li><label>方案类型：</label>
+				<form:select path="type" class="input-medium">
+					<form:option value="" label=""/>
+					<form:options items="${fns:getDictList('fa_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+				</form:select>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
@@ -37,7 +44,8 @@
 		<thead>
 			<tr>
 				<th>标题</th>
-				<shiro:hasPermission name="yjjy:czzYjjy:edit"><th>操作</th></shiro:hasPermission>
+				<th>方案类型</th>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -46,10 +54,15 @@
 				<td><a href="${ctx}/yjjy/czzYjjy/form?id=${czzYjjy.id}">
 					${czzYjjy.title}
 				</a></td>
-				<shiro:hasPermission name="yjjy:czzYjjy:edit"><td>
-    				<a href="${ctx}/yjjy/czzYjjy/form?id=${czzYjjy.id}">修改</a>
-					<a href="${ctx}/yjjy/czzYjjy/delete?id=${czzYjjy.id}" onclick="return confirmx('确认要删除该应急救援吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+				<td>
+					${fns:getDictLabel(czzYjjy.type, 'fa_type', '')}
+				</td>
+				<td>
+    				<a href="${ctx}/yjjy/czzYjjy/form?id=${czzYjjy.id}">查看</a>
+    				<shiro:hasPermission name="yjjy:czzYjjy:edit">
+					<a href="${ctx}/yjjy/czzYjjy/delete?id=${czzYjjy.id}" onclick="return confirmx('确认要删除该应急预案吗？', this.href)">删除</a>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

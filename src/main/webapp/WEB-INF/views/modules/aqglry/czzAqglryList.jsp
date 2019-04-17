@@ -4,9 +4,19 @@
 <head>
 	<title>安全管理人员管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
+	<style type="text/css">
+		#responsible{
+		   overflow: hidden;
+		   text-overflow: ellipsis;
+		   white-space: nowrap;
+		   width:20em;
+		   height:30px;
+		}
+	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -43,7 +53,7 @@
 				<th>姓名</th>
 				<th>电话</th>
 				<th>职能职责</th>
-				<shiro:hasPermission name="aqglry:czzAqglry:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -59,12 +69,14 @@
 					${czzAqglry.phone}
 				</td>
 				<td>
-					${czzAqglry.responsible}
+					<div id="responsible">${czzAqglry.responsible}</div>
 				</td>
-				<shiro:hasPermission name="aqglry:czzAqglry:edit"><td>
-    				<a href="${ctx}/aqglry/czzAqglry/form?id=${czzAqglry.id}">修改</a>
+				<td>
+    				<a href="${ctx}/aqglry/czzAqglry/form?id=${czzAqglry.id}">查看</a>
+    				<shiro:hasPermission name="aqglry:czzAqglry:edit">
 					<a href="${ctx}/aqglry/czzAqglry/delete?id=${czzAqglry.id}" onclick="return confirmx('确认要删除该安全管理人员吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

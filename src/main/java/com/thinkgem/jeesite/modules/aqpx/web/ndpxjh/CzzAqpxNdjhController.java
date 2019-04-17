@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.aqpx.web.ndpxjh;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ import com.thinkgem.jeesite.modules.aqpx.service.ndpxjh.CzzAqpxNdjhService;
 /**
  * 年度培训计划Controller
  * @author qyd
- * @version 2018-07-20
+ * @version 2019-03-12
  */
 @Controller
 @RequestMapping(value = "${adminPath}/aqpx/ndpxjh/czzAqpxNdjh")
@@ -57,6 +58,7 @@ public class CzzAqpxNdjhController extends BaseController {
 	@RequiresPermissions("aqpx:ndpxjh:czzAqpxNdjh:view")
 	@RequestMapping(value = "form")
 	public String form(CzzAqpxNdjh czzAqpxNdjh, Model model) {
+		czzAqpxNdjh.setContent(StringEscapeUtils.unescapeHtml4(czzAqpxNdjh.getContent()));
 		model.addAttribute("czzAqpxNdjh", czzAqpxNdjh);
 		return "modules/aqpx/ndpxjh/czzAqpxNdjhForm";
 	}

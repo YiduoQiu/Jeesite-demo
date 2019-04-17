@@ -4,9 +4,10 @@
 <head>
 	<title>年度工作计划管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -41,7 +42,7 @@
 			<tr>
 				<th>标题</th>
 				<th>创建人</th>
-				<shiro:hasPermission name="ndgzjh:czzNdgzjh:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -53,10 +54,12 @@
 				<td>
 					${czzNdgzjh.name}
 				</td>
-				<shiro:hasPermission name="ndgzjh:czzNdgzjh:edit"><td>
-    				<a href="${ctx}/ndgzjh/czzNdgzjh/form?id=${czzNdgzjh.id}">修改</a>
+				<td>
+    				<a href="${ctx}/ndgzjh/czzNdgzjh/form?id=${czzNdgzjh.id}">查看</a>
+    				<shiro:hasPermission name="ndgzjh:czzNdgzjh:edit">
 					<a href="${ctx}/ndgzjh/czzNdgzjh/delete?id=${czzNdgzjh.id}" onclick="return confirmx('确认要删除该年度工作计划吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

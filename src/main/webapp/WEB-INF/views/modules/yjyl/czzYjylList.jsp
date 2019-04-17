@@ -4,9 +4,10 @@
 <head>
 	<title>应急演练管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -18,7 +19,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/yjyl/czzYjyl/">应急演练列表</a></li>
+		<li class="active"><a href="${ctx}/yjyl/czzYjyl/">应急演练</a></li>
 		<shiro:hasPermission name="yjyl:czzYjyl:edit"><li><a href="${ctx}/yjyl/czzYjyl/form">应急演练添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzYjyl" action="${ctx}/yjyl/czzYjyl/" method="post" class="breadcrumb form-search">
@@ -47,7 +48,7 @@
 				<th>时间</th>
 				<th>地点</th>
 				<th>更新时间</th>
-				<shiro:hasPermission name="yjyl:czzYjyl:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -60,18 +61,20 @@
 					${czzYjyl.name}
 				</td>
 				<td>
-					<fmt:formatDate value="${czzYjyl.date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzYjyl.date}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${czzYjyl.location}
 				</td>
 				<td>
-					<fmt:formatDate value="${czzYjyl.updateDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzYjyl.updateDate}" pattern="yyyy-MM-dd"/>
 				</td>
-				<shiro:hasPermission name="yjyl:czzYjyl:edit"><td>
-    				<a href="${ctx}/yjyl/czzYjyl/form?id=${czzYjyl.id}">修改</a>
+				<td>
+    				<a href="${ctx}/yjyl/czzYjyl/form?id=${czzYjyl.id}">查看</a>
+    				<shiro:hasPermission name="yjyl:czzYjyl:edit">
 					<a href="${ctx}/yjyl/czzYjyl/delete?id=${czzYjyl.id}" onclick="return confirmx('确认要删除该应急演练吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

@@ -61,7 +61,6 @@ public class CzzAqpxPxqk extends DataEntity<CzzAqpxPxqk> {
 		this.location = location;
 	}
 	
-	@Length(min=0, max=3000, message="培训内容长度必须介于 0 和 3000 之间")
 	public String getContent() {
 		return content;
 	}
@@ -70,7 +69,6 @@ public class CzzAqpxPxqk extends DataEntity<CzzAqpxPxqk> {
 		this.content = content;
 	}
 	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}

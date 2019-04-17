@@ -5,6 +5,7 @@
 	<sql id="czzZyaqColumns">
 		a.id AS "id",
 		a.name AS "name",
+		a.type AS "type",
 		a.date AS "date",
 		a.location AS "location",
 		a.zy_person AS "zyPerson",
@@ -83,6 +84,7 @@
 		INSERT INTO czz_zyaq(
 			id,
 			name,
+			type,
 			date,
 			location,
 			zy_person,
@@ -99,6 +101,7 @@
 		) VALUES (
 			#{id},
 			#{name},
+			#{type},
 			#{date},
 			#{location},
 			#{zyPerson},
@@ -118,6 +121,7 @@
 	<update id="update">
 		UPDATE czz_zyaq SET 	
 			name = #{name},
+			type = #{type},
 			date = #{date},
 			location = #{location},
 			zy_person = #{zyPerson},
@@ -136,4 +140,65 @@
 		WHERE id = #{id}
 	</update>
 	
+	<!--动火作业-->
+	<select id="firstCount" resultType="Integer">
+		select  count(1) from czz_zyaq a
+		<where>
+			a.type='0' and del_flag = '0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--高温作业-->
+	<select id="secondCount" resultType="Integer">
+		select  count(1) from czz_zyaq a
+		<where>
+			a.type='1' and del_flag = '0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--高压作业-->
+	<select id="thirdCount" resultType="Integer">
+		select  count(1) from czz_zyaq a
+		<where>
+			a.type='2' and del_flag = '0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--带电作业-->
+	<select id="fourthCount" resultType="Integer">
+		select  count(1) from czz_zyaq a
+		<where>
+			a.type='3' and del_flag = '0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--密闭空间-->
+	<select id="fifthCount" resultType="Integer">
+		select  count(1) from czz_zyaq a
+		<where>
+			a.type='4' and del_flag = '0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--高空作业-->
+	<select id="sixthCount" resultType="Integer">
+		select  count(1) from czz_zyaq a
+		<where>
+			a.type='5' and del_flag = '0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+
 </mapper>

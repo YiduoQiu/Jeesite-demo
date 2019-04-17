@@ -188,4 +188,44 @@
 		WHERE id = #{id}
 	</update>
 	
+	<!--隐患排查一般事务未整改-->
+	<select id="firstCount" resultType="Integer">
+		select  count(1) from czz_yhpc a
+		<where>
+			a.yh_type='0' and a.type='0' and del_flag = '0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+				AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--隐患排查一般事务已整改-->
+	<select id="secondCount" resultType="Integer">
+		select  count(1) from czz_yhpc a
+		<where>
+			a.yh_type='0' and a.type='1' and del_flag = '0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+				AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--隐患排查重大事故未整改-->
+	<select id="thirdCount" resultType="Integer">
+		select  count(1) from czz_yhpc a
+		<where>
+			a.yh_type='1' and a.type='0' and del_flag = '0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+				AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--隐患排查重大事故已整改-->
+	<select id="fourthCount" resultType="Integer">
+		select  count(1) from czz_yhpc a
+		<where>
+			a.yh_type='1' and a.type='1' and del_flag = '0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+				AND a.date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
 </mapper>

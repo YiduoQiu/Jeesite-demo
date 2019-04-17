@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.ndgzjh.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,7 @@ public class CzzNdgzjhController extends BaseController {
 	@RequiresPermissions("ndgzjh:czzNdgzjh:view")
 	@RequestMapping(value = "form")
 	public String form(CzzNdgzjh czzNdgzjh, Model model) {
+		czzNdgzjh.setPlan(StringEscapeUtils.unescapeHtml4(czzNdgzjh.getPlan()));
 		model.addAttribute("czzNdgzjh", czzNdgzjh);
 		return "modules/ndgzjh/czzNdgzjhForm";
 	}

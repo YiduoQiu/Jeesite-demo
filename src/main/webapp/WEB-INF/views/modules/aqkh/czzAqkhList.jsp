@@ -4,9 +4,10 @@
 <head>
 	<title>安全考核管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -18,7 +19,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/aqkh/czzAqkh/">安全考核列表</a></li>
+		<li class="active"><a href="${ctx}/aqkh/czzAqkh/">安全考核</a></li>
 		<shiro:hasPermission name="aqkh:czzAqkh:edit"><li><a href="${ctx}/aqkh/czzAqkh/form">安全考核添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzAqkh" action="${ctx}/aqkh/czzAqkh/" method="post" class="breadcrumb form-search">
@@ -44,7 +45,7 @@
 			<tr>
 				<th>考核类型</th>
 				<th>标题</th>
-				<shiro:hasPermission name="aqkh:czzAqkh:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -56,10 +57,12 @@
 				<td>
 					${czzAqkh.title}
 				</td>
-				<shiro:hasPermission name="aqkh:czzAqkh:edit"><td>
-    				<a href="${ctx}/aqkh/czzAqkh/form?id=${czzAqkh.id}">修改</a>
+				<td>
+    				<a href="${ctx}/aqkh/czzAqkh/form?id=${czzAqkh.id}">查看</a>
+    				<shiro:hasPermission name="aqkh:czzAqkh:edit">
 					<a href="${ctx}/aqkh/czzAqkh/delete?id=${czzAqkh.id}" onclick="return confirmx('确认要删除该安全考核吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

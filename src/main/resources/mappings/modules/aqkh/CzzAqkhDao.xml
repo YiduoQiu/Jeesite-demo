@@ -8,6 +8,7 @@
 		a.title AS "title",
 		a.person AS "person",
 		a.content AS "content",
+		a.feedback AS "feedback",
 		a.file AS "file",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
@@ -80,6 +81,7 @@
 			title,
 			person,
 			content,
+			feedback,
 			file,
 			create_by,
 			create_date,
@@ -93,6 +95,7 @@
 			#{title},
 			#{person},
 			#{content},
+			#{feedback},
 			#{file},
 			#{createBy.id},
 			#{createDate},
@@ -109,6 +112,7 @@
 			title = #{title},
 			person = #{person},
 			content = #{content},
+			feedback = #{feedback},
 			file = #{file},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
@@ -120,5 +124,75 @@
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
+	<!--日常考核-->
+	<select id="firstCount" resultType="Integer">
+		select  count(1) from czz_aqkh a
+		<where>
+			a.type='0'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.update_date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--月度考核-->
+	<select id="secondCount" resultType="Integer">
+		select  count(1) from czz_aqkh a
+		<where>
+			a.type='1'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.update_date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--隐患排查治理考核-->
+	<select id="thirdCount" resultType="Integer">
+		select  count(1) from czz_aqkh a
+		<where>
+			a.type='2'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.update_date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--重大危险源管理考核-->
+	<select id="fourthCount" resultType="Integer">
+		select  count(1) from czz_aqkh a
+		<where>
+			a.type='3'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.update_date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--工作任务落实考核-->
+	<select id="fifthCount" resultType="Integer">
+		select  count(1) from czz_aqkh a
+		<where>
+			a.type='4'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.update_date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--培训教育考核-->
+	<select id="sixthCount" resultType="Integer">
+		select  count(1) from czz_aqkh a
+		<where>
+			a.type='5'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.update_date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
+	<!--应急演练考核-->
+	<select id="seventhCount" resultType="Integer">
+		select  count(1) from czz_aqkh a
+		<where>
+			a.type='6'
+			<if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+			AND a.update_date BETWEEN #{beginDate} AND #{endDate}
+			</if>
+		</where>
+	</select>
 	
 </mapper>

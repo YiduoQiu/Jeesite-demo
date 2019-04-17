@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.aqgl_gzzd.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,7 @@ public class CzzAqglGzzdController extends BaseController {
 	@RequiresPermissions("aqgl_gzzd:czzAqglGzzd:view")
 	@RequestMapping(value = "form")
 	public String form(CzzAqglGzzd czzAqglGzzd, Model model) {
+		czzAqglGzzd.setContent(StringEscapeUtils.unescapeHtml4(czzAqglGzzd.getContent()));
 		model.addAttribute("czzAqglGzzd", czzAqglGzzd);
 		return "modules/aqgl_gzzd/czzAqglGzzdForm";
 	}
@@ -79,5 +81,9 @@ public class CzzAqglGzzdController extends BaseController {
 		addMessage(redirectAttributes, "删除安全管理规章制度成功");
 		return "redirect:"+Global.getAdminPath()+"/aqgl_gzzd/czzAqglGzzd/?repage";
 	}
-
+	
+	@RequestMapping(value = "help1")
+	public String help1() {
+		return "modules/aqgl_gzzd/czzAqglGzzd_help";
+	}
 }

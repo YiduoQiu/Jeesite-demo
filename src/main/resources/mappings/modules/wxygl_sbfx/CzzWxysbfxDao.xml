@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.wxygl_sbfx.dao.CzzWxysbfxDao">
+    
+	<sql id="czzWxysbfxColumns">
+		a.id AS "id",
+		a.wxy_type AS "wxyType",
+		a.wxy_kind AS "wxyKind",
+		a.wxy_name AS "wxyName",
+		a.amount AS "amount",
+		a.location AS "location",
+		a.person AS "person",
+		a.plan AS "plan",
+		a.file AS "file",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="czzWxysbfxJoins">
+	</sql>
+    
+	<select id="get" resultType="CzzWxysbfx">
+		SELECT 
+			<include refid="czzWxysbfxColumns"/>
+		FROM czz_wxysbfx a
+		<include refid="czzWxysbfxJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzWxysbfx">
+		SELECT 
+			<include refid="czzWxysbfxColumns"/>
+		FROM czz_wxysbfx a
+		<include refid="czzWxysbfxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="wxyType != null and wxyType != ''">
+				AND a.wxy_type = #{wxyType}
+			</if>
+			<if test="wxyKind != null and wxyKind != ''">
+				AND a.wxy_kind = #{wxyKind}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzWxysbfx">
+		SELECT 
+			<include refid="czzWxysbfxColumns"/>
+		FROM czz_wxysbfx a
+		<include refid="czzWxysbfxJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_wxysbfx(
+			id,
+			wxy_type,
+			wxy_kind,
+			wxy_name,
+			amount,
+			location,
+			person,
+			plan,
+			file,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{wxyType},
+			#{wxyKind},
+			#{wxyName},
+			#{amount},
+			#{location},
+			#{person},
+			#{plan},
+			#{file},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_wxysbfx SET 	
+			wxy_type = #{wxyType},
+			wxy_kind = #{wxyKind},
+			wxy_name = #{wxyName},
+			amount = #{amount},
+			location = #{location},
+			person = #{person},
+			plan = #{plan},
+			file = #{file},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_wxysbfx SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

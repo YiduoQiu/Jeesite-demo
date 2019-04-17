@@ -5,6 +5,13 @@
 	<title>${fns:getConfig('productName')}</title>
 	<meta name="decorator" content="blank"/><c:set var="tabmode" value="${empty cookie.tabmode.value ? '0' : cookie.tabmode.value}"/>
     <c:if test="${tabmode eq '1'}"><link rel="Stylesheet" href="${ctxStatic}/jerichotab/css/jquery.jerichotab.css" />
+    <c:set var="welcomelist" value="${fns:getWelcomePage()}"/>
+	<c:set var="welFlag" value="0"/>
+	<c:forEach items="${welcomelist}" var="welcome" varStatus="status">
+		<c:if test="${status.index eq '0'}">
+			<c:set var="welFlag" value="${welcome.mentionFlag}"/>
+		</c:if>
+	</c:forEach>
     <script type="text/javascript" src="${ctxStatic}/jerichotab/js/jquery.jerichotab.js"></script></c:if>
 	<style type="text/css">
 		#main {padding:0;margin:0;} #main .container-fluid{padding:0 4px 0 6px;}
@@ -23,6 +30,13 @@
                 tabs: [], loadOnce: true, tabWidth: 110, titleHeight: tabTitleHeight
             });//</c:if>
 			// 绑定菜单单击事件
+			//var showFlag = "${welFlag.value}";
+			var showFlag = "${fns:getWelcomePage()}";
+			showFlag = showFlag.substring(showFlag.indexOf("mentionFlag"),showFlag.indexOf("remarks"));
+			showFlag = showFlag.substring(showFlag.indexOf("="));
+			if (showFlag == "=<null>," || showFlag == "=0,") {
+				window.open("${ctx}/welcome/czzWelcom/form?id=1",'newwindow','height=500,width=800,top=90,left=200,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
+			}
 			$("#menu a.menu").click(function(){
 				// 一级菜单焦点
 				$("#menu li.menu").removeClass("active");
@@ -48,14 +62,21 @@
 					$(menuId).show();
 					if ($(menuId + " .accordion-body:first").length > 0){
 						// 初始化点击第一个二级菜单
-						if (!$(menuId + " .accordion-body:first").hasClass('in')){
-							$(menuId + " .accordion-heading:first a").click();
+						if ($(menuId + " .accordion-body").hasClass('in') || $(menuId + " .accordion-group:first div").length > 1) {
+							if (!$(menuId + " .accordion-body:first").hasClass('in')){
+								//$(menuId + " .accordion-heading:first a").click();
+								//$(menuId + " .accordion-body.in.collapse").prev().find("a").click();
+							}
+							if (!$(menuId + " .accordion-body li:first ul:first").is(":visible")){
+								//$(menuId + " .accordion-body a:first i").click();
+								$(menuId + " .accordion-body.in").find(".active").find("a").find("i").click();
+							}
+							// 初始化点击第一个三级菜单
+							$(menuId + " .accordion-body li:first li:first a:first i").click();
+						} else {
+							//第一个二级菜单没有子菜单的情况
+							$(menuId + " .accordion-heading:first a:first i").click();
 						}
-						if (!$(menuId + " .accordion-body li:first ul:first").is(":visible")){
-							$(menuId + " .accordion-body a:first i").click();
-						}
-						// 初始化点击第一个三级菜单
-						$(menuId + " .accordion-body li:first li:first a:first i").click();
 					} else{
 						// 初始化点击第一个一级菜单
 						$(menuId + " .accordion-heading:first a:first i").click();
@@ -113,6 +134,7 @@
 				wSizeWidth();
 				return false;
 			});
+			//初始化弹出欢迎页面
 			// 初始化点击第一个一级菜单
 			$("#menu a.menu:first span").click();
 			// <c:if test="${tabmode eq '1'}"> 下拉菜单以选项卡方式打开
@@ -138,6 +160,8 @@
 			}
 			getNotifyNum(); //<c:if test="${oaNotifyRemindInterval ne '' && oaNotifyRemindInterval ne '0'}">
 			setInterval(getNotifyNum, ${oaNotifyRemindInterval}); //</c:if>
+		    setInterval('changeColor()',500);
+			//$("#notifyNum").css("color","red");
 		});
 		// <c:if test="${tabmode eq '1'}"> 添加一个页签
 		function addTab($this, refresh){
@@ -154,6 +178,16 @@
             }).loadData(refresh);
 			return false;
 		}// </c:if>
+		function changeColor(colorFlag) {
+			color = $("#notifyNum").css("color");
+	    	if (color == "rgb(255, 0, 0)"){
+	    		$("#notifyNum").css("color","white");
+	        	 colorFlag = 1;
+	         }else{
+	        	 $("#notifyNum").css("color","red");
+	        	 colorFlag = 0;
+	         }
+	     }
 	</script>
 </head>
 <body>
@@ -162,7 +196,7 @@
 			<div class="navbar-inner">
 				<div class="brand"><span id="productName">${fns:getConfig('productName')}</span></div>
 				<ul id="userControl" class="nav pull-right">
-					<li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="_blank" title="访问网站主页"><i class="icon-home"></i></a></li>
+					<!--<li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="_blank" title="访问网站主页"><i class="icon-home"></i></a></li>-->
 					<li id="themeSwitch" class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="icon-th-large"></i></a>
 						<ul class="dropdown-menu">

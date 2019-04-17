@@ -10,13 +10,14 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 年度培训计划Entity
  * @author qyd
- * @version 2018-07-20
+ * @version 2019-03-12
  */
 public class CzzAqpxNdjh extends DataEntity<CzzAqpxNdjh> {
 	
 	private static final long serialVersionUID = 1L;
 	private String title;		// 标题
 	private String content;		// 内容
+	private String file;		// 文件
 	
 	public CzzAqpxNdjh() {
 		super();
@@ -35,13 +36,20 @@ public class CzzAqpxNdjh extends DataEntity<CzzAqpxNdjh> {
 		this.title = title;
 	}
 	
-	@Length(min=0, max=3000, message="内容长度必须介于 0 和 3000 之间")
 	public String getContent() {
 		return content;
 	}
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
 	}
 	
 }

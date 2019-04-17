@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.aqglbm.entity;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Length;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
@@ -16,6 +18,7 @@ public class CzzAqglbm extends DataEntity<CzzAqglbm> {
 	
 	private static final long serialVersionUID = 1L;
 	private String name;		// 机构名称
+	private Integer sort; 	// 排序
 	private String function;		// 职能职责
 	private String file;		// 附件
 	
@@ -36,7 +39,15 @@ public class CzzAqglbm extends DataEntity<CzzAqglbm> {
 		this.name = name;
 	}
 	
-	@Length(min=0, max=2000, message="职能职责长度必须介于 0 和 2000 之间")
+	@NotNull
+	public Integer getSort() {
+		return sort;
+	}
+	
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+	
 	public String getFunction() {
 		return function;
 	}
@@ -45,7 +56,6 @@ public class CzzAqglbm extends DataEntity<CzzAqglbm> {
 		this.function = function;
 	}
 	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}

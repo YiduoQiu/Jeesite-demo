@@ -4,9 +4,10 @@
 <head>
 	<title>复查验收管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -72,7 +73,7 @@
 				<th>整改状态</th>
 				<th>确认人</th>
 				<th>复查时间</th>
-				<shiro:hasPermission name="fcys:czzFcys:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -105,10 +106,12 @@
 				<td>
 					<fmt:formatDate value="${czzFcys.confirmdate}" pattern="yyyy-MM-dd"/>
 				</td>
-				<shiro:hasPermission name="fcys:czzFcys:edit"><td>
-    				<a href="${ctx}/fcys/czzFcys/form?id=${czzFcys.id}">修改</a>
+				<td>
+    				<a href="${ctx}/fcys/czzFcys/form?id=${czzFcys.id}">查看</a>
+    				<shiro:hasPermission name="fcys:czzFcys:edit">
 					<a href="${ctx}/fcys/czzFcys/delete?id=${czzFcys.id}" onclick="return confirmx('确认要删除该复查验收吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

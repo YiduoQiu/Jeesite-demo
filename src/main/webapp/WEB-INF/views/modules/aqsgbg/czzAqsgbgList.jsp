@@ -4,9 +4,10 @@
 <head>
 	<title>DROP TABLE IF EXISTS czz_aqsgbg;管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -50,7 +51,7 @@
 				<th>事故名称</th>
 				<th>上报状态</th>
 				<th>上报时间</th>
-				<shiro:hasPermission name="aqsgbg:czzAqsgbg:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -60,15 +61,17 @@
 					${czzAqsgbg.name}
 				</a></td>
 				<td>
-					${fns:getDictLabel(czzAqsgbg.sgType, 'sb_flag', '')}
+					${fns:getDictLabel(czzAqsgbg.type, 'sb_flag', '')}
 				</td>
 				<td>
 					<fmt:formatDate value="${czzAqsgbg.sbTime}" pattern="yyyy-MM-dd HH:mm"/>
 				</td>
-				<shiro:hasPermission name="aqsgbg:czzAqsgbg:edit"><td>
-    				<a href="${ctx}/aqsgbg/czzAqsgbg/form?id=${czzAqsgbg.id}">修改</a>
+				<td>
+    				<a href="${ctx}/aqsgbg/czzAqsgbg/form?id=${czzAqsgbg.id}">查看</a>
+    				<shiro:hasPermission name="aqsgbg:czzAqsgbg:edit">
 					<a href="${ctx}/aqsgbg/czzAqsgbg/delete?id=${czzAqsgbg.id}" onclick="return confirmx('确认要删除该DROP TABLE IF EXISTS czz_aqsgbg;吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

@@ -4,7 +4,7 @@
     
 	<sql id="czzAqpxKhqkdt1Columns">
 		a.id AS "id",
-		a.test_data_main_id AS "testDataMain.ID",
+		a.test_data_main_id AS "testDataMain.id",
 		a.name AS "name",
 		a.subject AS "subject",
 		a.grade AS "grade",
@@ -36,8 +36,8 @@
 		<include refid="czzAqpxKhqkdt1Joins"/>
 		<where>
 			a.del_flag = #{DEL_FLAG_NORMAL}
-			<if test="testDataMain != null and testDataMain.ID != null and testDataMain.ID != ''">
-				AND a.test_data_main_id = #{testDataMain.ID}
+			<if test="testDataMain != null and testDataMain.id != null and testDataMain.id != ''">
+				AND a.test_data_main_id = #{testDataMain.id}
 			</if>
 		</where>
 		<choose>
@@ -84,7 +84,7 @@
 			del_flag
 		) VALUES (
 			#{id},
-			#{testDataMain.ID},
+			#{testDataMain.id},
 			#{name},
 			#{subject},
 			#{grade},
@@ -100,7 +100,7 @@
 	
 	<update id="update">
 		UPDATE czz_aqpx_khqkdt1 SET 	
-			test_data_main_id = #{testDataMain.ID},
+			test_data_main_id = #{testDataMain.id},
 			name = #{name},
 			subject = #{subject},
 			grade = #{grade},
@@ -118,7 +118,7 @@
 				WHERE id = #{id}
 			</when>
 			<otherwise>
-				WHERE test_data_main_id = #{testDataMain.ID}
+				WHERE test_data_main_id = #{testDataMain.id}
 			</otherwise>
 		</choose>
 	</update>

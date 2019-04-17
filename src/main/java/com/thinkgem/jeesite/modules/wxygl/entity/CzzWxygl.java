@@ -17,7 +17,9 @@ public class CzzWxygl extends DataEntity<CzzWxygl> {
 	private static final long serialVersionUID = 1L;
 	private String wxyName;		// 危险源名称
 	private String wxyType;		// 危险源类型（0：一般危险源，1：重大危险源）
-	private String location;		// 位置
+	private String wxyKind;		// 危险源类别
+	private String amount;		// 数量
+	private String location;	// 位置
 	private String person;		// 管理人员
 	private String plan;		// 管理方案
 	private String file;		// 附件
@@ -48,6 +50,22 @@ public class CzzWxygl extends DataEntity<CzzWxygl> {
 		this.wxyType = wxyType;
 	}
 	
+	public String getWxyKind() {
+		return wxyKind;
+	}
+
+	public void setWxyKind(String wxyKind) {
+		this.wxyKind = wxyKind;
+	}
+
+	public String getAmount() {
+		return amount;
+	}
+
+	public void setAmount(String amount) {
+		this.amount = amount;
+	}
+
 	@Length(min=0, max=300, message="位置长度必须介于 0 和 300 之间")
 	public String getLocation() {
 		return location;
@@ -66,7 +84,6 @@ public class CzzWxygl extends DataEntity<CzzWxygl> {
 		this.person = person;
 	}
 	
-	@Length(min=0, max=2000, message="管理方案长度必须介于 0 和 2000 之间")
 	public String getPlan() {
 		return plan;
 	}
@@ -75,7 +92,6 @@ public class CzzWxygl extends DataEntity<CzzWxygl> {
 		this.plan = plan;
 	}
 	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}

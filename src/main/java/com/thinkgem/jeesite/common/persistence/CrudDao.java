@@ -3,6 +3,7 @@
  */
 package com.thinkgem.jeesite.common.persistence;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -86,4 +87,19 @@ public interface CrudDao<T> extends BaseDao {
 	 */
 	public List<T> findGoalData(T entity);
 	
+    /**
+     * 统计安全检查报表总量
+     * @param entity
+     * @return
+     */
+    public int firstCount(T entity);
+    public int secondCount(T entity);
+    public int thirdCount(T entity);
+    public int fourthCount(T entity);
+    public int fifthCount(T entity);
+    public int sixthCount(T entity);
+    public int seventhCount(T entity);
+    public int eightCount(T entity);
+    public int nineCount(T entity);
+    public int tenCount(T entity);
 }

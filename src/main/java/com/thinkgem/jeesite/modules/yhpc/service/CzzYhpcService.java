@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
 import com.thinkgem.jeesite.modules.yhpc.entity.CzzYhpc;
+import com.thinkgem.jeesite.modules.aqjc.entity.CzzAqjc;
+import com.thinkgem.jeesite.modules.sjcx.entity.CzzSjcx;
 import com.thinkgem.jeesite.modules.yhpc.dao.CzzYhpcDao;
 
 /**
@@ -44,4 +46,17 @@ public class CzzYhpcService extends CrudService<CzzYhpcDao, CzzYhpc> {
 		super.delete(czzYhpc);
 	}
 	
+	//统计报表用	
+//	public int firstCount(CzzYhpc czzYhpc) {
+//		return super.firstCount(czzYhpc);
+//	}
+//	public int secondCount(CzzYhpc czzYhpc) {
+//		return super.secondCount(czzYhpc);
+//	}
+//	public int thirdCount(CzzYhpc czzYhpc) {
+//		return super.thirdCount(czzYhpc);
+//	}
+//	public int fourthCount(CzzYhpc czzYhpc) {
+//		return super.fourthCount(czzYhpc);
+//	}
 }

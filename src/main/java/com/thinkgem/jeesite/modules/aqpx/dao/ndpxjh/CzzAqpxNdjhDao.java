@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.aqpx.entity.ndpxjh.CzzAqpxNdjh;
 /**
  * 年度培训计划DAO接口
  * @author qyd
- * @version 2018-07-20
+ * @version 2019-03-12
  */
 @MyBatisDao
 public interface CzzAqpxNdjhDao extends CrudDao<CzzAqpxNdjh> {

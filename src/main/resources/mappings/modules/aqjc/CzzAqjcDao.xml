@@ -179,5 +179,53 @@
 			del_flag = #{DEL_FLAG_DELETE}
 		WHERE id = #{id}
 	</update>
+	<!--专项检查已整改-->
+    <select id="firstCount" resultType="Integer">
+        select  count(1) from czz_aqjc a
+		<where>
+			a.check_type='0' and a.type='0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+            </if>
+			<!--<if test="beginDate != null AND beginDate != ''">-->
+			<!--    AND a.date &gt;= #{beginDate,jdbcType=DATE} -->
+
+		<!--</if>-->
+			<!--<if test="endDate != nul AND endDate != ''">-->
+				<!--    AND a.date &lt;= #{endDate,jdbcType=DATE} -->
+			<!--</if>-->
+		</where>
+    </select>
+	<!--专项检查未整改-->
+    <select id="secondCount" resultType="Integer">
+        select  count(1) from czz_aqjc a
+        <where>
+            a.check_type='0' and a.type='1'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+            </if>
+        </where>
+    </select>
+	<!--全面检查已整改-->
+    <select id="thirdCount" resultType="Integer">
+        select  count(1) from czz_aqjc a
+        <where>
+            a.check_type='1' and a.type='0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+            </if>
+        </where>
+    </select>
+	<!--全面检查未整改-->
+    <select id="fourthCount" resultType="Integer">
+        select  count(1) from czz_aqjc a
+        <where>
+            a.check_type='1' and a.type='1'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate,jdbcType=DATE} AND #{endDate,jdbcType=DATE}
+            </if>
+        </where>
+    </select>
+    
 	
 </mapper>

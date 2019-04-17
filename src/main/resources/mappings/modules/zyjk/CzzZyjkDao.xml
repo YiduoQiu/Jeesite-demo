@@ -7,8 +7,8 @@
 		a.type AS "type",
 		a.person AS "person",
 		a.harm AS "harm",
-		a.safety AS "safety",
 		a.onsitetest AS "onsitetest",
+		a.perprotect AS "perprotect",
 		a.phycheck AS "phycheck",
 		a.disease_flag AS "diseaseFlag",
 		a.method AS "method",
@@ -45,9 +45,6 @@
 			<if test="person != null and person != ''">
 				AND a.person = #{person}
 			</if>
-			<if test="diseaseFlag != null and diseaseFlag != ''">
-				AND a.disease_flag = #{diseaseFlag}
-			</if>
 		</where>
 		<choose>
 			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
@@ -83,8 +80,8 @@
 			type,
 			person,
 			harm,
-			safety,
 			onsitetest,
+			perprotect,
 			phycheck,
 			disease_flag,
 			method,
@@ -100,8 +97,8 @@
 			#{type},
 			#{person},
 			#{harm},
-			#{safety},
 			#{onsitetest},
+			#{perprotect},
 			#{phycheck},
 			#{diseaseFlag},
 			#{method},
@@ -120,14 +117,15 @@
 			type = #{type},
 			person = #{person},
 			harm = #{harm},
-			safety = #{safety},
 			onsitetest = #{onsitetest},
+			perprotect = #{perprotect},
 			phycheck = #{phycheck},
 			disease_flag = #{diseaseFlag},
 			method = #{method},
 			file = #{file},
 			update_by = #{updateBy.id},
-			update_date = #{updateDate}
+			update_date = #{updateDate},
+			remarks = #{remarks}
 		WHERE id = #{id}
 	</update>
 	

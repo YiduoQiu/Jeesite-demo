@@ -4,9 +4,19 @@
 <head>
 	<title>安全管理部门管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
+	<style type="text/css">
+		#function{
+		   overflow: hidden;
+		   text-overflow: ellipsis;
+		   white-space: nowrap;
+		   width:20em;
+		   height:30px;
+		}
+	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -38,7 +48,7 @@
 			<tr>
 				<th>机构名称</th>
 				<th>职能职责</th>
-				<shiro:hasPermission name="aqglbm:czzAqglbm:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -48,12 +58,14 @@
 					${czzAqglbm.name}
 				</a></td>
 				<td>
-					${czzAqglbm.function}
+					<div id="function">${czzAqglbm.function}</div>
 				</td>
-				<shiro:hasPermission name="aqglbm:czzAqglbm:edit"><td>
-    				<a href="${ctx}/aqglbm/czzAqglbm/form?id=${czzAqglbm.id}">修改</a>
+				<td>
+    				<a href="${ctx}/aqglbm/czzAqglbm/form?id=${czzAqglbm.id}">查看</a>
+    				<shiro:hasPermission name="aqglbm:czzAqglbm:edit">
 					<a href="${ctx}/aqglbm/czzAqglbm/delete?id=${czzAqglbm.id}" onclick="return confirmx('确认要删除该安全管理部门吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

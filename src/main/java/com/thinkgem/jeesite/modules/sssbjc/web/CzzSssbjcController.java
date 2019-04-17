@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.sssbjc.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ import com.thinkgem.jeesite.modules.sssbjc.service.CzzSssbjcService;
 /**
  * 设施设备安全检查Controller
  * @author qyd
- * @version 2018-08-13
+ * @version 2019-03-07
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sssbjc/czzSssbjc")
@@ -57,6 +58,7 @@ public class CzzSssbjcController extends BaseController {
 	@RequiresPermissions("sssbjc:czzSssbjc:view")
 	@RequestMapping(value = "form")
 	public String form(CzzSssbjc czzSssbjc, Model model) {
+		czzSssbjc.setCheckcontent(StringEscapeUtils.unescapeHtml4(czzSssbjc.getCheckcontent()));
 		model.addAttribute("czzSssbjc", czzSssbjc);
 		return "modules/sssbjc/czzSssbjcForm";
 	}

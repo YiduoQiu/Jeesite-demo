@@ -19,12 +19,14 @@ import com.thinkgem.jeesite.modules.sys.dao.MenuDao;
 import com.thinkgem.jeesite.modules.sys.dao.OfficeDao;
 import com.thinkgem.jeesite.modules.sys.dao.RoleDao;
 import com.thinkgem.jeesite.modules.sys.dao.UserDao;
+import com.thinkgem.jeesite.modules.welcome.dao.CzzWelcomDao;
 import com.thinkgem.jeesite.modules.sys.entity.Area;
 import com.thinkgem.jeesite.modules.sys.entity.Menu;
 import com.thinkgem.jeesite.modules.sys.entity.Office;
 import com.thinkgem.jeesite.modules.sys.entity.Role;
 import com.thinkgem.jeesite.modules.sys.entity.User;
 import com.thinkgem.jeesite.modules.sys.security.SystemAuthorizingRealm.Principal;
+import com.thinkgem.jeesite.modules.welcome.entity.CzzWelcom;
 
 /**
  * 用户工具类
@@ -38,6 +40,7 @@ public class UserUtils {
 	private static MenuDao menuDao = SpringContextHolder.getBean(MenuDao.class);
 	private static AreaDao areaDao = SpringContextHolder.getBean(AreaDao.class);
 	private static OfficeDao officeDao = SpringContextHolder.getBean(OfficeDao.class);
+	private static CzzWelcomDao czzWelcomDao = SpringContextHolder.getBean(CzzWelcomDao.class);
 
 	public static final String USER_CACHE = "userCache";
 	public static final String USER_CACHE_ID_ = "id_";
@@ -265,6 +268,14 @@ public class UserUtils {
 		return null;
 	}
 	
+	/**
+	 * 获取欢迎页面数据
+	 */
+	public static List<CzzWelcom> getWelcomePage() {
+		@SuppressWarnings("unchecked")
+		List<CzzWelcom> welcomelist = czzWelcomDao.findAllList(new CzzWelcom());
+		return welcomelist;
+	}
 	// ============== User Cache ==============
 	
 	public static Object getCache(String key) {

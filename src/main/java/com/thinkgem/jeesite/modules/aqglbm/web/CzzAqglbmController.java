@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.aqglbm.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.aqglbm.entity.CzzAqglbm;
 import com.thinkgem.jeesite.modules.aqglbm.service.CzzAqglbmService;
+import com.thinkgem.jeesite.modules.aqglry.entity.CzzAqglry;
 
 /**
  * 安全管理部门Controller
@@ -50,6 +52,9 @@ public class CzzAqglbmController extends BaseController {
 	@RequestMapping(value = {"list", ""})
 	public String list(CzzAqglbm czzAqglbm, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<CzzAqglbm> page = czzAqglbmService.findPage(new Page<CzzAqglbm>(request, response), czzAqglbm); 
+		for(CzzAqglbm Czzaqglbm:page.getList()){
+			Czzaqglbm.setFunction(StringEscapeUtils.unescapeHtml4(Czzaqglbm.getFunction()));
+		}
 		model.addAttribute("page", page);
 		return "modules/aqglbm/czzAqglbmList";
 	}
@@ -57,6 +62,7 @@ public class CzzAqglbmController extends BaseController {
 	@RequiresPermissions("aqglbm:czzAqglbm:view")
 	@RequestMapping(value = "form")
 	public String form(CzzAqglbm czzAqglbm, Model model) {
+		czzAqglbm.setFunction(StringEscapeUtils.unescapeHtml4(czzAqglbm.getFunction()));
 		model.addAttribute("czzAqglbm", czzAqglbm);
 		return "modules/aqglbm/czzAqglbmForm";
 	}

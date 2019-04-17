@@ -18,6 +18,7 @@ public class CzzZyaq extends DataEntity<CzzZyaq> {
 	
 	private static final long serialVersionUID = 1L;
 	private String name;		// 作业名称
+	private String type;		// 作业名称
 	private Date date;		// 时间
 	private String location;		// 地点
 	private String zyPerson;		// 作业人员
@@ -25,6 +26,9 @@ public class CzzZyaq extends DataEntity<CzzZyaq> {
 	private String task;		// 安全作业方案
 	private String performance;		// 实施情况
 	private String file;		// 附件
+	
+	private Date beginDate;		// 开始 时间
+	private Date endDate;		// 结束 时间
 	
 	public CzzZyaq() {
 		super();
@@ -43,6 +47,14 @@ public class CzzZyaq extends DataEntity<CzzZyaq> {
 		this.name = name;
 	}
 	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	public Date getDate() {
 		return date;
@@ -88,7 +100,6 @@ public class CzzZyaq extends DataEntity<CzzZyaq> {
 		this.task = task;
 	}
 	
-	@Length(min=0, max=2000, message="实施情况长度必须介于 0 和 2000 之间")
 	public String getPerformance() {
 		return performance;
 	}
@@ -97,13 +108,28 @@ public class CzzZyaq extends DataEntity<CzzZyaq> {
 		this.performance = performance;
 	}
 	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}
 
 	public void setFile(String file) {
 		this.file = file;
+	}
+
+	public Date getBeginDate() {
+		return beginDate;
+	}
+
+	public void setBeginDate(Date beginDate) {
+		this.beginDate = beginDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	
 }

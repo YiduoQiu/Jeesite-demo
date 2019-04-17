@@ -4,9 +4,10 @@
 <head>
 	<title>隐患排查验收管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -73,7 +74,7 @@
 				<th>确认人</th>
 				<th>确认时间</th>
 				<th>整改状态</th>
-				<shiro:hasPermission name="yhpcys:czzYhpcYs:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -95,15 +96,17 @@
 					${czzYhpcYs.confirm}
 				</td>
 				<td>
-					<fmt:formatDate value="${czzYhpcYs.confirmdate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzYhpcYs.confirmdate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${fns:getDictLabel(czzYhpcYs.type, 'type_flag', '')}
 				</td>
-				<shiro:hasPermission name="yhpcys:czzYhpcYs:edit"><td>
-    				<a href="${ctx}/yhpcys/czzYhpcYs/form?id=${czzYhpcYs.id}">修改</a>
+				<td>
+    				<a href="${ctx}/yhpcys/czzYhpcYs/form?id=${czzYhpcYs.id}">查看</a>
+    				<shiro:hasPermission name="yhpcys:czzYhpcYs:edit">
 					<a href="${ctx}/yhpcys/czzYhpcYs/delete?id=${czzYhpcYs.id}" onclick="return confirmx('确认要删除该隐患排查验收吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

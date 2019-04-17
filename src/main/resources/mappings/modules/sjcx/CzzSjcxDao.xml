@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.sjcx.dao.CzzSjcxDao">
+	<!--专项检查已整改-->
+	<sql id="czzSjcxColumns">
+		count(1) AS "count",
+    	null AS "beginDate",
+     	null AS "endDate"
+	</sql>
+    <select id="firstCount" resultType="Integer">
+        select  
+        	count(1)
+        	from czz_aqjc a
+		<where>
+			a.check_type='0' and a.type='0' and del_flag = '0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate} AND #{endDate}
+            </if>
+		</where>
+    </select>
+	<!--专项检查未整改-->
+    <select id="secondCount" resultType="Integer">
+        select  
+        	count(1)
+        	from czz_aqjc a
+        <where>
+            a.check_type='0' and a.type='1' and del_flag = '0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+	<!--全面检查已整改-->
+    <select id="thirdCount" resultType="Integer">
+        select  
+        	count(1)
+        	from czz_aqjc a
+        <where>
+            a.check_type='1' and a.type='0' and del_flag = '0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+	<!--全面检查未整改-->
+    <select id="fourthCount" resultType="Integer">
+        select  
+        	count(1)
+        	from czz_aqjc a
+        <where>
+            a.check_type='1' and a.type='1' and del_flag = '0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+    <!--定期安全生产检查已整改-->
+    <select id="fifthCount" resultType="Integer">
+        select  count(1) from czz_aqjc a
+        <where>
+            a.check_type='2' and a.type='0' and del_flag = '0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+	<!--定期安全生产检查未整改-->
+    <select id="sixthCount" resultType="Integer">
+        select  count(1) from czz_aqjc a
+        <where>
+            a.check_type='2' and a.type='1' and del_flag = '0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+	<!--经常性安全生产检查已整改-->
+    <select id="seventhCount" resultType="Integer">
+        select  count(1) from czz_aqjc a
+        <where>
+            a.check_type='3' and a.type='0' and del_flag = '0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+    <!--经常性安全生产检查未整改-->
+    <select id="eightCount" resultType="Integer">
+        select  count(1) from czz_aqjc a
+        <where>
+            a.check_type='3' and a.type='1' and del_flag = '0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+    <!--季节性、节假日前后安全生产检查已整改-->
+    <select id="nineCount" resultType="Integer">
+        select  count(1) from czz_aqjc a
+        <where>
+            a.check_type='4' and a.type='0' and del_flag = '0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+    <!--季节性、节假日前后安全生产检查未整改-->
+    <select id="tenCount" resultType="Integer">
+        select  count(1) from czz_aqjc a
+        <where>
+            a.check_type='4' and a.type='1' and del_flag = '0'
+            <if test="beginDate != null and endDate != null and beginDate != '' and endDate != ''">
+                AND a.date BETWEEN #{beginDate} AND #{endDate}
+            </if>
+        </where>
+    </select>
+</mapper>

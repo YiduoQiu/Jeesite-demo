@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.wxygl.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,7 @@ public class CzzWxyglController extends BaseController {
 	@RequiresPermissions("wxygl:czzWxygl:view")
 	@RequestMapping(value = "form")
 	public String form(CzzWxygl czzWxygl, Model model) {
+		czzWxygl.setPlan(StringEscapeUtils.unescapeHtml4(czzWxygl.getPlan()));
 		model.addAttribute("czzWxygl", czzWxygl);
 		return "modules/wxygl/czzWxyglForm";
 	}

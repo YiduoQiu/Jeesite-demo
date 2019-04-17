@@ -9,6 +9,7 @@
 		a.phone AS "phone",
 		a.responsible AS "responsible",
 		a.file AS "file",
+		a.sort AS "sort",
 		a.create_by AS "createBy.id",
 		a.create_date AS "createDate",
 		a.update_by AS "updateBy.id",
@@ -50,7 +51,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+				ORDER BY a.sort
 			</otherwise>
 		</choose>
 	</select>
@@ -68,7 +69,7 @@
 				ORDER BY ${page.orderBy}
 			</when>
 			<otherwise>
-				ORDER BY a.update_date DESC
+				ORDER BY a.sort
 			</otherwise>
 		</choose>
 	</select>
@@ -81,6 +82,7 @@
 			phone,
 			responsible,
 			file,
+			sort,
 			create_by,
 			create_date,
 			update_by,
@@ -94,6 +96,7 @@
 			#{phone},
 			#{responsible},
 			#{file},
+			#{sort},
 			#{createBy.id},
 			#{createDate},
 			#{updateBy.id},
@@ -110,6 +113,7 @@
 			phone = #{phone},
 			responsible = #{responsible},
 			file = #{file},
+			sort = #{sort},
 			update_by = #{updateBy.id},
 			update_date = #{updateDate}
 		WHERE id = #{id}

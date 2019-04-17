@@ -10,7 +10,7 @@ import com.thinkgem.jeesite.modules.yjjy.entity.CzzYjjy;
 /**
  * 应急救援DAO接口
  * @author qyd
- * @version 2018-07-20
+ * @version 2018-09-18
  */
 @MyBatisDao
 public interface CzzYjjyDao extends CrudDao<CzzYjjy> {

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.wxygl_sbfx.dao.CzzWxysbfxDt1Dao">
+    
+	<sql id="czzWxysbfxDt1Columns">
+		a.id AS "id",
+		a.test_data_main_id AS "testDataMain.id",
+		a.name AS "name",
+		a.amount_max AS "amountMax",
+		a.amount_cri AS "amountCri",
+		a.aqr AS "aqr",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="czzWxysbfxDt1Joins">
+		LEFT JOIN czz_wxysbfx b ON b.id = a.test_data_main_id
+	</sql>
+    
+	<select id="get" resultType="CzzWxysbfxDt1">
+		SELECT 
+			<include refid="czzWxysbfxDt1Columns"/>
+		FROM czz_wxysbfx_dt1 a
+		<include refid="czzWxysbfxDt1Joins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CzzWxysbfxDt1">
+		SELECT 
+			<include refid="czzWxysbfxDt1Columns"/>
+		FROM czz_wxysbfx_dt1 a
+		<include refid="czzWxysbfxDt1Joins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="testDataMain != null and testDataMain.id != null and testDataMain.id != ''">
+				AND a.test_data_main_id = #{testDataMain.id}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.create_date ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CzzWxysbfxDt1">
+		SELECT 
+			<include refid="czzWxysbfxDt1Columns"/>
+		FROM czz_wxysbfx_dt1 a
+		<include refid="czzWxysbfxDt1Joins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.create_date ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO czz_wxysbfx_dt1(
+			id,
+			test_data_main_id,
+			name,
+			amount_max,
+			amount_cri,
+			aqr,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{testDataMain.id},
+			#{name},
+			#{amountMax},
+			#{amountCri},
+			#{aqr},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE czz_wxysbfx_dt1 SET 	
+			test_data_main_id = #{testDataMain.id},
+			name = #{name},
+			amount_max = #{amountMax},
+			amount_cri = #{amountCri},
+			aqr = #{aqr},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE czz_wxysbfx_dt1 SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		<choose>
+			<when test="id !=null and id != ''">
+				WHERE id = #{id}
+			</when>
+			<otherwise>
+				WHERE test_data_main_id = #{testDataMain.id}
+			</otherwise>
+		</choose>
+	</update>
+	
+</mapper>

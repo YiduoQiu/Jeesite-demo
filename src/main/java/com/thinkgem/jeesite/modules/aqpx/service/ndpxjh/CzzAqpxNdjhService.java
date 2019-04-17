@@ -16,7 +16,7 @@ import com.thinkgem.jeesite.modules.aqpx.dao.ndpxjh.CzzAqpxNdjhDao;
 /**
  * 年度培训计划Service
  * @author qyd
- * @version 2018-07-20
+ * @version 2019-03-12
  */
 @Service
 @Transactional(readOnly = true)

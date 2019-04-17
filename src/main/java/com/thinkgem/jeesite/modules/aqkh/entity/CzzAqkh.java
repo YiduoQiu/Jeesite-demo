@@ -3,6 +3,8 @@
  */
 package com.thinkgem.jeesite.modules.aqkh.entity;
 
+import java.util.Date;
+
 import org.hibernate.validator.constraints.Length;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
@@ -19,7 +21,11 @@ public class CzzAqkh extends DataEntity<CzzAqkh> {
 	private String title;		// 标题
 	private String person;		// 考核对象
 	private String content;		// 考核内容
+	private String feedback;		// 反馈
 	private String file;		// 附件
+	
+	private Date beginDate;		// 开始 时间
+	private Date endDate;		// 结束 时间
 	
 	public CzzAqkh() {
 		super();
@@ -56,7 +62,6 @@ public class CzzAqkh extends DataEntity<CzzAqkh> {
 		this.person = person;
 	}
 	
-	@Length(min=0, max=1000, message="考核内容长度必须介于 0 和 1000 之间")
 	public String getContent() {
 		return content;
 	}
@@ -65,13 +70,36 @@ public class CzzAqkh extends DataEntity<CzzAqkh> {
 		this.content = content;
 	}
 	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
+	public String getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
+
 	public String getFile() {
 		return file;
 	}
 
 	public void setFile(String file) {
 		this.file = file;
+	}
+
+	public Date getBeginDate() {
+		return beginDate;
+	}
+
+	public void setBeginDate(Date beginDate) {
+		this.beginDate = beginDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	
 }

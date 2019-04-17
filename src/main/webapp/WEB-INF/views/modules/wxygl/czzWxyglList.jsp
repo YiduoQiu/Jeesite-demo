@@ -2,11 +2,12 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>危险源管理管理</title>
+	<title>一般危险源管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -18,8 +19,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/wxygl/czzWxygl/">危险源管理列表</a></li>
-		<shiro:hasPermission name="wxygl:czzWxygl:edit"><li><a href="${ctx}/wxygl/czzWxygl/form">危险源管理添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/wxygl/czzWxygl/">一般危险源台账</a></li>
+		<shiro:hasPermission name="wxygl:czzWxygl:edit"><li><a href="${ctx}/wxygl/czzWxygl/form">一般危险源添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzWxygl" action="${ctx}/wxygl/czzWxygl/" method="post" class="breadcrumb form-search">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
@@ -29,9 +30,9 @@
 				<form:input path="wxyName" htmlEscape="false" maxlength="100" class="input-medium"/>
 			</li>
 			<li><label>危险源类型：</label>
-				<form:select path="wxyType" class="input-medium">
+				<form:select path="wxyKind" class="input-medium">
 					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('wxy_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+					<form:options items="${fns:getDictList('type_wxy')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			</li>
 			<li><label>位置：</label>
@@ -49,7 +50,7 @@
 				<th>危险源类型</th>
 				<th>位置</th>
 				<th>管理人员</th>
-				<shiro:hasPermission name="wxygl:czzWxygl:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -59,7 +60,7 @@
 					${czzWxygl.wxyName}
 				</a></td>
 				<td>
-					${fns:getDictLabel(czzWxygl.wxyType, 'wxy_type', '')}
+					${fns:getDictLabel(czzWxygl.wxyKind, 'type_wxy', '')}
 				</td>
 				<td>
 					${czzWxygl.location}
@@ -67,10 +68,12 @@
 				<td>
 					${czzWxygl.person}
 				</td>
-				<shiro:hasPermission name="wxygl:czzWxygl:edit"><td>
-    				<a href="${ctx}/wxygl/czzWxygl/form?id=${czzWxygl.id}">修改</a>
+				<td>
+    				<a href="${ctx}/wxygl/czzWxygl/form?id=${czzWxygl.id}">查看</a>
+    				<shiro:hasPermission name="wxygl:czzWxygl:edit">
 					<a href="${ctx}/wxygl/czzWxygl/delete?id=${czzWxygl.id}" onclick="return confirmx('确认要删除该危险源管理吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

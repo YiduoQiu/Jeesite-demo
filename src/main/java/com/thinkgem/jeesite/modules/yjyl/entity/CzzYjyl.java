@@ -71,7 +71,6 @@ public class CzzYjyl extends DataEntity<CzzYjyl> {
 		this.location = location;
 	}
 	
-	@Length(min=0, max=2000, message="演练方案长度必须介于 0 和 2000 之间")
 	public String getPlan() {
 		return plan;
 	}
@@ -80,7 +79,6 @@ public class CzzYjyl extends DataEntity<CzzYjyl> {
 		this.plan = plan;
 	}
 	
-	@Length(min=0, max=2000, message="演练过程长度必须介于 0 和 2000 之间")
 	public String getAccident() {
 		return accident;
 	}
@@ -89,7 +87,6 @@ public class CzzYjyl extends DataEntity<CzzYjyl> {
 		this.accident = accident;
 	}
 	
-	@Length(min=0, max=2000, message="演练评估长度必须介于 0 和 2000 之间")
 	public String getEvaluate() {
 		return evaluate;
 	}
@@ -98,7 +95,6 @@ public class CzzYjyl extends DataEntity<CzzYjyl> {
 		this.evaluate = evaluate;
 	}
 	
-	@Length(min=0, max=255, message="预案修订（处置方案）长度必须介于 0 和 255 之间")
 	public String getRevise() {
 		return revise;
 	}
@@ -107,7 +103,6 @@ public class CzzYjyl extends DataEntity<CzzYjyl> {
 		this.revise = revise;
 	}
 	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}

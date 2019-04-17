@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.yjjy.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ import com.thinkgem.jeesite.modules.yjjy.service.CzzYjjyService;
 /**
  * 应急救援Controller
  * @author qyd
- * @version 2018-07-20
+ * @version 2018-09-18
  */
 @Controller
 @RequestMapping(value = "${adminPath}/yjjy/czzYjjy")
@@ -57,6 +58,7 @@ public class CzzYjjyController extends BaseController {
 	@RequiresPermissions("yjjy:czzYjjy:view")
 	@RequestMapping(value = "form")
 	public String form(CzzYjjy czzYjjy, Model model) {
+		czzYjjy.setContent(StringEscapeUtils.unescapeHtml4(czzYjjy.getContent()));
 		model.addAttribute("czzYjjy", czzYjjy);
 		return "modules/yjjy/czzYjjyForm";
 	}

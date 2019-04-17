@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.zyaq.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,8 @@ public class CzzZyaqController extends BaseController {
 	@RequiresPermissions("zyaq:czzZyaq:view")
 	@RequestMapping(value = "form")
 	public String form(CzzZyaq czzZyaq, Model model) {
+		czzZyaq.setTask(StringEscapeUtils.unescapeHtml4(czzZyaq.getTask()));
+		czzZyaq.setPerformance(StringEscapeUtils.unescapeHtml4(czzZyaq.getPerformance()));
 		model.addAttribute("czzZyaq", czzZyaq);
 		return "modules/zyaq/czzZyaqForm";
 	}

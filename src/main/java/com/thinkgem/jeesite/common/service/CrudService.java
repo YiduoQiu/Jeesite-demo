@@ -3,6 +3,7 @@
  */
 package com.thinkgem.jeesite.common.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thinkgem.jeesite.common.persistence.CrudDao;
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 import com.thinkgem.jeesite.common.persistence.Page;
+import com.thinkgem.jeesite.modules.aqjc.entity.CzzAqjc;
 
 /**
  * Service基类
@@ -96,5 +98,41 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
 	 */
 	public List<T> findGoalData(T entity) {
 		return dao.findGoalData(entity);
+	}
+
+	/**
+	 * 统计总量（报表方法）
+	 * @param entity
+	 * @return
+	 */
+	public int firstCount(T entity) {
+		return dao.firstCount(entity);
+	}
+	public int secondCount(T entity) {
+		return dao.secondCount(entity);
+	}
+	public int thirdCount(T entity) {
+		return dao.thirdCount(entity);
+	}
+	public int fourthCount(T entity) {
+		return dao.fourthCount(entity);
+	}
+	public int fifthCount(T entity) {
+		return dao.fifthCount(entity);
+	}
+	public int sixthCount(T entity) {
+		return dao.sixthCount(entity);
+	}
+	public int seventhCount(T entity) {
+		return dao.seventhCount(entity);
+	}
+	public int eightCount(T entity) {
+		return dao.eightCount(entity);
+	}
+	public int nineCount(T entity) {
+		return dao.nineCount(entity);
+	}
+	public int tenCount(T entity) {
+		return dao.tenCount(entity);
 	}
 }

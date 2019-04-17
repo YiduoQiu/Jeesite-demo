@@ -4,9 +4,10 @@
 <head>
 	<title>设施设备安全检查管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -36,7 +37,7 @@
 			<li><label>地点：</label>
 				<form:input path="location" htmlEscape="false" maxlength="255" class="input-medium"/>
 			</li>
-			<li><label>安全状态：</label>
+			<li><label style="width:120px;">设施设备安全状态：</label>
 				<form:select path="aqType" class="input-medium">
 					<form:option value="" label=""/>
 					<form:options items="${fns:getDictList('aq_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
@@ -53,8 +54,8 @@
 				<th>设备名称</th>
 				<th>时间</th>
 				<th>地点</th>
-				<th>安全状态</th>
-				<shiro:hasPermission name="sssbjc:czzSssbjc:edit"><th>操作</th></shiro:hasPermission>
+				<th>设施设备安全状态</th>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -72,10 +73,12 @@
 				<td>
 					${fns:getDictLabel(czzSssbjc.aqType, 'aq_type', '')}
 				</td>
-				<shiro:hasPermission name="sssbjc:czzSssbjc:edit"><td>
-    				<a href="${ctx}/sssbjc/czzSssbjc/form?id=${czzSssbjc.id}">修改</a>
+				<td>
+    				<a href="${ctx}/sssbjc/czzSssbjc/form?id=${czzSssbjc.id}">查看</a>
+    				<shiro:hasPermission name="sssbjc:czzSssbjc:edit">
 					<a href="${ctx}/sssbjc/czzSssbjc/delete?id=${czzSssbjc.id}" onclick="return confirmx('确认要删除该设施设备安全检查吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

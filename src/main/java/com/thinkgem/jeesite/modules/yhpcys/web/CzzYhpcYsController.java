@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.yhpcys.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,13 @@ public class CzzYhpcYsController extends BaseController {
 	@RequiresPermissions("yhpcys:czzYhpcYs:view")
 	@RequestMapping(value = "form")
 	public String form(CzzYhpcYs czzYhpcYs, Model model) {
+		czzYhpcYs.setContent1(StringEscapeUtils.unescapeHtml4(czzYhpcYs.getContent1()));
+		czzYhpcYs.setContent2(StringEscapeUtils.unescapeHtml4(czzYhpcYs.getContent2()));
+		czzYhpcYs.setContent3(StringEscapeUtils.unescapeHtml4(czzYhpcYs.getContent3()));
+		czzYhpcYs.setContent4(StringEscapeUtils.unescapeHtml4(czzYhpcYs.getContent4()));
+		czzYhpcYs.setContent5(StringEscapeUtils.unescapeHtml4(czzYhpcYs.getContent5()));
+		czzYhpcYs.setContent6(StringEscapeUtils.unescapeHtml4(czzYhpcYs.getContent6()));
+		czzYhpcYs.setCorrectacction(StringEscapeUtils.unescapeHtml4(czzYhpcYs.getCorrectacction()));
 		model.addAttribute("czzYhpcYs", czzYhpcYs);
 		return "modules/yhpcys/czzYhpcYsForm";
 	}

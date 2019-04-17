@@ -234,6 +234,13 @@
     <function-signature>long pastDays(java.util.Date)</function-signature>
     <example>${fns:pastDays(date)}</example>  
   </function>
+  <function>
+    <description>获取欢迎页面是否显示数据</description>
+    <name>getWelcomePage</name>
+    <function-class>com.thinkgem.jeesite.modules.sys.utils.UserUtils</function-class>
+    <function-signature>com.thinkgem.jeesite.modules.welcome.entity.CzzWelcom getWelcomePage()</function-signature>
+    <example>${fns:getWelcomePage()}</example>
+  </function>
   
   <!-- JsonMapper -->
   <function>

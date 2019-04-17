@@ -27,9 +27,20 @@
 	</script>
 </head>
 <body> --%>
+	<c:set var="welcomelist" value="${fns:getWelcomePage()}"/>
+	<c:set var="welFlag" value="0"/>
+	<c:forEach items="${welcomelist}" var="welcome" varStatus="status">
+		<c:if test="${status.index eq '0'}">
+			<c:set var="welFlag" value="${welcome.mentionFlag}"/>
+		</c:if>
+	</c:forEach>
 	<div class="accordion" id="menu-${param.parentId}"><c:set var="menuList" value="${fns:getMenuList()}"/><c:if test="${menu.isSingle eq '1'}"><c:set var="firstMenu" value="true"/></c:if><c:forEach items="${menuList}" var="menu" varStatus="idxStatus">
 	<c:if test="${menu.parent.id eq (not empty param.parentId ? param.parentId:1)&&menu.isShow eq '1'}">
-		<c:if test="${menu.isSingle eq '0'}">
+		<c:set var="Continue" value="0"/>
+		<c:if test="${menu.name eq '欢迎使用' && welFlag eq '1'}">
+			<c:set var="Continue" value="1"/>
+		</c:if>
+		<c:if test="${menu.isSingle eq '0' && Continue eq '0'}">
 			<div class="accordion-group">
 			    <div class="accordion-heading">
 			    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#menu-${param.parentId}" data-href="#collapse-${menu.id}" href="#collapse-${menu.id}" title="${menu.remarks}"><i class="icon-chevron-${not empty firstMenu && firstMenu ? 'down' : 'right'}"></i>&nbsp;${menu.name}</a>
@@ -45,7 +56,7 @@
 			    </div>
 			</div>
 		</c:if>
-		<c:if test="${menu.isSingle eq '1'}">
+		<c:if test="${menu.isSingle eq '1' && Continue eq '0'}">
 			<div class="accordion-group">
 			    <div class="accordion-heading">
 			    	<c:if test="${menu.name ne '法律法规查询'}">

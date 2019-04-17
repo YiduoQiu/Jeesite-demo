@@ -4,9 +4,10 @@
 <head>
 	<title>培训情况管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -18,7 +19,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/aqpx/pxqk/czzAqpxPxqk/">培训情况列表</a></li>
+		<li class="active"><a href="${ctx}/aqpx/pxqk/czzAqpxPxqk/">培训情况</a></li>
 		<shiro:hasPermission name="aqpx:pxqk:czzAqpxPxqk:edit"><li><a href="${ctx}/aqpx/pxqk/czzAqpxPxqk/form">培训情况添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzAqpxPxqk" action="${ctx}/aqpx/pxqk/czzAqpxPxqk/" method="post" class="breadcrumb form-search">
@@ -30,8 +31,8 @@
 			</li>
 			<li><label>时间：</label>
 				<input name="date" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate"
-					value="<fmt:formatDate value="${czzAqpxPxqk.date}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-					onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:false});"/>
+					value="<fmt:formatDate value="${czzAqpxPxqk.date}" pattern="yyyy-MM-dd"/>"
+					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			</li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
 			<li class="clearfix"></li>
@@ -54,15 +55,17 @@
 					${czzAqpxPxqk.title}
 				</a></td>
 				<td>
-					<fmt:formatDate value="${czzAqpxPxqk.date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzAqpxPxqk.date}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${czzAqpxPxqk.location}
 				</td>
-				<shiro:hasPermission name="aqpx:pxqk:czzAqpxPxqk:edit"><td>
-    				<a href="${ctx}/aqpx/pxqk/czzAqpxPxqk/form?id=${czzAqpxPxqk.id}">修改</a>
+				<td>
+    				<a href="${ctx}/aqpx/pxqk/czzAqpxPxqk/form?id=${czzAqpxPxqk.id}">查看</a>
+    				<shiro:hasPermission name="aqpx:pxqk:czzAqpxPxqk:edit">
 					<a href="${ctx}/aqpx/pxqk/czzAqpxPxqk/delete?id=${czzAqpxPxqk.id}" onclick="return confirmx('确认要删除该培训情况吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

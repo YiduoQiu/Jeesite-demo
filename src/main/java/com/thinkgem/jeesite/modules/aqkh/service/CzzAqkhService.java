@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.thinkgem.jeesite.common.persistence.Page;
 import com.thinkgem.jeesite.common.service.CrudService;
 import com.thinkgem.jeesite.modules.aqkh.entity.CzzAqkh;
+import com.thinkgem.jeesite.modules.sjcx.entity.CzzSjcx;
 import com.thinkgem.jeesite.modules.aqkh.dao.CzzAqkhDao;
 
 /**

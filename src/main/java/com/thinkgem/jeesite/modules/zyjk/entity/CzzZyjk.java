@@ -4,26 +4,29 @@
 package com.thinkgem.jeesite.modules.zyjk.entity;
 
 import org.hibernate.validator.constraints.Length;
+import java.util.List;
+import com.google.common.collect.Lists;
 
 import com.thinkgem.jeesite.common.persistence.DataEntity;
 
 /**
  * 职业健康Entity
  * @author qyd
- * @version 2018-07-20
+ * @version 2018-12-17
  */
 public class CzzZyjk extends DataEntity<CzzZyjk> {
 	
 	private static final long serialVersionUID = 1L;
 	private String type;		// 职业危害类别
-	private String person;		// 人员
+	private String person;		// 涉及人员名单
 	private String harm;		// 危害登记
-	private String safety;		// 职安评价
 	private String onsitetest;		// 现场检测
+	private String perprotect;		// 个人防护使用情况
 	private String phycheck;		// 体检情况
-	private String diseaseFlag;		// 有无职业病标记（0：无；1：有）
+	private String diseaseFlag;		// 有无职业病
 	private String method;		// 处置方法
 	private String file;		// 附件
+	private List<CzzZyjkDt1> czzZyjkDt1List = Lists.newArrayList();		// 子表列表
 	
 	public CzzZyjk() {
 		super();
@@ -42,7 +45,7 @@ public class CzzZyjk extends DataEntity<CzzZyjk> {
 		this.type = type;
 	}
 	
-	@Length(min=0, max=255, message="人员长度必须介于 0 和 255 之间")
+	@Length(min=0, max=2000, message="涉及人员名单长度必须介于 0 和 2000 之间")
 	public String getPerson() {
 		return person;
 	}
@@ -51,7 +54,6 @@ public class CzzZyjk extends DataEntity<CzzZyjk> {
 		this.person = person;
 	}
 	
-	@Length(min=0, max=2000, message="危害登记长度必须介于 0 和 2000 之间")
 	public String getHarm() {
 		return harm;
 	}
@@ -60,16 +62,6 @@ public class CzzZyjk extends DataEntity<CzzZyjk> {
 		this.harm = harm;
 	}
 	
-	@Length(min=0, max=2000, message="职安评价长度必须介于 0 和 2000 之间")
-	public String getSafety() {
-		return safety;
-	}
-
-	public void setSafety(String safety) {
-		this.safety = safety;
-	}
-	
-	@Length(min=0, max=2000, message="现场检测长度必须介于 0 和 2000 之间")
 	public String getOnsitetest() {
 		return onsitetest;
 	}
@@ -78,7 +70,14 @@ public class CzzZyjk extends DataEntity<CzzZyjk> {
 		this.onsitetest = onsitetest;
 	}
 	
-	@Length(min=0, max=2000, message="体检情况长度必须介于 0 和 2000 之间")
+	public String getPerprotect() {
+		return perprotect;
+	}
+
+	public void setPerprotect(String perprotect) {
+		this.perprotect = perprotect;
+	}
+	
 	public String getPhycheck() {
 		return phycheck;
 	}
@@ -87,7 +86,7 @@ public class CzzZyjk extends DataEntity<CzzZyjk> {
 		this.phycheck = phycheck;
 	}
 	
-	@Length(min=0, max=1, message="有无职业病标记（0：无；1：有）长度必须介于 0 和 1 之间")
+	@Length(min=0, max=1, message="有无职业病长度必须介于 0 和 1 之间")
 	public String getDiseaseFlag() {
 		return diseaseFlag;
 	}
@@ -96,7 +95,6 @@ public class CzzZyjk extends DataEntity<CzzZyjk> {
 		this.diseaseFlag = diseaseFlag;
 	}
 	
-	@Length(min=0, max=2000, message="处置方法长度必须介于 0 和 2000 之间")
 	public String getMethod() {
 		return method;
 	}
@@ -105,7 +103,6 @@ public class CzzZyjk extends DataEntity<CzzZyjk> {
 		this.method = method;
 	}
 	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}
@@ -114,4 +111,11 @@ public class CzzZyjk extends DataEntity<CzzZyjk> {
 		this.file = file;
 	}
 	
+	public List<CzzZyjkDt1> getCzzZyjkDt1List() {
+		return czzZyjkDt1List;
+	}
+
+	public void setCzzZyjkDt1List(List<CzzZyjkDt1> czzZyjkDt1List) {
+		this.czzZyjkDt1List = czzZyjkDt1List;
+	}
 }

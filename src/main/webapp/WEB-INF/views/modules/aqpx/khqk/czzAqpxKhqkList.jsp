@@ -4,9 +4,10 @@
 <head>
 	<title>考核情况管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -18,7 +19,7 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/aqpx/khqk/czzAqpxKhqk/">考核情况列表</a></li>
+		<li class="active"><a href="${ctx}/aqpx/khqk/czzAqpxKhqk/">考核情况</a></li>
 		<shiro:hasPermission name="aqpx:khqk:czzAqpxKhqk:edit"><li><a href="${ctx}/aqpx/khqk/czzAqpxKhqk/form">考核情况添加</a></li></shiro:hasPermission>
 	</ul>
 	<form:form id="searchForm" modelAttribute="czzAqpxKhqk" action="${ctx}/aqpx/khqk/czzAqpxKhqk/" method="post" class="breadcrumb form-search">
@@ -39,7 +40,7 @@
 				<th>标题</th>
 				<th>时间</th>
 				<th>地点</th>
-				<shiro:hasPermission name="aqpx:khqk:czzAqpxKhqk:edit"><th>操作</th></shiro:hasPermission>
+				<th>操作</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -49,15 +50,17 @@
 					${czzAqpxKhqk.title}
 				</a></td>
 				<td>
-					<fmt:formatDate value="${czzAqpxKhqk.date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+					<fmt:formatDate value="${czzAqpxKhqk.date}" pattern="yyyy-MM-dd"/>
 				</td>
 				<td>
 					${czzAqpxKhqk.location}
 				</td>
-				<shiro:hasPermission name="aqpx:khqk:czzAqpxKhqk:edit"><td>
-    				<a href="${ctx}/aqpx/khqk/czzAqpxKhqk/form?id=${czzAqpxKhqk.id}">修改</a>
+					<td>
+    				<a href="${ctx}/aqpx/khqk/czzAqpxKhqk/form?id=${czzAqpxKhqk.id}">查看</a>
+    				<shiro:hasPermission name="aqpx:khqk:czzAqpxKhqk:edit">
 					<a href="${ctx}/aqpx/khqk/czzAqpxKhqk/delete?id=${czzAqpxKhqk.id}" onclick="return confirmx('确认要删除该考核情况吗？', this.href)">删除</a>
-				</td></shiro:hasPermission>
+					</shiro:hasPermission>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>

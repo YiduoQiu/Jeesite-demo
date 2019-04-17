@@ -210,7 +210,6 @@ public class CzzYhpc extends DataEntity<CzzYhpc> {
 		this.content4 = content4;
 	}
 	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}

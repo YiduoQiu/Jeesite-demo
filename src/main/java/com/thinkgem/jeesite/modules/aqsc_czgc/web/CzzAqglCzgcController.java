@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.aqsc_czgc.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,7 @@ public class CzzAqglCzgcController extends BaseController {
 	@RequiresPermissions("aqsc_czgc:czzAqglCzgc:view")
 	@RequestMapping(value = "form")
 	public String form(CzzAqglCzgc czzAqglCzgc, Model model) {
+		czzAqglCzgc.setContent(StringEscapeUtils.unescapeHtml4(czzAqglCzgc.getContent()));
 		model.addAttribute("czzAqglCzgc", czzAqglCzgc);
 		return "modules/aqsc_czgc/czzAqglCzgcForm";
 	}
@@ -80,4 +82,8 @@ public class CzzAqglCzgcController extends BaseController {
 		return "redirect:"+Global.getAdminPath()+"/aqsc_czgc/czzAqglCzgc/?repage";
 	}
 
+	@RequestMapping(value = "help")
+	public String help1() {
+		return "modules/aqsc_czgc/czzAqglCzgc_help";
+	}
 }

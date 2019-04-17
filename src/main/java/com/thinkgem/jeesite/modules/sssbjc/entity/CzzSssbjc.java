@@ -12,7 +12,7 @@ import com.thinkgem.jeesite.common.persistence.DataEntity;
 /**
  * 设施设备安全检查Entity
  * @author qyd
- * @version 2018-09-03
+ * @version 2019-03-07
  */
 public class CzzSssbjc extends DataEntity<CzzSssbjc> {
 	
@@ -21,10 +21,9 @@ public class CzzSssbjc extends DataEntity<CzzSssbjc> {
 	private Date date;		// 时间
 	private String location;		// 地点
 	private String checkcontent;		// 检修内容
-	private String disposal;		// 处置情况
-	private String returninfo;		// 验收情况
+	private String relatedPer;		// 责任人签字
 	private String file;		// 附件
-	private String aqType;		// 设施设备安全状态
+	private String aqType;		// 设施设备安全状态（0：优，1：良，2：差）
 	
 	public CzzSssbjc() {
 		super();
@@ -61,7 +60,6 @@ public class CzzSssbjc extends DataEntity<CzzSssbjc> {
 		this.location = location;
 	}
 	
-	@Length(min=0, max=2000, message="检修内容长度必须介于 0 和 2000 之间")
 	public String getCheckcontent() {
 		return checkcontent;
 	}
@@ -70,25 +68,15 @@ public class CzzSssbjc extends DataEntity<CzzSssbjc> {
 		this.checkcontent = checkcontent;
 	}
 	
-	@Length(min=0, max=6000, message="处置情况长度必须介于 0 和 6000 之间")
-	public String getDisposal() {
-		return disposal;
+	@Length(min=0, max=255, message="责任人签字长度必须介于 0 和 255 之间")
+	public String getRelatedPer() {
+		return relatedPer;
 	}
 
-	public void setDisposal(String disposal) {
-		this.disposal = disposal;
+	public void setRelatedPer(String relatedPer) {
+		this.relatedPer = relatedPer;
 	}
 	
-	@Length(min=0, max=2000, message="验收情况长度必须介于 0 和 2000 之间")
-	public String getReturninfo() {
-		return returninfo;
-	}
-
-	public void setReturninfo(String returninfo) {
-		this.returninfo = returninfo;
-	}
-	
-	@Length(min=0, max=100, message="附件长度必须介于 0 和 100 之间")
 	public String getFile() {
 		return file;
 	}
@@ -97,7 +85,7 @@ public class CzzSssbjc extends DataEntity<CzzSssbjc> {
 		this.file = file;
 	}
 	
-	@Length(min=0, max=1, message="设施设备安全状态长度必须介于 0 和 1 之间")
+	@Length(min=0, max=1, message="设施设备安全状态（0：优，1：良，2：差）长度必须介于 0 和 1 之间")
 	public String getAqType() {
 		return aqType;
 	}

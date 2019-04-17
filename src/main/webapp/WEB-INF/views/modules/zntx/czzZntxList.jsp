@@ -4,9 +4,10 @@
 <head>
 	<title>该条提醒管理</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			search_event();
 		});
 		function page(n,s){
 			$("#pageNo").val(n);
@@ -72,7 +73,7 @@
 					<fmt:formatDate value="${czzZntx.endDate}" pattern="yyyy-MM-dd"/>
 				</td>
 				<shiro:hasPermission name="zntx:czzZntx:edit"><td>
-    				<a href="${ctx}/zntx/czzZntx/form?id=${czzZntx.id}">修改</a>
+    				<a href="${ctx}/zntx/czzZntx/form?id=${czzZntx.id}">查看</a>
 					<a href="${ctx}/zntx/czzZntx/delete?id=${czzZntx.id}" onclick="return confirmx('确认要删除该该条提醒吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>

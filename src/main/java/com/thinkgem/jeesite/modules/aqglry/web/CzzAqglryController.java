@@ -6,6 +6,7 @@ package com.thinkgem.jeesite.modules.aqglry.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import com.thinkgem.jeesite.common.web.BaseController;
 import com.thinkgem.jeesite.common.utils.StringUtils;
 import com.thinkgem.jeesite.modules.aqglry.entity.CzzAqglry;
 import com.thinkgem.jeesite.modules.aqglry.service.CzzAqglryService;
+import java.util.List;
 
 /**
  * 安全管理人员Controller
@@ -50,6 +52,9 @@ public class CzzAqglryController extends BaseController {
 	@RequestMapping(value = {"list", ""})
 	public String list(CzzAqglry czzAqglry, HttpServletRequest request, HttpServletResponse response, Model model) {
 		Page<CzzAqglry> page = czzAqglryService.findPage(new Page<CzzAqglry>(request, response), czzAqglry); 
+		for(CzzAqglry czzaqglry:page.getList()){
+			czzaqglry.setResponsible(StringEscapeUtils.unescapeHtml4(czzaqglry.getResponsible()));
+		}
 		model.addAttribute("page", page);
 		return "modules/aqglry/czzAqglryList";
 	}
@@ -57,6 +62,7 @@ public class CzzAqglryController extends BaseController {
 	@RequiresPermissions("aqglry:czzAqglry:view")
 	@RequestMapping(value = "form")
 	public String form(CzzAqglry czzAqglry, Model model) {
+		czzAqglry.setResponsible(StringEscapeUtils.unescapeHtml4(czzAqglry.getResponsible()));
 		model.addAttribute("czzAqglry", czzAqglry);
 		return "modules/aqglry/czzAqglryForm";
 	}

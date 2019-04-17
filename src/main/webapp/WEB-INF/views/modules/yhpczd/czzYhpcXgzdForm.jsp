@@ -2,8 +2,11 @@
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
-	<title>制度管理</title>
+	<title>隐患排查相关制度</title>
 	<meta name="decorator" content="default"/>
+	<script src="${ctxStatic}/jQuery-Word-Export/FileSaver.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/jQuery-Word-Export/jquery.wordexport.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/modules/prefile_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			//$("#name").focus();
@@ -22,24 +25,53 @@
 					}
 				}
 			});
-			if($("#filePreview li").html() == "无"){
-				$("#filePreview li").hide();
+			//隐藏正文
+			var id = '${czzYhpcXgzd.id}';
+			if(id == ''){
+				$("#view").hide();
+				$("#inputForm").show();
 			}
+			$("a.jquery-word-export").click(function(event) {
+				$("#pagecontent").wordExport($("title").html().substring(0,$("title").html().indexOf("-")-1));
+		    });
+			show_preFile();
 		});
 	</script>
 </head>
 <body>
 	<ul class="nav nav-tabs">
 		<li><a href="${ctx}/yhpczd/czzYhpcXgzd/">事故隐患排查治理制度</a></li>
-		<li class="active"><a href="${ctx}/yhpczd/czzYhpcXgzd/form?id=${czzYhpcXgzd.id}">制度<shiro:hasPermission name="yhpczd:czzYhpcXgzd:edit">${not empty czzYhpcXgzd.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="yhpczd:czzYhpcXgzd:edit">查看</shiro:lacksPermission></a></li>
+		<li class="active"><a href="${ctx}/yhpczd/czzYhpcXgzd/form?id=${czzYhpcXgzd.id}">制度<shiro:hasPermission name="yhpczd:czzYhpcXgzd:edit">${not empty czzYhpcXgzd.id?'查看':'添加'}</shiro:hasPermission><shiro:lacksPermission name="yhpczd:czzYhpcXgzd:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
-	<form:form id="inputForm" modelAttribute="czzYhpcXgzd" action="${ctx}/yhpczd/czzYhpcXgzd/save" method="post" class="form-horizontal">
+	<div id="view" class="form-horizontal">
+		<div id="pagecontent">	
+			<div class="control-group">
+				<label class="control-label">标题：</label>
+				<div style="padding-top: 3px;">${czzYhpcXgzd.title}</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">内容：</label>
+				<div style="margin-left:160px;margin-right:10px;padding-top: 3px;">${czzYhpcXgzd.content}</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">附件：</label>
+			<div id="view_file" style="padding-top: 3px;margin-left:160px;"></div>
+		</div>
+		<div class="form-actions">
+			<shiro:hasPermission name="yhpczd:czzYhpcXgzd:edit"><input id="btnSubmit" class="btn btn-primary" type="button" onclick="switch_content()" value="修 改"/>&nbsp;</shiro:hasPermission>
+			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
+			<a class="btn jquery-word-export" href="javascript:void(0)">导出为word文档</a>
+		</div>
+	</div>
+	<form:form id="inputForm" modelAttribute="czzYhpcXgzd" action="${ctx}/yhpczd/czzYhpcXgzd/save" method="post" class="form-horizontal" style="display:none;">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>		
 		<div class="control-group">
 			<label class="control-label">标题：</label>
 			<div class="controls">
-				<form:input path="title" htmlEscape="false" maxlength="100" class="input-xlarge "/>
+				<form:input path="title" htmlEscape="false" maxlength="100" class="input-xlarge required"/>
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
@@ -47,12 +79,13 @@
 			<div class="controls">
 				<form:textarea path="content" htmlEscape="false" rows="4" class="input-xxlarge " style="display:none"/>
 				<sys:ckeditor replace="content" />
+				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">附件：</label>
 			<div class="controls">
-				<form:hidden id="file" path="file" htmlEscape="false" maxlength="200" class="input-xlarge"/>
+				<form:hidden id="file" path="file" htmlEscape="false" class="input-xlarge"/>
 				<sys:ckfinder input="file" type="files" uploadPath="/yhpczd/czzYhpcXgzd" selectMultiple="true"/>
 			</div>
 		</div>
@@ -61,5 +94,12 @@
 			<input id="btnCancel" class="btn" type="button" value="返 回" onclick="history.go(-1)"/>
 		</div>
 	</form:form>
+	<script type="text/javascript">
+		function switch_content(){
+			$("#view").hide();
+			$("#inputForm").show();
+			$(".nav .active a").html("事故隐患排查治理制度修改");
+		}
+	</script>
 </body>
 </html>
